@@ -82,7 +82,7 @@ Applies to GasFurnace, ElectricFurnace, ACRepair, ACInstallation, ACTuneUp, Duct
 - **Next.js** (App Router) - framework and routing. Plan specifies 15; the scaffolded project has 16.2.10 installed (see Open questions).
 - **TypeScript** (strict) - language.
 - **Tailwind CSS v4** (CSS-first config) - styling.
-- **shadcn/ui** - UI components (not yet installed - see Open questions).
+- **shadcn/ui** - UI components (initialized in feature 1; `components.json` uses the `base-nova` style on `@base-ui/react`).
 - **Static JSON** (exported from Webflow) - content source, no CMS/database for MVP.
 - **Resend** - email delivery for the contact/quote form.
 - **Google Tag Manager** - analytics, via Next.js `Script`.
@@ -96,7 +96,9 @@ Not directly monetized - a lead generation site. Revenue comes from booked HVAC 
 
 ## UI/UX
 
-Pixel-accurate recreation of the existing hvaclimate.com design: dark navy/blue with orange/amber accents, clean and professional. Mobile-first, with phone number and CTA always visible. Performance target: LCP < 2.5s.
+Pixel-accurate recreation of the existing hvaclimate.com design: **light mode primary** (white/light backgrounds, blue accent) with a dark navy footer, clean and professional. Confirmed against reference screenshots in `blueprint/reference/` during feature 1 - corrects the earlier "dark navy/blue" assumption below, which only holds true for the footer. Mobile-first, with phone number and CTA always visible. Performance target: LCP < 2.5s.
+
+Design tokens (colors, font) are locked in `app/globals.css`, sampled directly from the reference screenshots: primary blue `#0061CF`, accent blue `#3D58FF`, navy footer `#0E1122`, Poppins font family.
 
 Full route list (must match Webflow `publishedPath` exactly) is tracked in the URL map in `blueprint/build-plan.md` - 22 routes spanning static pages, service category/sub-service pages, service areas, rebate programs, and blog.
 
@@ -105,5 +107,6 @@ Full route list (must match Webflow `publishedPath` exactly) is tracked in the U
 > TODOs and contradictions found between the two plans. Resolve in the plans, then re-run /overview.
 
 - project-plan.md specifies Next.js 15; the scaffolded app actually has 16.2.10 installed. Confirm whether to pin down to 15 or proceed on 16.
-- shadcn/ui is named as the UI component library but is not yet initialized in the project. Run its init as part of feature 1 (Project setup & design tokens) unless you want it done separately first.
 - Service sub-page data fields (GasFurnace, ACRepair, etc.) are inferred from the plan's shared description, not an actual Webflow export yet. Confirm field names once the CMS JSON is exported (pre-build step in build-plan.md).
+- The real logo asset (yellow gear, blue wrench, red "Climate Control LLC" text) hasn't been exported from Webflow yet. Header/Footer currently use a text placeholder. Swap in the real logo file once available.
+- Header nav has "Services" and "All Pages" links with no matching route in the URL map (only category pages like /heating exist). Currently stubbed to "#" - resolve when those pages/routes are defined.

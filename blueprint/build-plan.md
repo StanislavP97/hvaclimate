@@ -11,7 +11,7 @@
 
 ## Features
 
-- [ ] 1. **Project setup & design tokens** — configure Tailwind v4 with exact colors, fonts, spacing from Webflow design; add global layout (Header + Footer + phone CTA bar)
+- [x] 1. **Project setup & design tokens** — configure Tailwind v4 with exact colors, fonts, spacing from Webflow design; add global layout (Header + Footer + phone CTA bar)
 
 - [ ] 2. **Static pages** — Home, About, Contact, Privacy Policy, Instant Quote, 404 — pixel-accurate content and layout
 
