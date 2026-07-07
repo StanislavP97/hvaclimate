@@ -109,36 +109,43 @@ const ELECTRIC_FURNACE_SERVICES = [
     title: "Electric furnace installation",
     description:
       "We install modern, high-performance electric furnaces for long-lasting indoor comfort.",
+    href: "/heating/electric-furnace/installation",
   },
   {
     title: "Electric furnace replacement",
     description:
       "Outdated or failing electric systems can be replaced quickly and affordably with our expert guidance.",
+    href: "/heating/electric-furnace/replacement",
   },
   {
     title: "Electric furnace repair",
     description:
       "No heat? Unusual noises? We'll diagnose and fix the issue promptly with minimal disruption.",
+    href: "/heating/electric-furnace/repair",
   },
   {
     title: "Electric furnace tune-up",
     description:
       "Seasonal tune-ups help improve airflow, safety, and heating efficiency.",
+    href: "/heating/electric-furnace/tune-up",
   },
   {
     title: "Electric furnace upgrade",
     description:
       "Upgrade to a new model for better performance and consistent warmth.",
+    href: "/heating/electric-furnace/upgrade",
   },
   {
     title: "Electric furnace maintenance",
     description:
       "Scheduled maintenance keeps your system efficient and avoids breakdowns during cold weather.",
+    href: "/heating/electric-furnace/maintenance",
   },
   {
     title: "Emergency electric furnace repair",
     description:
       "When your electric heat fails, you can count on our emergency services 24/7 to restore comfort fast.",
+    href: "/heating/electric-furnace/emergency-repair",
   },
 ];
 
@@ -213,8 +220,13 @@ export default function HeatingPage() {
                 <li key={item.title} className="flex items-start gap-3 text-body">
                   <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary-accent" />
                   <span>
-                    <strong className="text-foreground">{item.title}</strong>:{" "}
-                    {item.description}
+                    <Link
+                      href={item.href}
+                      className="font-bold text-foreground hover:text-primary-accent hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                    : {item.description}
                   </span>
                 </li>
               ))}

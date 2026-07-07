@@ -21,7 +21,7 @@
 
 - [x] 4. **Gas Furnace sub-pages** — dynamic route /heating/gas-furnace/[slug] — repair, maintenance, installation, emergency pages from CMS JSON
 
-- [ ] 5. **Electric Furnace sub-pages** — dynamic route /heating/electric-furnace/[slug]
+- [x] 5. **Electric Furnace sub-pages** — dynamic route /heating/electric-furnace/[slug]
 
 - [ ] 6. **AC Repair sub-pages** — dynamic route /air-conditioner/repair/[slug]
 
