@@ -25,14 +25,14 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Vent Cleaning",
     description:
       "Thorough cleaning and maintenance to remove dust, debris, and buildup, helping your furnace breathe easy and perform its best.",
-    href: "/ventilation/vent-cleaning/dryer-vent-cleaning",
+    href: "/ventilation/vent-cleaning/home",
     imageLabel: "Vent cleaning",
   },
   {
     title: "Fresh Air System Installation",
     description:
       "Boost your indoor air quality with expertly installed fresh air systems tailored to your home.",
-    href: "/ventilation/ductwork/fresh-air-systems",
+    href: "/ventilation/ductwork/fresh-air-system-installation",
     imageLabel: "Fresh air system installation",
   },
 ];

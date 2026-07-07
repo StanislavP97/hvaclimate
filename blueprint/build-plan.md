@@ -29,7 +29,7 @@
 
 - [x] 8. **AC Tune-up sub-pages** — dynamic route /air-conditioner/tune-up/[slug]
 
-- [ ] 9. **Ventilation sub-pages** — /ventilation/ductwork/[slug] + /ventilation/vent-cleaning/[slug]
+- [x] 9. **Ventilation sub-pages** — /ventilation/ductwork/[slug] + /ventilation/vent-cleaning/[slug]
 
 - [ ] 10. **Commercial sub-pages** — dynamic route /commercial/[slug]
 
