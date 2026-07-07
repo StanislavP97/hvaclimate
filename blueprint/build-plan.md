@@ -37,7 +37,7 @@
 
 - [x] 12. **Rebate Programs** — /rebate-programs/[slug] — 3 program pages (built as 4; JSON has 4 entries)
 
-- [ ] 13. **Blog** — /blog listing page + /blog/[slug] individual posts + /blog-post-categories/[slug]
+- [x] 13. **Blog** — /blog listing page + /blog/[slug] individual posts + /blog-post-categories/[slug]
 
 - [ ] 14. **Contact form** — form at /contact with Resend email delivery; "Get Instant Quote" CTA linking to external booking tool
 

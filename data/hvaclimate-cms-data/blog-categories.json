@@ -4,35 +4,20 @@
     "slug": "articles",
     "name": "Articles",
     "titleTag": "HVAC Articles for Portland & Vancouver Homes",
-    "metaDescription": "Explore expert HVAC articles with tips, updates, and insights for homeowners in Portland, OR and Vancouver, WA. Stay informed year-round.",
-    "keyword": "",
-    "thumbnail": "",
-    "featuredImage": "",
-    "altText": "",
-    "content": ""
+    "metaDescription": "Explore expert HVAC articles with tips, updates, and insights for homeowners in Portland, OR and Vancouver, WA."
   },
   {
     "id": "67edf6fbcff5f4aab55d72d7",
     "slug": "resource",
     "name": "Resource",
     "titleTag": "HVAC Resource Center for Portland & Vancouver",
-    "metaDescription": "Browse expert HVAC resources including system guides, maintenance tips, and homeowner checklists for Portland, OR and Vancouver, WA residents.",
-    "keyword": "",
-    "thumbnail": "",
-    "featuredImage": "",
-    "altText": "",
-    "content": ""
+    "metaDescription": "Browse expert HVAC resources including system guides, maintenance tips, and homeowner checklists."
   },
   {
     "id": "67edf6fbcff5f4aab55d72eb",
     "slug": "tips",
     "name": "Tips",
     "titleTag": "HVAC Tips to Save Energy & Stay Comfortable",
-    "metaDescription": "Discover seasonal HVAC tips, energy-saving tricks, and practical advice to keep your Portland or Vancouver home efficient, cozy, and cost-effective.",
-    "keyword": "",
-    "thumbnail": "",
-    "featuredImage": "",
-    "altText": "",
-    "content": ""
+    "metaDescription": "Discover seasonal HVAC tips, energy-saving tricks, and practical advice to keep your home efficient."
   }
 ]
