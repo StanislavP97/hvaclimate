@@ -17,7 +17,7 @@
   - [x] 2a. About, Contact, Privacy Policy, 404 — fully referenced from Webflow screenshots
   - [ ] 2b. Home (below the hero) + Instant Quote (3-step wizard) — deferred until remaining screenshots (full Home page, Instant Quote steps 2 "Contact" and 3 "Your Price") are provided
 
-- [ ] 3. **Service category pages** — Heating (/heating), Air Conditioning (/air-conditioning), Ventilation (/ventilation), Commercial (/commercial) — category landing pages with sub-service links
+- [x] 3. **Service category pages** — Heating (/heating), Air Conditioning (/air-conditioning), Ventilation (/ventilation), Commercial (/commercial) — category landing pages with sub-service links
 
 - [ ] 4. **Gas Furnace sub-pages** — dynamic route /heating/gas-furnace/[slug] — repair, maintenance, installation, emergency pages from CMS JSON
 
