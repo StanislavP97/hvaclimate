@@ -27,7 +27,7 @@
 
 - [x] 7. **AC Installation sub-pages** — dynamic route /air-conditioner/installation/[slug]
 
-- [ ] 8. **AC Tune-up sub-pages** — dynamic route /air-conditioner/tune-up/[slug]
+- [x] 8. **AC Tune-up sub-pages** — dynamic route /air-conditioner/tune-up/[slug]
 
 - [ ] 9. **Ventilation sub-pages** — /ventilation/ductwork/[slug] + /ventilation/vent-cleaning/[slug]
 

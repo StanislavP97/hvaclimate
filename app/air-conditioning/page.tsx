@@ -32,7 +32,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Air Conditioner Tune-up",
     description:
       "Keep your AC running efficiently all season. Our tune-up service improves performance, extends equipment life, and lowers energy bills.",
-    href: "/air-conditioner/tune-up/tune-up",
+    href: "/air-conditioner/tune-up/residential",
     imageLabel: "Air conditioner tune-up",
   },
 ];
