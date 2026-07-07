@@ -31,7 +31,7 @@
 
 - [x] 9. **Ventilation sub-pages** — /ventilation/ductwork/[slug] + /ventilation/vent-cleaning/[slug]
 
-- [ ] 10. **Commercial sub-pages** — dynamic route /commercial/[slug]
+- [x] 10. **Commercial sub-pages** — dynamic route /commercial/[slug]
 
 - [ ] 11. **Service Areas** — 7 city pages at /service-areas/[city] — Vancouver WA, Portland, Camas, Longview, Ridgefield, Battleground, Lake Oswego
 

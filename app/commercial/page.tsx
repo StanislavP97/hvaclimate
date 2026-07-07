@@ -18,21 +18,21 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Commercial HVAC Maintenance Services",
     description:
       "Prevent breakdowns and boost efficiency with professional HVAC maintenance by HVA Climate Control.",
-    href: "/commercial/hvac-maintenance",
+    href: "/commercial/hvac-maintenance-services",
     imageLabel: "Commercial HVAC maintenance",
   },
   {
     title: "Hood Repair and Maintenance Services",
     description:
       "Ensure proper ventilation and fire safety with hood maintenance and repair from HVA Climate Control.",
-    href: "/commercial/hood-cooktop",
+    href: "/commercial/hood-repair-and-maintenance-services",
     imageLabel: "Hood repair and maintenance",
   },
   {
     title: "Cooktop Repair and Maintenance Services",
     description:
       "Keep your cooktops in peak condition with expert maintenance and repair services from HVA Climate Control.",
-    href: "/commercial/hood-cooktop",
+    href: "/commercial/cooktop-repair-and-maintenance-services",
     imageLabel: "Cooktop repair and maintenance",
   },
   {
@@ -46,14 +46,14 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Pizza Ovens Service",
     description:
       "Professional pizza oven repair and maintenance to keep your kitchen running at full capacity.",
-    href: "/commercial/ovens-repair",
+    href: "/commercial/pizza-ovens-service",
     imageLabel: "Pizza ovens service",
   },
   {
     title: "Refrigeration Systems Maintenance",
     description:
       "Extend the life of your refrigeration systems with routine maintenance and repair from HVA Climate Control.",
-    href: "/commercial/refrigeration",
+    href: "/commercial/refrigeration-systems-maintenance",
     imageLabel: "Refrigeration systems maintenance",
   },
 ];
