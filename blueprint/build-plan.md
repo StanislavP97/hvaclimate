@@ -39,7 +39,7 @@
 
 - [x] 13. **Blog** — /blog listing page + /blog/[slug] individual posts + /blog-post-categories/[slug]
 
-- [ ] 14. **Contact form** — form at /contact with Resend email delivery; "Get Instant Quote" CTA linking to external booking tool
+- [x] 14. **Contact form** — form at /contact with Resend email delivery; "Get Instant Quote" CTA linking to external booking tool
 
 - [ ] 15. **SEO layer** — generateMetadata() for every page/route pulling from CMS JSON; sitemap.xml; robots.txt; JSON-LD schema (LocalBusiness, Service)
 
