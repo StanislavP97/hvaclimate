@@ -19,7 +19,7 @@
 
 - [x] 3. **Service category pages** — Heating (/heating), Air Conditioning (/air-conditioning), Ventilation (/ventilation), Commercial (/commercial) — category landing pages with sub-service links
 
-- [ ] 4. **Gas Furnace sub-pages** — dynamic route /heating/gas-furnace/[slug] — repair, maintenance, installation, emergency pages from CMS JSON
+- [x] 4. **Gas Furnace sub-pages** — dynamic route /heating/gas-furnace/[slug] — repair, maintenance, installation, emergency pages from CMS JSON
 
 - [ ] 5. **Electric Furnace sub-pages** — dynamic route /heating/electric-furnace/[slug]
 
@@ -80,15 +80,15 @@
 
 | Webflow Collection | JSON file |
 |---|---|
-| Blog Posts | data/blog-posts.json |
-| Blog Post Categories | data/blog-categories.json |
-| Gas Furnaces | data/gas-furnaces.json |
-| Electric Furnaces | data/electric-furnaces.json |
-| Air Conditioner Repairs | data/ac-repairs.json |
-| Air Conditioner Installations | data/ac-installations.json |
-| Air Conditioner Tune-ups | data/ac-tuneups.json |
-| Ductworks | data/ductworks.json |
-| Vent Cleanings | data/vent-cleanings.json |
-| Commercials | data/commercials.json |
-| Rebate Programs | data/rebate-programs.json |
-| Service Areas | data/service-areas.json |
+| Blog Posts | data/hvaclimate-cms-data/blog-posts.json |
+| Blog Post Categories | data/hvaclimate-cms-data/blog-categories.json |
+| Gas Furnaces | data/hvaclimate-cms-data/gas-furnaces.json |
+| Electric Furnaces | data/hvaclimate-cms-data/electric-furnaces.json |
+| Air Conditioner Repairs | data/hvaclimate-cms-data/ac-repairs.json |
+| Air Conditioner Installations | data/hvaclimate-cms-data/ac-installations.json |
+| Air Conditioner Tune-ups | data/hvaclimate-cms-data/ac-tuneups.json |
+| Ductworks | data/hvaclimate-cms-data/ductworks.json |
+| Vent Cleanings | data/hvaclimate-cms-data/vent-cleanings.json |
+| Commercials | data/hvaclimate-cms-data/commercials.json |
+| Rebate Programs | data/hvaclimate-cms-data/rebate-programs.json |
+| Service Areas | data/hvaclimate-cms-data/service-areas.json |

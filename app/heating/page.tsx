@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { ServiceHero } from "@/components/services/ServiceHero";
@@ -63,31 +64,43 @@ const GAS_FURNACE_SERVICES = [
     title: "Gas furnace installation",
     description:
       "We install high-efficiency gas furnaces tailored to your home's size and heating needs.",
+    href: "/heating/gas-furnace/installation",
   },
   {
     title: "Gas furnace replacement",
     description:
       "If your old furnace is beyond repair or inefficient, we'll guide you through the replacement process with top-rated units.",
+    href: "/heating/gas-furnace/replacement",
   },
   {
     title: "Gas furnace repair",
     description:
       "From faulty ignitions to airflow issues, we troubleshoot and fix all types of gas furnace problems quickly.",
+    href: "/heating/gas-furnace/repair",
+  },
+  {
+    title: "Gas furnace maintenance",
+    description:
+      "Scheduled maintenance keeps your gas furnace efficient and helps avoid breakdowns during cold weather.",
+    href: "/heating/gas-furnace/maintenance",
   },
   {
     title: "Gas furnace tune-up",
     description:
       "Preventative maintenance and seasonal tune-ups ensure your furnace runs smoothly and reliably when you need it most.",
+    href: "/heating/gas-furnace/tune-up",
   },
   {
     title: "Gas furnace upgrade",
     description:
       "Ready to improve your heating performance? Our upgrade services help boost energy efficiency and lower your bills.",
+    href: "/heating/gas-furnace/upgrade",
   },
   {
     title: "Emergency gas furnace repair",
     description:
       "When the heat goes out unexpectedly, our emergency team is available to restore warmth to your home fast.",
+    href: "/heating/gas-furnace/emergency-repair",
   },
 ];
 
@@ -172,8 +185,13 @@ export default function HeatingPage() {
                 <li key={item.title} className="flex items-start gap-3 text-body">
                   <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary-accent" />
                   <span>
-                    <strong className="text-foreground">{item.title}</strong>:{" "}
-                    {item.description}
+                    <Link
+                      href={item.href}
+                      className="font-bold text-foreground hover:text-primary-accent hover:underline"
+                    >
+                      {item.title}
+                    </Link>
+                    : {item.description}
                   </span>
                 </li>
               ))}
