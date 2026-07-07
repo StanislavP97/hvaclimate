@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "AC repair, installation, and tune-up services in Vancouver WA and Portland OR. Fast, reliable air conditioning experts, licensed, bonded, and insured.",
 };
 
-const SERVICE_CARDS: ServiceCardData[] = [
+export const COOLING_SERVICE_CARDS: ServiceCardData[] = [
   {
     title: "Air Conditioner Repair",
     description:
@@ -75,7 +75,7 @@ export default function AirConditioningPage() {
         imageLabel="AC condenser unit"
       />
       <ServiceTrustBar />
-      <ServiceCardGrid cards={SERVICE_CARDS} />
+      <ServiceCardGrid cards={COOLING_SERVICE_CARDS} />
 
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">

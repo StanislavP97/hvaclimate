@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Commercial HVAC maintenance, hood, oven, and refrigeration repair for businesses in Vancouver WA and Portland OR. Licensed, bonded, and insured.",
 };
 
-const SERVICE_CARDS: ServiceCardData[] = [
+export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
   {
     title: "Commercial HVAC Maintenance Services",
     description:
@@ -68,7 +68,7 @@ export default function CommercialPage() {
         imageLabel="Commercial refrigeration and HVAC equipment"
       />
       <ServiceTrustBar />
-      <ServiceCardGrid cards={SERVICE_CARDS} />
+      <ServiceCardGrid cards={COMMERCIAL_SERVICE_CARDS} />
 
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">

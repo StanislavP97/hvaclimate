@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Ductwork, vent cleaning, and fresh air system installation in Vancouver WA and Portland OR. Licensed, bonded, and insured ventilation experts.",
 };
 
-const SERVICE_CARDS: ServiceCardData[] = [
+export const VENTILATION_SERVICE_CARDS: ServiceCardData[] = [
   {
     title: "Ductwork",
     description:
@@ -134,7 +134,7 @@ export default function VentilationPage() {
         imageLabel="Ductwork ventilation"
       />
       <ServiceTrustBar />
-      <ServiceCardGrid cards={SERVICE_CARDS} />
+      <ServiceCardGrid cards={VENTILATION_SERVICE_CARDS} />
 
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">

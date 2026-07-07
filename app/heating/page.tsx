@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Expert gas and electric furnace repair, installation, tune-up, and maintenance in Vancouver WA and Portland OR. Licensed, bonded, and insured.",
 };
 
-const SERVICE_CARDS: ServiceCardData[] = [
+export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
   {
     title: "Gas Furnace",
     description:
@@ -159,7 +159,7 @@ export default function HeatingPage() {
         imageLabel="Furnace flame"
       />
       <ServiceTrustBar />
-      <ServiceCardGrid cards={SERVICE_CARDS} />
+      <ServiceCardGrid cards={HEATING_SERVICE_CARDS} />
 
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">
