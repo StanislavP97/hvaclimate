@@ -18,7 +18,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Air Conditioner Repair",
     description:
       "Fast and reliable AC repair services for residential and commercial systems. We diagnose and fix any issue, same or next-day.",
-    href: "/air-conditioner/repair/repair",
+    href: "/air-conditioner/repair/residential",
     imageLabel: "Air conditioner repair",
   },
   {

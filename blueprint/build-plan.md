@@ -23,7 +23,7 @@
 
 - [x] 5. **Electric Furnace sub-pages** — dynamic route /heating/electric-furnace/[slug]
 
-- [ ] 6. **AC Repair sub-pages** — dynamic route /air-conditioner/repair/[slug]
+- [x] 6. **AC Repair sub-pages** — dynamic route /air-conditioner/repair/[slug]
 
 - [ ] 7. **AC Installation sub-pages** — dynamic route /air-conditioner/installation/[slug]
 
