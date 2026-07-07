@@ -14,6 +14,8 @@
 - [x] 1. **Project setup & design tokens** — configure Tailwind v4 with exact colors, fonts, spacing from Webflow design; add global layout (Header + Footer + phone CTA bar)
 
 - [ ] 2. **Static pages** — Home, About, Contact, Privacy Policy, Instant Quote, 404 — pixel-accurate content and layout
+  - [x] 2a. About, Contact, Privacy Policy, 404 — fully referenced from Webflow screenshots
+  - [ ] 2b. Home (below the hero) + Instant Quote (3-step wizard) — deferred until remaining screenshots (full Home page, Instant Quote steps 2 "Contact" and 3 "Your Price") are provided
 
 - [ ] 3. **Service category pages** — Heating (/heating), Air Conditioning (/air-conditioning), Ventilation (/ventilation), Commercial (/commercial) — category landing pages with sub-service links
 
