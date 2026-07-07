@@ -25,7 +25,7 @@ const SERVICE_CARDS: ServiceCardData[] = [
     title: "Air Conditioner Installation",
     description:
       "Professional air conditioner installation for homes and businesses in Vancouver WA and Portland OR. Flat-rate pricing, no surprises.",
-    href: "/air-conditioner/installation/installation",
+    href: "/air-conditioner/installation/residential",
     imageLabel: "Air conditioner installation",
   },
   {

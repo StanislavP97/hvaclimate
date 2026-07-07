@@ -25,7 +25,7 @@
 
 - [x] 6. **AC Repair sub-pages** — dynamic route /air-conditioner/repair/[slug]
 
-- [ ] 7. **AC Installation sub-pages** — dynamic route /air-conditioner/installation/[slug]
+- [x] 7. **AC Installation sub-pages** — dynamic route /air-conditioner/installation/[slug]
 
 - [ ] 8. **AC Tune-up sub-pages** — dynamic route /air-conditioner/tune-up/[slug]
 
