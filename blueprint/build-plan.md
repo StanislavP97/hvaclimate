@@ -35,7 +35,7 @@
 
 - [x] 11. **Service Areas** — 7 city pages at /service-areas/[city] — Vancouver WA, Portland, Camas, Longview, Ridgefield, Battleground, Lake Oswego
 
-- [ ] 12. **Rebate Programs** — /rebate-programs/[slug] — 3 program pages
+- [x] 12. **Rebate Programs** — /rebate-programs/[slug] — 3 program pages (built as 4; JSON has 4 entries)
 
 - [ ] 13. **Blog** — /blog listing page + /blog/[slug] individual posts + /blog-post-categories/[slug]
 

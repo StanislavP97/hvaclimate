@@ -58,10 +58,19 @@ const COMPANY_LINKS = [
 ];
 
 const REBATE_LINKS = [
-  { label: "Heat Pump", href: "/rebate-programs" },
-  { label: "Smart Thermostat", href: "/rebate-programs" },
-  { label: "Ductless Heat Pump", href: "/rebate-programs" },
-  { label: "Water Heater", href: "/rebate-programs" },
+  { label: "Heat Pump", href: "/rebate-programs/heat-pump-program" },
+  {
+    label: "Smart Thermostat",
+    href: "/rebate-programs/smart-thermostat-program",
+  },
+  {
+    label: "Ductless Heat Pump",
+    href: "/rebate-programs/ductless-heat-pump-program",
+  },
+  {
+    label: "Water Heater",
+    href: "/rebate-programs/heat-pump-water-heater-program",
+  },
 ];
 
 export default function Footer() {
