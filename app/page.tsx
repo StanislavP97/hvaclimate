@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
 import { ReviewsSection } from "@/components/home/ReviewsSection";
-import { ExperienceBanner } from "@/components/home/ExperienceBanner";
 import { ServiceCategorySections } from "@/components/home/ServiceCategorySections";
 import { BlogTeaser } from "@/components/home/BlogTeaser";
+import { TrustBar } from "@/components/home/TrustBar";
+import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 
 export const metadata: Metadata = {
   title: "HVA Climate Control | HVAC Contractor in Vancouver, WA",
@@ -15,9 +16,10 @@ export default function Home() {
   return (
     <>
       <HomeHero />
-      <ReviewsSection />
-      <ExperienceBanner />
+      <TrustBar />
       <ServiceCategorySections />
+      <WhyChooseUs />
+      <ReviewsSection />
       <BlogTeaser />
     </>
   );

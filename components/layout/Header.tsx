@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import MobileNav from "@/components/layout/MobileNav";
 
@@ -15,43 +15,42 @@ const NAV_LINKS = [
 export default function Header() {
   return (
     <header className="relative border-b border-border">
-      <div className="hidden border-b border-border sm:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-8 px-6 py-2.5 text-sm text-foreground">
+      <div className="hidden border-b border-border bg-navy sm:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-6 py-2 text-[13px] text-footer-foreground">
           <a
             href="mailto:Office@HVAClimate.com"
             className="flex items-center gap-2"
           >
-            <span className="flex size-6 items-center justify-center rounded-full bg-accent">
-              <Mail className="size-3.5 text-primary-accent" />
-            </span>
-            Office@HVAClimate.com
+            <Mail className="size-3.5 text-primary-accent" />
+            <span className="link-animated">Office@HVAClimate.com</span>
           </a>
           <span className="hidden items-center gap-2 md:flex">
-            <span className="flex size-6 items-center justify-center rounded-full bg-accent">
-              <MapPin className="size-3.5 text-primary-accent" />
-            </span>
+            <MapPin className="size-3.5 text-primary-accent" />
             Vancouver WA &amp; Portland OR
           </span>
-          <a href="tel:3608882217" className="flex items-center gap-2">
-            <span className="flex size-6 items-center justify-center rounded-full bg-accent">
-              <Phone className="size-3.5 text-primary-accent" />
-            </span>
-            (360) 888-2217{" "}
-            <span className="hidden font-semibold sm:inline">
-              Click to call
-            </span>
+          <a
+            href="tel:3608882217"
+            className="flex items-center gap-2 font-semibold text-white"
+          >
+            <Phone className="size-3.5 text-primary-accent" />
+            <span className="link-animated">(360) 888-2217</span>
           </a>
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3">
-        <Link href="/" className="text-lg font-bold text-foreground">
-          Climate Control LLC
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3.5">
+        <Link href="/" className="flex items-center gap-3">
+          <span className="flex size-10 items-center justify-center rounded-[9px] bg-gradient-to-br from-primary-accent to-navy text-base font-extrabold text-white">
+            H
+          </span>
+          <span className="text-lg font-extrabold tracking-tight text-foreground">
+            HVA<span className="text-primary-accent">Climate</span>
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 text-sm font-medium text-foreground lg:flex">
+        <nav className="hidden items-center gap-7.5 text-sm font-medium text-foreground lg:flex">
           {NAV_LINKS.map((link) => (
-            <Link key={link.label} href={link.href}>
+            <Link key={link.label} href={link.href} className="link-animated">
               {link.label}
             </Link>
           ))}
@@ -61,11 +60,22 @@ export default function Header() {
           <a
             href="tel:3608882217"
             className={buttonVariants({
-              className: "hidden rounded-full px-6 sm:inline-flex",
+              variant: "outline",
+              className:
+                "btn-text-slide hidden rounded-[9px] px-5 sm:inline-flex",
             })}
           >
-            BOOK ONLINE
+            Book Online
+            <ArrowRight className="btn-text-slide-arrow size-4" />
           </a>
+          <Link
+            href="/instant-quote"
+            className={buttonVariants({
+              className: "hidden rounded-[9px] px-5 sm:inline-flex",
+            })}
+          >
+            Get a Quote
+          </Link>
           <MobileNav />
         </div>
       </div>

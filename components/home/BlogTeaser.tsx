@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import { getBlogPosts } from "@/lib/blog-posts";
-import { buttonVariants } from "@/components/ui/button";
+import { getBlogCategoryBySlug } from "@/lib/blog-categories";
+import { BlogTeaserGrid } from "@/components/home/BlogTeaserGrid";
+import { BrowseArticlesLink } from "@/components/home/BrowseArticlesLink";
 
 export function BlogTeaser() {
   const posts = getBlogPosts().slice(0, 3);
@@ -10,59 +10,27 @@ export function BlogTeaser() {
     return null;
   }
 
+  const items = posts.map((post) => ({
+    post,
+    category: getBlogCategoryBySlug(post.categorySlug),
+  }));
+
   return (
-    <section className="bg-background py-16">
+    <section className="bg-muted py-19">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-bold tracking-wide text-primary-accent">
-              BLOG
+            <p className="text-[13px] font-bold tracking-[0.14em] text-primary-accent uppercase">
+              Resources
             </p>
-            <h2 className="mt-3 text-3xl font-extrabold text-foreground">
-              Check our lastest articles
+            <h2 className="mt-3 text-4xl font-extrabold text-foreground">
+              Check our latest articles
             </h2>
-            <p className="mt-2 text-body">
-              Discover seasonal HVAC tips, expert repair advice, and
-              energy-saving insights from the HVA Climate Control team.
-            </p>
           </div>
-          <Link
-            href="/blog"
-            className={buttonVariants({ variant: "outline", className: "rounded-full px-6" })}
-          >
-            Browse all articles
-          </Link>
+          <BrowseArticlesLink />
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="flex flex-col overflow-hidden rounded-2xl border border-border"
-            >
-              <Image
-                src={post.thumbnail}
-                alt={post.altText}
-                width={640}
-                height={384}
-                className="h-40 w-full object-cover"
-              />
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="text-lg font-bold text-foreground">
-                  {post.name}
-                </h3>
-                <p className="mt-2 text-sm text-body">
-                  {new Date(post.publishedDate).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <BlogTeaserGrid items={items} />
       </div>
     </section>
   );

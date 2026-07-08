@@ -2,7 +2,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
-const STATS = [
+export const HOME_STATS = [
   { value: "10+", label: "Year Experience" },
   { value: "400+", label: "Happy clients" },
   { value: "7+", label: "Qualified experts" },
@@ -28,20 +28,6 @@ export function ExperienceBanner() {
             We offer 100% satisfaction gurantee, if we make a mistake, we make
             it right!
           </p>
-
-          <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
-            {STATS.map((stat) => (
-              <div key={stat.label}>
-                <dt className="sr-only">{stat.label}</dt>
-                <dd className="text-4xl font-extrabold text-white">
-                  {stat.value}
-                </dd>
-                <dd className="text-sm text-footer-foreground">
-                  {stat.label}
-                </dd>
-              </div>
-            ))}
-          </dl>
 
           <Link
             href="/instant-quote"

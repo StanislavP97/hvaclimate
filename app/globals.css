@@ -6,7 +6,7 @@
   /* brand tokens, sampled from blueprint/reference screenshots */
   --background: #ffffff; /* page / header background */
   --foreground: #172345; /* headline text, sampled from hero headline */
-  --color-primary-accent: #3d58ff; /* eyebrow text + nav accents, sampled from "LICENSED, BONDED, & INSURED" */
+  --color-primary-accent: #2563EB; /* eyebrow text + nav accents, sampled from "LICENSED, BONDED, & INSURED" */
   --color-navy: #0e1122; /* footer background, sampled from footer top-left corner */
   --color-body: #374151; /* body copy on light backgrounds (Tailwind gray-700, closest safe match) */
   --color-footer-foreground: #92a0b9; /* footer link text, sampled from footer link column */
@@ -102,4 +102,92 @@
   html {
     @apply font-sans;
   }
+}
+
+.social-btn {
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  transition: color 0.35s cubic-bezier(0.31, -0.105, 0.43, 1.59);
+  opacity: 0.99;
+}
+
+.social-btn::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: 90%;
+  left: -110%;
+  background: var(--social-bg);
+  transform: rotate(45deg);
+  transition: all 0.35s cubic-bezier(0.31, -0.105, 0.43, 1.59);
+  z-index: 0;
+}
+
+.social-btn:hover::before,
+.social-btn:focus-visible::before {
+  top: -10%;
+  left: -10%;
+}
+
+.social-btn:hover,
+.social-btn:focus-visible {
+  color: #fff;
+}
+
+.social-btn-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-anim-default,
+.btn-anim-outline-light,
+.btn-anim-outline-dark {
+  transition: all 0.3s ease;
+}
+
+.btn-anim-default:hover {
+  background: transparent;
+  color: var(--primary);
+}
+
+.btn-anim-outline-light:hover {
+  background: #172345;
+  color: #ffffff;
+}
+
+.btn-anim-outline-dark:hover {
+  background: #ffffff;
+  color: #0e1122;
+}
+
+.btn-text-slide {
+  transition: all 0.25s ease;
+}
+
+.btn-text-slide:hover {
+  transform: translateX(-4px);
+}
+
+.btn-text-slide-arrow {
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.25s ease;
+}
+
+.btn-text-slide:hover .btn-text-slide-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.link-animated {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease;
+}
+
+.link-animated:hover {
+  background-size: 100% 2px;
 }
