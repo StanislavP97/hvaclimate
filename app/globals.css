@@ -11,6 +11,7 @@
   --color-body: #374151; /* body copy on light backgrounds (Tailwind gray-700, closest safe match) */
   --color-footer-foreground: #92a0b9; /* footer link text, sampled from footer link column */
   --color-footer-heading: #ffffff; /* footer column headings */
+  --color-section-dark: #182944;
 
   /* shadcn/ui semantic tokens, remapped onto the brand palette above */
   --card: #ffffff;
@@ -46,6 +47,7 @@
 }
 
 @theme inline {
+  --color-section-dark: var(--color-section-dark);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary-accent: var(--color-primary-accent);
