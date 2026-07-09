@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const FAQS = [
@@ -40,34 +42,61 @@ export function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-      {FAQS.map((faq, index) => {
-        const isOpen = index === openIndex;
-        return (
-          <button
-            key={faq.question}
-            type="button"
-            onClick={() => setOpenIndex(isOpen ? -1 : index)}
-            aria-expanded={isOpen}
-            className={cn(
-              "rounded-2xl bg-background p-6 text-left transition-colors",
-              isOpen && "sm:row-span-1"
-            )}
-          >
-            <h3
-              className={cn(
-                "text-lg font-bold",
-                isOpen ? "text-primary-accent" : "text-foreground"
-              )}
-            >
-              {faq.question}
-            </h3>
-            {isOpen && (
-              <p className="mt-3 text-sm text-body">{faq.answer}</p>
-            )}
-          </button>
-        );
-      })}
+    <div className="mx-auto max-w-[720px] px-6 py-20">
+      <div className="mb-10 text-center">
+        <p className="text-[13px] font-bold tracking-[0.14em] text-primary-accent uppercase">
+          FAQ
+        </p>
+        <h2 className="mt-2.5 text-3xl font-extrabold tracking-[-0.02em] text-foreground">
+          Frequently asked questions
+        </h2>
+      </div>
+
+      <div>
+        {FAQS.map((faq, index) => {
+          const isOpen = index === openIndex;
+          return (
+            <div key={faq.question} className="border-b border-[#e6ebf1]">
+              <button
+                type="button"
+                onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                aria-expanded={isOpen}
+                className="flex w-full items-center justify-between gap-6 py-4.5 text-left"
+              >
+                <span
+                  className={cn(
+                    "text-base font-semibold",
+                    isOpen ? "text-primary-accent" : "text-[#0D1B2A]",
+                  )}
+                >
+                  {faq.question}
+                </span>
+                <ChevronDown
+                  className={cn(
+                    "size-4.5 shrink-0 transition-transform duration-200",
+                    isOpen ? "rotate-180 text-primary-accent" : "text-[#0D1B2A]",
+                  )}
+                />
+              </button>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p className="pb-4 text-[15px] text-[#64748b]">
+                      {faq.answer}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
