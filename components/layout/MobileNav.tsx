@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { SERVICES_MENU } from "@/components/layout/Header";
+import { ChevronDown, Menu, MapPin, X } from "lucide-react";
+import { SERVICES_MENU, SERVICE_AREAS_MENU } from "@/components/layout/Header";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Service Areas", href: "/service-areas" },
   { label: "Rebates", href: "/rebate-programs" },
   { label: "All Pages", href: "#" },
   { label: "Instant Quote", href: "/instant-quote" },
@@ -16,10 +15,12 @@ const NAV_LINKS = [
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [serviceAreasOpen, setServiceAreasOpen] = useState(false);
 
   const closeMenu = () => {
     setOpen(false);
     setServicesOpen(false);
+    setServiceAreasOpen(false);
   };
 
   return (
@@ -81,6 +82,38 @@ export default function MobileNav() {
                 </div>
               ))}
             </div>
+          )}
+
+          <button
+            type="button"
+            className="flex items-center justify-between py-2 text-left"
+            aria-expanded={serviceAreasOpen}
+            onClick={() => setServiceAreasOpen((v) => !v)}
+          >
+            Service Areas
+            <ChevronDown
+              className="size-4 transition-transform duration-200"
+              style={{
+                transform: serviceAreasOpen ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
+          </button>
+
+          {serviceAreasOpen && (
+            <ul className="flex flex-col gap-1 py-2 pl-3">
+              {SERVICE_AREAS_MENU.map((area) => (
+                <li key={area.slug}>
+                  <Link
+                    href={`/service-areas/${area.slug}`}
+                    className="flex items-center gap-2 py-1 text-sm text-[#475569]"
+                    onClick={closeMenu}
+                  >
+                    <MapPin className="size-4 text-[#2563EB]" />
+                    {area.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           )}
 
           {NAV_LINKS.filter((link) => link.label !== "Home").map((link) => (

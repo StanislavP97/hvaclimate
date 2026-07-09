@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Music2 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 
@@ -109,8 +110,14 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pt-15 pb-11">
         <div className="grid grid-cols-1 gap-10 border-b border-white/10 pb-11 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div>
-            <Link href="/" className="text-lg font-bold text-footer-heading">
-              Climate Control LLC
+            <Link href="/" className="inline-flex">
+              <Image
+                src="/logo.png"
+                alt="Climate Control LLC"
+                width={145}
+                height={100}
+                className="h-[100px] w-[145px]"
+              />
             </Link>
             <p className="mt-3.5 text-sm">
               Vancouver&rsquo;s Go-To HVAC Company for Comfort &amp; Care

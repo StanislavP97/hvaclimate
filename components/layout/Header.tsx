@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
@@ -16,10 +17,19 @@ import MobileNav from "@/components/layout/MobileNav";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Service Areas", href: "/service-areas" },
   { label: "Rebates", href: "/rebate-programs" },
   { label: "All Pages", href: "#" },
   { label: "Instant Quote", href: "/instant-quote" },
+];
+
+export const SERVICE_AREAS_MENU = [
+  { label: "Vancouver WA", slug: "hvac-contractor-vancouver-wa" },
+  { label: "Portland OR", slug: "hvac-contractor-portland-or" },
+  { label: "Camas", slug: "hvac-camas-wa" },
+  { label: "Longview", slug: "hvac-contractor-longview-wa" },
+  { label: "Ridgefield", slug: "hvac-contractor-ridgefield-wa" },
+  { label: "Battleground", slug: "hvac-contractor-battleground-wa" },
+  { label: "Lake Oswego", slug: "lake-oswego-or" },
 ];
 
 export const SERVICES_MENU = [
@@ -126,6 +136,57 @@ function ServicesMegaMenu() {
   );
 }
 
+function ServiceAreasDropdown() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <button
+        type="button"
+        className="link-animated flex items-center gap-1"
+        aria-expanded={isOpen}
+      >
+        Service Areas
+        <ChevronDown
+          className="size-4 transition-transform duration-200"
+          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+        />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-full left-1/2 z-50 min-w-[220px] -translate-x-1/2 rounded-xl border bg-white p-2 shadow-[0_20px_60px_rgba(13,27,42,0.12)]"
+            style={{ borderColor: "#eef1f5" }}
+          >
+            <ul className="flex flex-col">
+              {SERVICE_AREAS_MENU.map((area) => (
+                <li key={area.slug}>
+                  <Link
+                    href={`/service-areas/${area.slug}`}
+                    className="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm text-[#475569] transition-colors duration-150 hover:bg-slate-50 hover:text-[#0D1B2A]"
+                  >
+                    <MapPin className="size-4 text-[#2563EB]" />
+                    {area.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Header() {
   return (
     <header className="relative border-b border-border">
@@ -153,13 +214,15 @@ export default function Header() {
       </div>
 
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-3.5">
-        <Link href="/" className="flex items-center gap-3">
-          <span className="flex size-10 items-center justify-center rounded-[9px] bg-gradient-to-br from-primary-accent to-navy text-base font-extrabold text-white">
-            H
-          </span>
-          <span className="text-lg font-extrabold tracking-tight text-foreground">
-            HVA<span className="text-primary-accent">Climate</span>
-          </span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/logo.png"
+            alt="Climate Control LLC"
+            width={145}
+            height={100}
+            className="h-[100px] w-[145px]"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-7.5 text-sm font-medium text-foreground lg:flex">
@@ -167,6 +230,7 @@ export default function Header() {
             Home
           </Link>
           <ServicesMegaMenu />
+          <ServiceAreasDropdown />
           {NAV_LINKS.filter((link) => link.label !== "Home").map((link) => (
             <Link key={link.label} href={link.href} className="link-animated">
               {link.label}
