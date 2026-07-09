@@ -1,27 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, MapPin, X } from "lucide-react";
-import { SERVICES_MENU, SERVICE_AREAS_MENU } from "@/components/layout/Header";
-
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Rebates", href: "/rebate-programs" },
-  { label: "All Pages", href: "#" },
-  { label: "Instant Quote", href: "/instant-quote" },
-];
+import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+  SERVICES_MENU,
+  SERVICE_AREAS_MENU,
+  REBATE_PROGRAMS_MENU,
+} from "@/components/layout/Header";
 
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [serviceAreasOpen, setServiceAreasOpen] = useState(false);
+  const [rebatesOpen, setRebatesOpen] = useState(false);
 
   const closeMenu = () => {
     setOpen(false);
     setServicesOpen(false);
     setServiceAreasOpen(false);
+    setRebatesOpen(false);
   };
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   return (
     <div className="lg:hidden">
@@ -30,9 +40,28 @@ export default function MobileNav() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="flex size-9 items-center justify-center rounded-md border border-border"
+        className="relative flex size-9 items-center justify-center rounded-md border border-border"
       >
-        {open ? <X className="size-5" /> : <Menu className="size-5" />}
+        <span className="relative flex h-4 w-5 flex-col justify-between">
+          <span
+            className={cn(
+              "h-0.5 w-full rounded-full bg-current transition-all duration-300 ease-in-out",
+              open && "translate-y-[7px] rotate-45",
+            )}
+          />
+          <span
+            className={cn(
+              "h-0.5 w-full rounded-full bg-current transition-all duration-300 ease-in-out",
+              open && "opacity-0",
+            )}
+          />
+          <span
+            className={cn(
+              "h-0.5 w-full rounded-full bg-current transition-all duration-300 ease-in-out",
+              open && "-translate-y-[7px] -rotate-45",
+            )}
+          />
+        </span>
       </button>
 
       {open && (
@@ -116,16 +145,65 @@ export default function MobileNav() {
             </ul>
           )}
 
-          {NAV_LINKS.filter((link) => link.label !== "Home").map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="py-2"
+          <button
+            type="button"
+            className="flex items-center justify-between py-2 text-left"
+            aria-expanded={rebatesOpen}
+            onClick={() => setRebatesOpen((v) => !v)}
+          >
+            Rebates
+            <ChevronDown
+              className="size-4 transition-transform duration-200"
+              style={{
+                transform: rebatesOpen ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            />
+          </button>
+
+          {rebatesOpen && (
+            <ul className="flex flex-col gap-1 py-2 pl-3">
+              {REBATE_PROGRAMS_MENU.map((program) => (
+                <li key={program.slug}>
+                  <Link
+                    href={`/rebate-programs/${program.slug}`}
+                    className="flex items-start gap-2 py-1 text-sm text-[#475569]"
+                    onClick={closeMenu}
+                  >
+                    <Tag className="mt-0.5 size-4 shrink-0 text-[#2563EB]" />
+                    {program.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <Link href="/about" className="py-2" onClick={closeMenu}>
+            About
+          </Link>
+          <Link href="/blog" className="py-2" onClick={closeMenu}>
+            Blog
+          </Link>
+
+          <div className="mt-2 flex flex-col gap-2 border-t border-border pt-4">
+            <a
+              href="tel:3608882217"
+              className={cn(
+                buttonVariants({ variant: "outline" }),
+                "btn-text-slide justify-center rounded-[9px]",
+              )}
               onClick={closeMenu}
             >
-              {link.label}
+              Book Online
+              <ArrowRight className="btn-text-slide-arrow size-4" />
+            </a>
+            <Link
+              href="/instant-quote"
+              className={cn(buttonVariants(), "justify-center rounded-[9px]")}
+              onClick={closeMenu}
+            >
+              Get a Quote
             </Link>
-          ))}
+          </div>
         </nav>
       )}
     </div>

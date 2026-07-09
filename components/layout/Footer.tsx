@@ -116,7 +116,7 @@ export default function Footer() {
                 alt="Climate Control LLC"
                 width={145}
                 height={100}
-                className="h-[100px] w-[145px]"
+                className="h-[80px] w-auto max-w-none shrink-0"
               />
             </Link>
             <p className="mt-3.5 text-sm">
