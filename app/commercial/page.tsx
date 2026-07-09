@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { ServiceHero } from "@/components/services/ServiceHero";
-import { ServiceTrustBar } from "@/components/services/ServiceTrustBar";
-import { ServiceCardGrid, type ServiceCardData } from "@/components/services/ServiceCardGrid";
-import { ServiceContentSidebar } from "@/components/services/ServiceContentSidebar";
-import { ServiceReviewsBand } from "@/components/services/ServiceReviewsBand";
+import {
+  ServiceCategoryLayout,
+  type ServiceCategoryCard,
+} from "@/components/services/ServiceCategoryLayout";
+import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+
+type ServiceCardData = ServiceCategoryCard;
 
 export const metadata: Metadata = {
   title: "Commercial HVAC Services | HVA Climate Control",
@@ -61,16 +63,15 @@ export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
 export default function CommercialPage() {
   return (
     <>
-      <ServiceHero
-        title="Commercial Services"
-        description="Keep your business running smoothly with expert commercial services from HVA Climate Control. From refrigeration to HVAC, we provide reliable maintenance and repairs to help you stay efficient, safe, and compliant."
-        primaryCtaLabel="Get a Quote Today"
-        imageLabel="Commercial refrigeration and HVAC equipment"
+      <ServiceCategoryLayout
+        eyebrow="COMMERCIAL HVAC"
+        title="Commercial HVAC Services in Vancouver, WA"
+        description="Reliable HVAC maintenance and repair for businesses across Vancouver and Portland."
+        cards={COMMERCIAL_SERVICE_CARDS}
+        categoryLabel="Commercial"
       />
-      <ServiceTrustBar />
-      <ServiceCardGrid cards={COMMERCIAL_SERVICE_CARDS} />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
+      <section className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">
           <div>
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -207,10 +208,8 @@ export default function CommercialPage() {
           </div>
         </div>
 
-        <ServiceContentSidebar />
+        <ServiceEstimateSidebar />
       </section>
-
-      <ServiceReviewsBand />
     </>
   );
 }

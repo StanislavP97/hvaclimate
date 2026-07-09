@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { ServiceHero } from "@/components/services/ServiceHero";
-import { ServiceTrustBar } from "@/components/services/ServiceTrustBar";
-import { ServiceCardGrid, type ServiceCardData } from "@/components/services/ServiceCardGrid";
-import { ServiceContentSidebar } from "@/components/services/ServiceContentSidebar";
-import { ServiceReviewsBand } from "@/components/services/ServiceReviewsBand";
+import {
+  ServiceCategoryLayout,
+  type ServiceCategoryCard,
+} from "@/components/services/ServiceCategoryLayout";
+import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+
+type ServiceCardData = ServiceCategoryCard;
 
 export const metadata: Metadata = {
   title: "Heating Services | HVA Climate Control",
@@ -152,16 +154,15 @@ const ELECTRIC_FURNACE_SERVICES = [
 export default function HeatingPage() {
   return (
     <>
-      <ServiceHero
-        title="Heating Services For Your Home"
-        description="Keep your home warm and worry-free with expert heating services from HVA Climate Control. Whether you need routine maintenance, fast repairs, or a full system replacement, our team is here to deliver reliable, energy-efficient solutions you can trust."
-        primaryCtaLabel="Get a Heating Quote"
-        imageLabel="Furnace flame"
+      <ServiceCategoryLayout
+        eyebrow="HEATING SERVICES"
+        title="Heating Services in Vancouver, WA"
+        description="From furnace repair to heat pump installation — we keep your home warm through every Pacific Northwest winter."
+        cards={HEATING_SERVICE_CARDS}
+        categoryLabel="Heating"
       />
-      <ServiceTrustBar />
-      <ServiceCardGrid cards={HEATING_SERVICE_CARDS} />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
+      <section className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">
           <div>
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -274,10 +275,8 @@ export default function HeatingPage() {
           </div>
         </div>
 
-        <ServiceContentSidebar />
+        <ServiceEstimateSidebar />
       </section>
-
-      <ServiceReviewsBand />
     </>
   );
 }

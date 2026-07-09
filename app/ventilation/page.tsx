@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { ServiceHero } from "@/components/services/ServiceHero";
-import { ServiceTrustBar } from "@/components/services/ServiceTrustBar";
-import { ServiceCardGrid, type ServiceCardData } from "@/components/services/ServiceCardGrid";
-import { ServiceContentSidebar } from "@/components/services/ServiceContentSidebar";
-import { ServiceReviewsBand } from "@/components/services/ServiceReviewsBand";
+import {
+  ServiceCategoryLayout,
+  type ServiceCategoryCard,
+} from "@/components/services/ServiceCategoryLayout";
+import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+
+type ServiceCardData = ServiceCategoryCard;
 
 export const metadata: Metadata = {
   title: "Ventilation Services | HVA Climate Control",
@@ -127,16 +129,15 @@ const FRESH_AIR_SERVICES = [
 export default function VentilationPage() {
   return (
     <>
-      <ServiceHero
-        title="HVAC Ventilation Services"
-        description="Keep your home fresh and healthy with expert ventilation services from HVA Climate Control. Whether you need system cleaning, airflow optimization, or a complete ventilation upgrade, our team delivers reliable, energy-efficient solutions you can count on."
-        primaryCtaLabel="Get a Quote Today"
-        imageLabel="Ductwork ventilation"
+      <ServiceCategoryLayout
+        eyebrow="VENTILATION SERVICES"
+        title="Ventilation Services in Vancouver, WA"
+        description="Ductwork, vent cleaning, and fresh air systems for healthier homes."
+        cards={VENTILATION_SERVICE_CARDS}
+        categoryLabel="Ventilation"
       />
-      <ServiceTrustBar />
-      <ServiceCardGrid cards={VENTILATION_SERVICE_CARDS} />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
+      <section className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">
           <div>
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -260,10 +261,8 @@ export default function VentilationPage() {
           </div>
         </div>
 
-        <ServiceContentSidebar />
+        <ServiceEstimateSidebar />
       </section>
-
-      <ServiceReviewsBand />
     </>
   );
 }

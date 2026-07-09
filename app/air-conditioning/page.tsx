@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { ServiceHero } from "@/components/services/ServiceHero";
-import { ServiceTrustBar } from "@/components/services/ServiceTrustBar";
-import { ServiceCardGrid, type ServiceCardData } from "@/components/services/ServiceCardGrid";
-import { ServiceContentSidebar } from "@/components/services/ServiceContentSidebar";
-import { ServiceReviewsBand } from "@/components/services/ServiceReviewsBand";
+import {
+  ServiceCategoryLayout,
+  type ServiceCategoryCard,
+} from "@/components/services/ServiceCategoryLayout";
+import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+
+type ServiceCardData = ServiceCategoryCard;
 
 export const metadata: Metadata = {
   title: "Air Conditioning Services | HVA Climate Control",
@@ -68,16 +70,15 @@ const AC_HIGHLIGHTS = [
 export default function AirConditioningPage() {
   return (
     <>
-      <ServiceHero
-        title="Air Condition Services"
-        description="Keep your home cool and comfortable with expert air conditioning services from HVA Climate Control. Whether you need routine maintenance, system repairs, or a full AC upgrade, our team delivers reliable, energy-efficient cooling solutions you can count on."
-        primaryCtaLabel="Get AC Services Quote Today"
-        imageLabel="AC condenser unit"
+      <ServiceCategoryLayout
+        eyebrow="COOLING SERVICES"
+        title="Air Conditioning Services in Vancouver, WA"
+        description="From AC repair to new installations — we keep you cool all summer long."
+        cards={COOLING_SERVICE_CARDS}
+        categoryLabel="Cooling"
       />
-      <ServiceTrustBar />
-      <ServiceCardGrid cards={COOLING_SERVICE_CARDS} />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
+      <section className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-12 px-6 py-16 lg:grid-cols-[1fr_360px]">
         <div className="space-y-12">
           <div>
             <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
@@ -215,10 +216,8 @@ export default function AirConditioningPage() {
           </div>
         </div>
 
-        <ServiceContentSidebar />
+        <ServiceEstimateSidebar />
       </section>
-
-      <ServiceReviewsBand />
     </>
   );
 }
