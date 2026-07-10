@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { HOME_HERO_FEATURES } from "@/components/home/HomeHero";
 
 const WHY_CHOOSE_US_ITEMS = [
@@ -45,10 +45,15 @@ export function WhyChooseUs() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <ImagePlaceholder
-            label="HVA Climate Control technician at work"
-            className="h-[430px] w-full rounded-[18px]"
-          />
+          <div className="relative h-[430px] w-full overflow-hidden rounded-[18px]">
+            <Image
+              src="/images/team/technician-at-work.avif"
+              alt="HVA Climate Control technician at work"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
+          </div>
         </motion.div>
 
         <div>

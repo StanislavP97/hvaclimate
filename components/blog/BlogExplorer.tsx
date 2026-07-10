@@ -1,11 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Phone, Search } from "lucide-react";
 import type { BlogCategory, BlogPost } from "@/types/blog";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getBlogCategoryStyle } from "@/lib/blog-category-styles";
@@ -170,9 +170,12 @@ export function BlogExplorer({ posts, categories }: BlogExplorerProps) {
             className="mx-auto grid max-w-7xl grid-cols-1 overflow-hidden rounded-[20px] border border-border shadow-[0_8px_30px_rgba(13,27,42,0.06)] lg:grid-cols-[1.15fr_1fr]"
           >
             <div className="relative aspect-video lg:aspect-auto lg:min-h-[420px]">
-              <ImagePlaceholder
-                label={featuredPost.altText}
-                className="absolute inset-0 h-full w-full"
+              <Image
+                src={featuredPost.thumbnail}
+                alt={featuredPost.altText}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 55vw, 100vw"
               />
               <span className="absolute top-6 left-6 rounded-full bg-[#F97316] px-3.5 py-1.75 font-sans text-xs font-bold tracking-[0.02em] text-white">
                 FEATURED

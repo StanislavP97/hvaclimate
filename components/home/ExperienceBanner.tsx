@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 export const HOME_STATS = [
   { value: "10+", label: "Year Experience" },
@@ -12,10 +12,15 @@ export function ExperienceBanner() {
   return (
     <section className="bg-navy">
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2">
-        <ImagePlaceholder
-          label="HVA Climate Control technician at work"
-          className="aspect-4/3 w-full lg:aspect-auto lg:h-full"
-        />
+        <div className="relative aspect-4/3 w-full overflow-hidden lg:aspect-auto lg:h-full">
+          <Image
+            src="/images/team/technician-at-work.avif"
+            alt="HVA Climate Control technician at work"
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+        </div>
 
         <div className="px-6 py-16 lg:py-0">
           <p className="text-sm font-bold tracking-wide text-amber-400">

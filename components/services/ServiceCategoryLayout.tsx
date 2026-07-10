@@ -7,7 +7,7 @@ export interface ServiceCategoryCard {
   title: string;
   description: string;
   href: string;
-  thumbnail?: string;
+  thumbnail: string;
   altText?: string;
   imageLabel: string;
 }

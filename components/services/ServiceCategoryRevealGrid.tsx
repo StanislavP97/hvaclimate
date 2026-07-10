@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import type { ServiceCategoryCard } from "@/components/services/ServiceCategoryLayout";
 
 const gridVariants = {
@@ -42,10 +42,15 @@ export function ServiceCategoryRevealGrid({
           transition={{ duration: 0.2, ease: "easeOut" }}
           className="cursor-pointer overflow-hidden rounded-2xl border border-[#eaeef3] bg-white"
         >
-          <ImagePlaceholder
-            label={card.altText ?? card.imageLabel ?? card.thumbnail ?? card.title}
-            className="aspect-video w-full"
-          />
+          <div className="relative aspect-video w-full">
+            <Image
+              src={card.thumbnail}
+              alt={card.altText ?? card.imageLabel}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            />
+          </div>
           <div className="p-6">
             <h3 className="mb-2 font-sans text-lg font-bold text-foreground">
               {card.title}

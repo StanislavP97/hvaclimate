@@ -22,6 +22,7 @@ export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
       "Prevent breakdowns and boost efficiency with professional HVAC maintenance by HVA Climate Control.",
     href: "/commercial/hvac-maintenance-services",
     imageLabel: "Commercial HVAC maintenance",
+    thumbnail: "/images/services/commercial/hvac-maintenance.avif",
   },
   {
     title: "Hood Repair and Maintenance Services",
@@ -29,6 +30,7 @@ export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
       "Ensure proper ventilation and fire safety with hood maintenance and repair from HVA Climate Control.",
     href: "/commercial/hood-repair-and-maintenance-services",
     imageLabel: "Hood repair and maintenance",
+    thumbnail: "/images/services/commercial/hood-repair-maintenance.avif",
   },
   {
     title: "Cooktop Repair and Maintenance Services",
@@ -36,6 +38,7 @@ export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
       "Keep your cooktops in peak condition with expert maintenance and repair services from HVA Climate Control.",
     href: "/commercial/cooktop-repair-and-maintenance-services",
     imageLabel: "Cooktop repair and maintenance",
+    thumbnail: "/images/services/commercial/cooktop-repair-maintenance.avif",
   },
   {
     title: "Commercial Ovens Repair",
@@ -43,6 +46,7 @@ export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
       "Expert commercial oven repairs to reduce downtime and restore cooking quality.",
     href: "/commercial/ovens-repair",
     imageLabel: "Commercial ovens repair",
+    thumbnail: "/images/services/commercial/commercial-ovens-repair.avif",
   },
   {
     title: "Pizza Ovens Service",
@@ -50,6 +54,7 @@ export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
       "Professional pizza oven repair and maintenance to keep your kitchen running at full capacity.",
     href: "/commercial/pizza-ovens-service",
     imageLabel: "Pizza ovens service",
+    thumbnail: "/images/services/commercial/pizza-ovens-service.avif",
   },
   {
     title: "Refrigeration Systems Maintenance",
@@ -57,6 +62,7 @@ export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
       "Extend the life of your refrigeration systems with routine maintenance and repair from HVA Climate Control.",
     href: "/commercial/refrigeration-systems-maintenance",
     imageLabel: "Refrigeration systems maintenance",
+    thumbnail: "/images/services/heating/gas-furnace-repair.jpeg",
   },
 ];
 

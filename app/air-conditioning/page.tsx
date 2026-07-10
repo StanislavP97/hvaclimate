@@ -22,6 +22,7 @@ export const COOLING_SERVICE_CARDS: ServiceCardData[] = [
       "Fast and reliable AC repair services for residential and commercial systems. We diagnose and fix any issue, same or next-day.",
     href: "/air-conditioner/repair/residential",
     imageLabel: "Air conditioner repair",
+    thumbnail: "/images/services/cooling/air-handler-repair.jpg",
   },
   {
     title: "Air Conditioner Installation",
@@ -29,6 +30,7 @@ export const COOLING_SERVICE_CARDS: ServiceCardData[] = [
       "Professional air conditioner installation for homes and businesses in Vancouver WA and Portland OR. Flat-rate pricing, no surprises.",
     href: "/air-conditioner/installation/residential",
     imageLabel: "Air conditioner installation",
+    thumbnail: "/images/services/cooling/residential-ac-installation.jpeg",
   },
   {
     title: "Air Conditioner Tune-up",
@@ -36,6 +38,7 @@ export const COOLING_SERVICE_CARDS: ServiceCardData[] = [
       "Keep your AC running efficiently all season. Our tune-up service improves performance, extends equipment life, and lowers energy bills.",
     href: "/air-conditioner/tune-up/residential",
     imageLabel: "Air conditioner tune-up",
+    thumbnail: "/images/services/cooling/ac-tune-up.jpg",
   },
 ];
 

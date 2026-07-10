@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Star } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { QuoteMiniForm } from "@/components/contact/QuoteMiniForm";
 
 export const metadata: Metadata = {
@@ -36,10 +36,15 @@ export default function PrivacyPolicyPage() {
             Get a quote
           </a>
         </div>
-        <ImagePlaceholder
-          label="Technician with service van"
-          className="h-64 w-full rounded-2xl sm:h-80"
-        />
+        <div className="relative h-64 w-full overflow-hidden rounded-2xl sm:h-80">
+          <Image
+            src="/images/hero/service-van.avif"
+            alt="Technician with service van"
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+        </div>
       </section>
 
       <section className="bg-primary py-8">

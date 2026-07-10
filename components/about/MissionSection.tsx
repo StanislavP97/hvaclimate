@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 const MISSION_POINTS = [
   "Skilled in servicing all major HVAC brands and models",
@@ -53,10 +53,15 @@ export function MissionSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <ImagePlaceholder
-            label="Technician with service van"
-            className="h-80 w-full rounded-2xl"
-          />
+          <div className="relative h-80 w-full overflow-hidden rounded-2xl">
+            <Image
+              src="/images/hero/service-van.avif"
+              alt="Technician with service van"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
+          </div>
         </motion.div>
         <motion.div
           initial="hidden"

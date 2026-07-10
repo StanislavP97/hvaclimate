@@ -15,7 +15,11 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <AnimatedImage label="Ductwork installation" className="h-96 w-full" />
+      <AnimatedImage
+        src="/images/about/ductwork-pipes.jpg"
+        label="Ductwork installation"
+        className="h-96 w-full"
+      />
       <ValuesSection />
       <MissionSection />
       <GoalsSection />

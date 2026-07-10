@@ -1,8 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 const textVariants = {
   hidden: {},
@@ -66,10 +66,15 @@ export function GoalsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <ImagePlaceholder
-            label="AC condenser unit"
-            className="h-80 w-full rounded-2xl"
-          />
+          <div className="relative h-80 w-full overflow-hidden rounded-2xl">
+            <Image
+              src="/images/services/cooling/residential-ac-installation.jpeg"
+              alt="AC condenser unit"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

@@ -22,6 +22,7 @@ export const VENTILATION_SERVICE_CARDS: ServiceCardData[] = [
       "Professional installation, repairs, and regular maintenance to keep your ductwork system running efficiently and safely.",
     href: "/ventilation/ductwork/repair",
     imageLabel: "Ductwork",
+    thumbnail: "/images/services/ventilation/home-vent-cleaning.jpg",
   },
   {
     title: "Vent Cleaning",
@@ -29,6 +30,7 @@ export const VENTILATION_SERVICE_CARDS: ServiceCardData[] = [
       "Thorough cleaning and maintenance to remove dust, debris, and buildup, helping your furnace breathe easy and perform its best.",
     href: "/ventilation/vent-cleaning/home",
     imageLabel: "Vent cleaning",
+    thumbnail: "/images/services/ventilation/dryer-vent-cleaning.jpg",
   },
   {
     title: "Fresh Air System Installation",
@@ -36,6 +38,7 @@ export const VENTILATION_SERVICE_CARDS: ServiceCardData[] = [
       "Boost your indoor air quality with expertly installed fresh air systems tailored to your home.",
     href: "/ventilation/ductwork/fresh-air-system-installation",
     imageLabel: "Fresh air system installation",
+    thumbnail: "/images/services/ventilation/dryer-vent-not-blowing.jpeg",
   },
 ];
 

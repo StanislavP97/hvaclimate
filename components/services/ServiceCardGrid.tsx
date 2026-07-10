@@ -1,15 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 export interface ServiceCardData {
   title: string;
   description: string;
   href: string;
   imageLabel: string;
+  thumbnail: string;
 }
 
 const gridVariants = {
@@ -49,10 +50,15 @@ export function ServiceCardGrid({ cards }: { cards: ServiceCardData[] }) {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_2px_10px_rgba(13,27,42,0.04)]"
           >
-            <ImagePlaceholder
-              label={card.imageLabel}
-              className="h-[190px] w-full"
-            />
+            <div className="relative h-[190px] w-full">
+              <Image
+                src={card.thumbnail}
+                alt={card.imageLabel}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              />
+            </div>
             <div className="flex flex-1 flex-col p-5.5">
               <h3 className="text-lg font-bold text-foreground">
                 {card.title}

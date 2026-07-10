@@ -23,6 +23,7 @@ export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
       "Expert repair, installation, and maintenance services for gas furnaces.",
     href: "/heating/gas-furnace/repair",
     imageLabel: "Gas furnace",
+    thumbnail: "/images/services/heating/gas-furnace-installation.jpeg",
   },
   {
     title: "Electric Furnace",
@@ -30,6 +31,7 @@ export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
       "Pro electric furnace services including installation, repair, maintenance.",
     href: "/heating/electric-furnace/repair",
     imageLabel: "Electric furnace",
+    thumbnail: "/images/services/heating/electric-furnace-installation.jpeg",
   },
   {
     title: "Repair Services",
@@ -37,6 +39,7 @@ export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
       "Professional repair services for gas and electric furnaces. Swift solutions to keep your home comfortable and warm.",
     href: "/heating/gas-furnace/repair",
     imageLabel: "Furnace repair",
+    thumbnail: "/images/services/heating/electric-furnace-repair.jpg",
   },
   {
     title: "Installation",
@@ -44,6 +47,7 @@ export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
       "Efficient installation services for gas and electric furnaces. Expertly installed systems for consistent comfort and warmth in your home or business.",
     href: "/heating/gas-furnace/installation",
     imageLabel: "Furnace installation",
+    thumbnail: "/images/services/heating/gas-furnace-upgrade.jpg",
   },
   {
     title: "Upgrade and Tune-up",
@@ -51,6 +55,7 @@ export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
       "Enhance efficiency with our gas and electric furnace upgrade and tune-up services.",
     href: "/heating/gas-furnace/maintenance",
     imageLabel: "Furnace tune-up",
+    thumbnail: "/images/services/heating/electric-furnace-upgrade.jpg",
   },
   {
     title: "Maintenance & Replacement of Parts",
@@ -58,6 +63,7 @@ export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
       "Comprehensive furnace maintenance and part replacement services for gas and electric systems.",
     href: "/heating/gas-furnace/maintenance",
     imageLabel: "Furnace maintenance",
+    thumbnail: "/images/services/heating/gas-furnace-maintenance.jpg",
   },
 ];
 

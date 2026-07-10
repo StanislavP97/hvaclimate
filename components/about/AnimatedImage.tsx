@@ -1,12 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 export function AnimatedImage({
+  src,
   label,
   className,
 }: {
+  src: string;
   label: string;
   className?: string;
 }) {
@@ -16,8 +18,15 @@ export function AnimatedImage({
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.7, ease: "easeOut" }}
+      className={`relative overflow-hidden ${className ?? ""}`}
     >
-      <ImagePlaceholder label={label} className={className} />
+      <Image
+        src={src}
+        alt={label}
+        fill
+        className="object-cover"
+        sizes="100vw"
+      />
     </motion.div>
   );
 }
