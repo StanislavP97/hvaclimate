@@ -26,7 +26,7 @@ export function ServiceHero({
         <p className="mt-4 text-body">{description}</p>
         <div className="mt-8 flex flex-wrap gap-4">
           <a
-            href="/instant-quote"
+            href="/contact"
             className={buttonVariants({
               variant: "outline",
               className: "rounded-full px-6",
@@ -35,7 +35,7 @@ export function ServiceHero({
             Learn More
           </a>
           <a
-            href="/instant-quote"
+            href="/contact"
             className={buttonVariants({ className: "rounded-full px-6" })}
           >
             {primaryCtaLabel}

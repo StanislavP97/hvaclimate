@@ -5,6 +5,7 @@ import { ChevronRight, Phone, ShieldCheck, Star } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
 import { ServiceDetailStats } from "@/components/services/ServiceDetailStats";
+import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 import type { ServicePage } from "@/types/service-page";
 
 interface RelatedService {
@@ -263,15 +264,14 @@ export function ServiceDetailLayout({
               <Phone className="size-4" />
               (360) 888-2217
             </a>
-            <a
-              href="tel:3608882217"
+            <BookOnlineButton
               className={buttonVariants({
                 className:
                   "rounded-[11px] bg-[#F97316] px-6.5 py-3.75 text-base text-white shadow-[0_10px_26px_rgba(249,115,22,.35)] hover:bg-[#F97316]/90",
               })}
             >
               Book Online
-            </a>
+            </BookOnlineButton>
           </div>
         </div>
       </section>

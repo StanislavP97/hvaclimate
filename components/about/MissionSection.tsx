@@ -119,7 +119,7 @@ export function MissionSection() {
             }}
           >
             <a
-              href="/instant-quote"
+              href="/contact"
               className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
             >
               Get a quote

@@ -14,7 +14,7 @@ export function ContactMap() {
       >
         <iframe
           title="HVA Climate service area map"
-          src="https://www.google.com/maps?q=Vancouver,WA&z=10&output=embed"
+          src="https://www.google.com/maps?ll=45.67991,-122.625017&z=15&t=h&hl=en&gl=US&mapclient=embed&cid=10809245777430336508&output=embed"
           width="100%"
           height="460"
           className="block border-0"

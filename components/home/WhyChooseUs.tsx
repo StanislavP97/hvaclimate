@@ -108,7 +108,7 @@ export function WhyChooseUs() {
             }}
           >
             <Link
-              href="/instant-quote"
+              href="/contact"
               className={buttonVariants({
                 className: "mt-8.5 rounded-lg px-6",
               })}

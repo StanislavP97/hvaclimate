@@ -45,7 +45,7 @@ export function AboutHero() {
         transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
       >
         <a
-          href="/instant-quote"
+          href="/contact"
           className={buttonVariants({ className: "mt-8 rounded-full px-8" })}
         >
           Get a quote

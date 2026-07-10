@@ -53,7 +53,7 @@ export function GoalsSection() {
             transition={{ duration: 0.4, delay: 0.3 + 0.15 * 2, ease: "easeOut" }}
           >
             <a
-              href="/instant-quote"
+              href="/contact"
               className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
             >
               Get a quote

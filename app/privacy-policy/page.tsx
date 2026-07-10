@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
             our HVAC services.
           </p>
           <a
-            href="/instant-quote"
+            href="/contact"
             className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
           >
             Get a quote
@@ -410,7 +410,7 @@ export default function PrivacyPolicyPage() {
           we hope to serve you with the same service quality.
         </p>
         <a
-          href="/instant-quote"
+          href="/contact"
           className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
         >
           Get Your Home Serviced

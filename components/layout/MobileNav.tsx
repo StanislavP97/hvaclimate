@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 import {
   SERVICES_MENU,
   SERVICE_AREAS_MENU,
@@ -185,8 +186,7 @@ export default function MobileNav() {
           </Link>
 
           <div className="mt-2 flex flex-col gap-2 border-t border-border pt-4">
-            <a
-              href="tel:3608882217"
+            <BookOnlineButton
               className={cn(
                 buttonVariants({ variant: "outline" }),
                 "btn-text-slide justify-center rounded-[9px]",
@@ -195,7 +195,7 @@ export default function MobileNav() {
             >
               Book Online
               <ArrowRight className="btn-text-slide-arrow size-4" />
-            </a>
+            </BookOnlineButton>
             <Link
               href="/instant-quote"
               className={cn(buttonVariants(), "justify-center rounded-[9px]")}

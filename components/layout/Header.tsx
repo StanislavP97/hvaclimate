@@ -16,6 +16,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import MobileNav from "@/components/layout/MobileNav";
+import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 
 export const SERVICE_AREAS_MENU = [
   { label: "Vancouver WA", slug: "hvac-contractor-vancouver-wa" },
@@ -324,8 +325,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href="tel:3608882217"
+          <BookOnlineButton
             className={cn(
               buttonVariants({ variant: "outline" }),
               "btn-text-slide hidden rounded-[9px] px-5 lg:inline-flex",
@@ -333,7 +333,7 @@ export default function Header() {
           >
             Book Online
             <ArrowRight className="btn-text-slide-arrow size-4" />
-          </a>
+          </BookOnlineButton>
           <Link
             href="/instant-quote"
             className={cn(

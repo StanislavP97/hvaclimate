@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Music2 } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 
 function FacebookIcon({ className }: { className?: string }) {
   return (
@@ -173,14 +174,13 @@ export default function Footer() {
               ))}
             </div>
 
-            <a
-              href="tel:3608882217"
+            <BookOnlineButton
               className={buttonVariants({
                 className: "mt-5 w-full",
               })}
             >
               Book online
-            </a>
+            </BookOnlineButton>
           </div>
 
           {FOOTER_COLUMNS.map((group, i) => (

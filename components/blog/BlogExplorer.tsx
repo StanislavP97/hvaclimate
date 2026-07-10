@@ -10,6 +10,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getBlogCategoryStyle } from "@/lib/blog-category-styles";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
+import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString("en-US", {
@@ -301,15 +302,14 @@ export function BlogExplorer({ posts, categories }: BlogExplorerProps) {
               >
                 (360) 888-2217
               </a>
-              <a
-                href="#"
+              <BookOnlineButton
                 className={buttonVariants({
                   className:
                     "rounded-[11px] bg-[#F97316] px-6.5 py-3.75 text-base hover:bg-[#F97316]",
                 })}
               >
                 Book Online
-              </a>
+              </BookOnlineButton>
             </div>
           </div>
         </motion.div>

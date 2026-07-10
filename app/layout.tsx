@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+
+const HOUSECALL_PRO_TOKEN = "aa7451d2b83d45b0b709ab0328e1ca23";
+const HOUSECALL_PRO_ORG_NAME = "HVA-Climate-Control-LLC";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -26,6 +30,10 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Script
+          src={`https://online-booking.housecallpro.com/script.js?token=${HOUSECALL_PRO_TOKEN}&orgName=${HOUSECALL_PRO_ORG_NAME}`}
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );

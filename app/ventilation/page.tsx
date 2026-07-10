@@ -255,7 +255,7 @@ export default function VentilationPage() {
               quote.
             </p>
             <a
-              href="/instant-quote"
+              href="/contact"
               className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
             >
               <ShieldCheck className="size-4" />

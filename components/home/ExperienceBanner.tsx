@@ -35,7 +35,7 @@ export function ExperienceBanner() {
           </p>
 
           <Link
-            href="/instant-quote"
+            href="/contact"
             className={buttonVariants({ className: "mt-8 rounded-lg px-6" })}
           >
             Get a quote

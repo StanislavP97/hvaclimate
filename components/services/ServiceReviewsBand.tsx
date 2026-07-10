@@ -14,7 +14,7 @@ export function ServiceReviewsBand() {
         hope to serve you with the same service quality.
       </p>
       <a
-        href="/instant-quote"
+        href="/contact"
         className={buttonVariants({ className: "mt-8 rounded-full px-8" })}
       >
         Get Your Home Serviced

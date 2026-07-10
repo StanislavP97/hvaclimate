@@ -210,7 +210,7 @@ export default function AirConditioningPage() {
               your air conditioning service or request a free estimate!
             </p>
             <a
-              href="/instant-quote"
+              href="/contact"
               className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
             >
               <ShieldCheck className="size-4" />

@@ -147,7 +147,7 @@ export function ReviewsSection() {
 
       <div className="mt-12 text-center">
         <Link
-          href="/instant-quote"
+          href="/contact"
           className={buttonVariants({ className: "rounded-lg px-6" })}
         >
           Get Your Home Serviced
