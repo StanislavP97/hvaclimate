@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, Phone, ShieldCheck, Star } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
 import { ServiceDetailStats } from "@/components/services/ServiceDetailStats";
 import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
@@ -111,24 +111,23 @@ export function ServiceDetailLayout({
             </div>
 
             <div className="flex flex-wrap items-center gap-3.5">
-              <a
-                href="tel:3608882217"
-                className={buttonVariants({
-                  className: "rounded-[11px] px-6.5 py-3.75 text-base",
-                })}
+              <Button
+                render={<a href="tel:+13608882217" />}
+                nativeButton={false}
+                variant="cta-phone"
+                className="gap-2 rounded-[11px] px-6.5 py-3.75 text-base"
               >
                 <Phone className="size-4" />
                 (360) 888-2217
-              </a>
-              <Link
-                href="/contact"
-                className={buttonVariants({
-                  className:
-                    "rounded-[11px] bg-[#F97316] px-6.5 py-3.75 text-base text-white shadow-[0_10px_26px_rgba(249,115,22,.35)] hover:bg-[#F97316]/90",
-                })}
+              </Button>
+              <Button
+                render={<Link href="/contact" />}
+                nativeButton={false}
+                variant="cta-orange"
+                className="rounded-[11px] px-6.5 py-3.75 text-base"
               >
                 Get Free Estimate
-              </Link>
+              </Button>
             </div>
           </div>
 
@@ -255,20 +254,18 @@ export function ServiceDetailLayout({
           </div>
 
           <div className="relative flex flex-wrap items-center gap-3.5">
-            <a
-              href="tel:3608882217"
-              className={buttonVariants({
-                className: "rounded-[11px] px-6.5 py-3.75 text-base",
-              })}
+            <Button
+              render={<a href="tel:+13608882217" />}
+              nativeButton={false}
+              variant="cta-phone"
+              className="gap-2 rounded-[11px] px-6.5 py-3.75 text-base"
             >
               <Phone className="size-4" />
               (360) 888-2217
-            </a>
+            </Button>
             <BookOnlineButton
-              className={buttonVariants({
-                className:
-                  "rounded-[11px] bg-[#F97316] px-6.5 py-3.75 text-base text-white shadow-[0_10px_26px_rgba(249,115,22,.35)] hover:bg-[#F97316]/90",
-              })}
+              variant="cta-orange"
+              className="rounded-[11px] px-6.5 py-3.75 text-base"
             >
               Book Online
             </BookOnlineButton>

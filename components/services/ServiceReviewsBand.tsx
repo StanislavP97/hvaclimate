@@ -1,4 +1,5 @@
-import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export function ServiceReviewsBand() {
   return (
@@ -13,12 +14,9 @@ export function ServiceReviewsBand() {
         We treat every project with the care that deserves a 5 star rating, we
         hope to serve you with the same service quality.
       </p>
-      <a
-        href="/contact"
-        className={buttonVariants({ className: "mt-8 rounded-full px-8" })}
-      >
+      <Button render={<Link href="/contact" />} nativeButton={false} variant="cta-orange">
         Get Your Home Serviced
-      </a>
+      </Button>
     </section>
   );
 }

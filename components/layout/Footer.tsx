@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, Music2 } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
 import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 
 function FacebookIcon({ className }: { className?: string }) {
@@ -136,7 +135,7 @@ export default function Footer() {
             </div>
 
             <div className="mt-5 space-y-2.5 text-sm">
-              <a href="tel:3608882217" className="flex items-center gap-3">
+              <a href="tel:+13608882217" className="flex items-center gap-3">
                 <Phone className="size-4" />
                 <span className="link-animated">(360) 888-2217</span>
               </a>
@@ -174,11 +173,7 @@ export default function Footer() {
               ))}
             </div>
 
-            <BookOnlineButton
-              className={buttonVariants({
-                className: "mt-5 w-full",
-              })}
-            >
+            <BookOnlineButton className="mt-5 w-full">
               Book online
             </BookOnlineButton>
           </div>

@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export function AboutHero() {
   return (
@@ -44,12 +45,9 @@ export function AboutHero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
       >
-        <a
-          href="/contact"
-          className={buttonVariants({ className: "mt-8 rounded-full px-8" })}
-        >
+        <Button render={<Link href="/contact" />} nativeButton={false} className="mt-8">
           Get a quote
-        </a>
+        </Button>
       </motion.div>
     </section>
   );

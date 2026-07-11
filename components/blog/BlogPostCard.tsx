@@ -25,7 +25,13 @@ export function BlogPostCard({ post, category }: BlogPostCardProps) {
       className="flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-background transition-shadow duration-200 hover:shadow-[0_12px_28px_rgba(13,27,42,0.1)]"
     >
       <div className="relative aspect-video w-full">
-        <Image src={post.thumbnail} alt={post.altText} fill className="object-cover" />
+        <Image
+          src={post.thumbnail}
+          alt={post.altText}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
       </div>
       <div className="flex flex-1 flex-col p-5.5">
         {category && (

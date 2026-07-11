@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import googleReviews from "@/data/google-reviews.json";
 import type { GoogleReview } from "@/types/reviews";
 
@@ -146,12 +146,9 @@ export function ReviewsSection() {
       </div>
 
       <div className="mt-12 text-center">
-        <Link
-          href="/contact"
-          className={buttonVariants({ className: "rounded-lg px-6" })}
-        >
+        <Button render={<Link href="/contact" />} nativeButton={false} variant="cta-orange">
           Get Your Home Serviced
-        </Link>
+        </Button>
       </div>
     </section>
   );

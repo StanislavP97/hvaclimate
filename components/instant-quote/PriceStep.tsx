@@ -1,4 +1,4 @@
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export function PriceStep() {
   return (
@@ -18,12 +18,13 @@ export function PriceStep() {
         </p>
       </div>
 
-      <a
-        href="tel:3608882217"
-        className={buttonVariants({ className: "mt-8 h-12 w-full rounded-full" })}
+      <Button
+        render={<a href="tel:+13608882217" />}
+        nativeButton={false}
+        className="mt-8 h-12 w-full rounded-full"
       >
         Book a free in-home estimate →
-      </a>
+      </Button>
       <p className="mt-3 text-xs text-body">
         This is a preliminary estimate, not a final quote.
       </p>

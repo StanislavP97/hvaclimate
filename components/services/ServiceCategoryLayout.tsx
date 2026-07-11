@@ -1,8 +1,10 @@
+import Link from "next/link";
 import { Phone } from "lucide-react";
 import { ServiceCategoryHeroContent } from "@/components/services/ServiceCategoryHeroContent";
 import { ServiceCategoryStatsBar } from "@/components/services/ServiceCategoryStatsBar";
 import { ServiceCategoryRevealGrid } from "@/components/services/ServiceCategoryRevealGrid";
 import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
+import { Button } from "@/components/ui/button";
 
 export interface ServiceCategoryCard {
   title: string;
@@ -123,12 +125,9 @@ export function ServiceCategoryLayout({
           ))}
         </div>
         <div className="mt-11 text-center">
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-[11px] bg-[#F97316] px-6.5 py-4 font-sans text-base font-bold text-white shadow-[0_10px_26px_rgba(249,115,22,0.35)] transition-transform hover:-translate-y-0.5"
-          >
+          <Button render={<Link href="/contact" />} nativeButton={false} variant="cta-orange">
             Get Your Home Serviced
-          </a>
+          </Button>
         </div>
       </div>
 
@@ -150,14 +149,16 @@ export function ServiceCategoryLayout({
             </div>
           </div>
           <div className="relative flex items-center gap-3.5">
-            <a
-              href="tel:+13608882217"
-              className="flex items-center gap-2 rounded-[11px] bg-primary-accent px-6.5 py-4 font-sans text-base font-bold text-white shadow-[0_10px_26px_rgba(37,99,235,0.4)] transition-transform hover:-translate-y-0.5"
+            <Button
+              render={<a href="tel:+13608882217" />}
+              nativeButton={false}
+              variant="cta-phone"
+              className="gap-2"
             >
               <Phone className="size-4" />
               (360) 888-2217
-            </a>
-            <BookOnlineButton className="flex items-center gap-2 rounded-[11px] bg-[#F97316] px-6.5 py-4 font-sans text-base font-bold text-white shadow-[0_10px_26px_rgba(249,115,22,0.35)] transition-transform hover:-translate-y-0.5">
+            </Button>
+            <BookOnlineButton variant="cta-orange">
               Book Online
             </BookOnlineButton>
           </div>

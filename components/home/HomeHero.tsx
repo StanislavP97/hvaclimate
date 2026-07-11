@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Check, Phone, Wrench } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export const HOME_HERO_FEATURES = [
   {
@@ -108,23 +108,21 @@ export function HomeHero() {
             transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
             className="mt-9 flex flex-wrap items-center gap-3.5"
           >
-            <a
-              href="tel:3608882217"
-              className={buttonVariants({
-                className: "rounded-[11px] px-6.5 py-3.75 text-base",
-              })}
+            <Button
+              render={<a href="tel:+13608882217" />}
+              nativeButton={false}
+              className="rounded-[11px] px-6.5 py-3.75 text-base"
             >
               (360) 888-2217
-            </a>
-            <Link
-              href="/heating"
-              className={buttonVariants({
-                variant: "outline-dark",
-                className: "rounded-[11px] px-6.5 py-3.75 text-base",
-              })}
+            </Button>
+            <Button
+              render={<Link href="/heating" />}
+              nativeButton={false}
+              variant="outline-dark"
+              className="rounded-[11px] px-6.5 py-3.75 text-base"
             >
               Browse our services
-            </Link>
+            </Button>
           </motion.div>
         </div>
 

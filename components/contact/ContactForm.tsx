@@ -3,7 +3,7 @@
 import { useActionState, useState } from "react";
 import { motion } from "framer-motion";
 import { submitContactForm } from "@/actions/contact";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const initialState = null;
@@ -189,16 +189,14 @@ export function ContactForm() {
         )}
 
         <div className="flex items-center gap-4.5 pt-1.5">
-          <button
+          <Button
             type="submit"
             disabled={isPending}
-            className={buttonVariants({
-              className:
-                "rounded-[11px] bg-[#F97316] px-7.5 py-3.75 text-[15px] font-bold text-white shadow-[0_8px_20px_rgba(249,115,22,.35)] border-[#F97316] hover:bg-[#F97316]",
-            })}
+            variant="cta-orange"
+            className="px-7.5 py-3.75 text-[15px]"
           >
             {isPending ? "Sending..." : "Send request →"}
-          </button>
+          </Button>
           <p className="max-w-50 text-[13px] leading-[1.5] text-muted-foreground">
             No spam. We only use your info to get in touch.
           </p>

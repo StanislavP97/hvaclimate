@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const MISSION_POINTS = [
   "Skilled in servicing all major HVAC brands and models",
@@ -118,12 +119,9 @@ export function MissionSection() {
               ease: "easeOut",
             }}
           >
-            <a
-              href="/contact"
-              className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
-            >
+            <Button render={<Link href="/contact" />} nativeButton={false} className="mt-6">
               Get a quote
-            </a>
+            </Button>
           </motion.div>
         </motion.div>
       </div>

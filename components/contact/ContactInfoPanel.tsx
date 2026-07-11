@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const panelVariants = {
   hidden: { opacity: 0, x: 30 },
@@ -54,13 +55,15 @@ export function ContactInfoPanel() {
             Live dispatch 7 days a week. Emergency? We prioritize no-heat and
             no-cool calls.
           </p>
-          <a
-            href="tel:3608882217"
-            className="inline-flex items-center gap-2 rounded-[10px] bg-[#F97316] px-5.5 py-3 font-sans text-sm font-bold text-white shadow-[0_6px_16px_rgba(249,115,22,.35)]"
+          <Button
+            render={<a href="tel:+13608882217" />}
+            nativeButton={false}
+            variant="cta-orange"
+            className="gap-2"
           >
             <Phone className="size-4" />
             Call now
-          </a>
+          </Button>
         </div>
       </motion.div>
 

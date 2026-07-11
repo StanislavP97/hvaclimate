@@ -142,27 +142,6 @@
   z-index: 1;
 }
 
-.btn-anim-default,
-.btn-anim-outline-light,
-.btn-anim-outline-dark {
-  transition: all 0.3s ease;
-}
-
-.btn-anim-default:hover {
-  background: transparent;
-  color: var(--primary);
-}
-
-.btn-anim-outline-light:hover {
-  background: #172345;
-  color: #ffffff;
-}
-
-.btn-anim-outline-dark:hover {
-  background: #ffffff;
-  color: #0e1122;
-}
-
 .btn-text-slide {
   transition: all 0.25s ease;
 }

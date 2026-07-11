@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Check } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { HOME_HERO_FEATURES } from "@/components/home/HomeHero";
 
 const WHY_CHOOSE_US_ITEMS = [
@@ -50,6 +50,7 @@ export function WhyChooseUs() {
               src="/images/team/technician-at-work.avif"
               alt="HVA Climate Control technician at work"
               fill
+              loading="eager"
               className="object-cover"
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
@@ -107,14 +108,9 @@ export function WhyChooseUs() {
               ease: "easeOut",
             }}
           >
-            <Link
-              href="/contact"
-              className={buttonVariants({
-                className: "mt-8.5 rounded-lg px-6",
-              })}
-            >
+            <Button render={<Link href="/contact" />} nativeButton={false} className="mt-8.5">
               Get a quote
-            </Link>
+            </Button>
           </motion.div>
         </div>
       </div>

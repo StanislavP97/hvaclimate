@@ -1,4 +1,5 @@
-import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
@@ -12,20 +13,17 @@ export default function NotFound() {
       </p>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-        <a
-          href="/"
-          className={buttonVariants({ className: "rounded-full px-8" })}
-        >
+        <Button render={<Link href="/" />} nativeButton={false} className="rounded-full px-8">
           Back to homepage
-        </a>
-        <a
-          href="/contact"
-          className={buttonVariants({
-            className: "rounded-full bg-background px-8 text-foreground hover:bg-background/90",
-          })}
+        </Button>
+        <Button
+          render={<Link href="/contact" />}
+          nativeButton={false}
+          variant="outline-dark"
+          className="rounded-full px-8"
         >
           Contact us
-        </a>
+        </Button>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   ServiceCategoryLayout,
   type ServiceCategoryCard,
@@ -209,13 +210,14 @@ export default function AirConditioningPage() {
               Ready to stay cool and comfortable? Contact us today to schedule
               your air conditioning service or request a free estimate!
             </p>
-            <a
-              href="/contact"
-              className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
+            <Button
+              render={<Link href="/contact" />}
+              nativeButton={false}
+              className="mt-6 gap-2 rounded-full px-8"
             >
               <ShieldCheck className="size-4" />
               Get a free quote
-            </a>
+            </Button>
           </div>
         </div>
 

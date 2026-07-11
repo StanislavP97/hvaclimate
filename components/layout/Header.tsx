@@ -13,8 +13,7 @@ import {
   Phone,
   Tag,
 } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import MobileNav from "@/components/layout/MobileNav";
 import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 
@@ -279,7 +278,7 @@ export default function Header() {
             Vancouver WA &amp; Portland OR
           </span>
           <a
-            href="tel:3608882217"
+            href="tel:+13608882217"
             className="flex items-center gap-2 font-semibold text-white"
           >
             <Phone className="size-3.5 text-primary-accent" />
@@ -326,23 +325,19 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <BookOnlineButton
-            className={cn(
-              buttonVariants({ variant: "outline" }),
-              "btn-text-slide hidden rounded-[9px] px-5 lg:inline-flex",
-            )}
+            variant="outline"
+            className="btn-text-slide hidden rounded-[9px] px-5 lg:inline-flex"
           >
             Book Online
             <ArrowRight className="btn-text-slide-arrow size-4" />
           </BookOnlineButton>
-          <Link
-            href="/instant-quote"
-            className={cn(
-              buttonVariants(),
-              "hidden rounded-[9px] px-5 lg:inline-flex",
-            )}
+          <Button
+            render={<Link href="/instant-quote" />}
+            nativeButton={false}
+            className="hidden rounded-[9px] px-5 lg:inline-flex"
           >
             Get a Quote
-          </Link>
+          </Button>
           <MobileNav />
         </div>
       </div>

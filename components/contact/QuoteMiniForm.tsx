@@ -1,6 +1,6 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export function QuoteMiniForm() {
   return (
@@ -32,15 +32,15 @@ export function QuoteMiniForm() {
           className="mt-2 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground"
         />
       </label>
-      <button
+      <Button
         type="submit"
         disabled
         aria-disabled
         title="Contact form submission is coming soon"
-        className={buttonVariants({ className: "w-full rounded-full" })}
+        className="w-full rounded-full"
       >
         Get a quote
-      </button>
+      </Button>
     </form>
   );
 }

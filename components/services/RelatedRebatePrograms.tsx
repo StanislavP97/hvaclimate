@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { getRebatePrograms } from "@/lib/rebate-programs";
 
 export function RelatedRebatePrograms({
@@ -19,12 +19,9 @@ export function RelatedRebatePrograms({
         <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
           Related services
         </h2>
-        <Link
-          href="/contact"
-          className={buttonVariants({ className: "rounded-full px-6" })}
-        >
+        <Button render={<Link href="/contact" />} nativeButton={false} className="rounded-full px-6">
           Get Rebate
-        </Link>
+        </Button>
       </div>
 
       <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3">

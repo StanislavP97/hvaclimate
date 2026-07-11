@@ -6,7 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Phone, Search } from "lucide-react";
 import type { BlogCategory, BlogPost } from "@/types/blog";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getBlogCategoryStyle } from "@/lib/blog-category-styles";
 import { BlogPostCard } from "@/components/blog/BlogPostCard";
@@ -210,14 +210,13 @@ export function BlogExplorer({ posts, categories }: BlogExplorerProps) {
                   <div className="text-[13px] text-muted-foreground">{formatDate(featuredPost.publishedDate)}</div>
                 </div>
               </div>
-              <Link
-                href={`/blog/${featuredPost.slug}`}
-                className={buttonVariants({
-                  className: "mt-6.5 w-fit rounded-[11px] bg-navy px-6.5 py-3.5 text-[14.5px] hover:bg-navy",
-                })}
+              <Button
+                render={<Link href={`/blog/${featuredPost.slug}`} />}
+                nativeButton={false}
+                className="mt-6.5 w-fit rounded-[11px] border-navy bg-navy px-6.5 py-3.5 text-[14.5px] hover:bg-[#1d4ed8]"
               >
                 Read Article <span aria-hidden>&rarr;</span>
-              </Link>
+              </Button>
             </div>
           </motion.div>
         </section>
@@ -294,19 +293,17 @@ export function BlogExplorer({ posts, categories }: BlogExplorerProps) {
               </div>
             </div>
             <div className="flex flex-none flex-wrap items-center gap-3.5">
-              <a
-                href="tel:3608882217"
-                className={buttonVariants({
-                  className: "rounded-[11px] px-6.5 py-3.75 text-base",
-                })}
+              <Button
+                render={<a href="tel:+13608882217" />}
+                nativeButton={false}
+                variant="cta-phone"
+                className="rounded-[11px] px-6.5 py-3.75 text-base"
               >
                 (360) 888-2217
-              </a>
+              </Button>
               <BookOnlineButton
-                className={buttonVariants({
-                  className:
-                    "rounded-[11px] bg-[#F97316] px-6.5 py-3.75 text-base hover:bg-[#F97316]",
-                })}
+                variant="cta-orange"
+                className="rounded-[11px] px-6.5 py-3.75 text-base"
               >
                 Book Online
               </BookOnlineButton>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronDown, MapPin, Tag } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
 import {
@@ -187,22 +187,21 @@ export default function MobileNav() {
 
           <div className="mt-2 flex flex-col gap-2 border-t border-border pt-4">
             <BookOnlineButton
-              className={cn(
-                buttonVariants({ variant: "outline" }),
-                "btn-text-slide justify-center rounded-[9px]",
-              )}
+              variant="outline"
+              className="btn-text-slide justify-center rounded-[9px]"
               onClick={closeMenu}
             >
               Book Online
               <ArrowRight className="btn-text-slide-arrow size-4" />
             </BookOnlineButton>
-            <Link
-              href="/instant-quote"
-              className={cn(buttonVariants(), "justify-center rounded-[9px]")}
+            <Button
+              render={<Link href="/instant-quote" />}
+              nativeButton={false}
+              className="justify-center rounded-[9px]"
               onClick={closeMenu}
             >
               Get a Quote
-            </Link>
+            </Button>
           </div>
         </nav>
       )}

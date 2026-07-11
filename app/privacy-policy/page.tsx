@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Star } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { QuoteMiniForm } from "@/components/contact/QuoteMiniForm";
 
 export const metadata: Metadata = {
@@ -29,12 +30,9 @@ export default function PrivacyPolicyPage() {
             collect, use, and protect your information when you engage with
             our HVAC services.
           </p>
-          <a
-            href="/contact"
-            className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
-          >
+          <Button render={<Link href="/contact" />} nativeButton={false} className="mt-6">
             Get a quote
-          </a>
+          </Button>
         </div>
         <div className="relative h-64 w-full overflow-hidden rounded-2xl sm:h-80">
           <Image
@@ -197,7 +195,7 @@ export default function PrivacyPolicyPage() {
                   Office@hvaclimate.com
                 </a>{" "}
                 or calling{" "}
-                <a href="tel:3608882217" className="text-primary-accent">
+                <a href="tel:+13608882217" className="text-primary-accent">
                   360-888-2217
                 </a>
                 .
@@ -285,7 +283,7 @@ export default function PrivacyPolicyPage() {
                 Office@hvaclimate.com
               </a>{" "}
               or call{" "}
-              <a href="tel:3608882217" className="text-primary-accent">
+              <a href="tel:+13608882217" className="text-primary-accent">
                 360-888-2217
               </a>
               .
@@ -409,12 +407,9 @@ export default function PrivacyPolicyPage() {
           We treat every project with the care that deserves a 5 star rating,
           we hope to serve you with the same service quality.
         </p>
-        <a
-          href="/contact"
-          className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
-        >
+        <Button render={<Link href="/contact" />} nativeButton={false} variant="cta-orange">
           Get Your Home Serviced
-        </a>
+        </Button>
       </section>
     </>
   );

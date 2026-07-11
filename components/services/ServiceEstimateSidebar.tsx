@@ -1,7 +1,7 @@
 "use client";
 
 import { Phone, ShieldCheck } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export function ServiceEstimateSidebar() {
   return (
@@ -67,22 +67,20 @@ export function ServiceEstimateSidebar() {
           />
         </label>
 
-        <button
+        <Button
           type="submit"
           disabled
           aria-disabled
           title="Contact form submission is coming soon"
-          className={buttonVariants({
-            className:
-              "mt-1 w-full rounded-[11px] bg-[#F97316] py-3.5 text-[15.5px] text-white shadow-[0_8px_20px_rgba(249,115,22,.32)] hover:bg-[#F97316]/90",
-          })}
+          variant="cta-orange"
+          className="mt-1 w-full py-3.5 text-[15.5px]"
         >
           Request Free Estimate
-        </button>
+        </Button>
 
         <div className="mt-1.5 text-center">
           <a
-            href="tel:3608882217"
+            href="tel:+13608882217"
             className="flex items-center justify-center gap-2 font-sans text-[19px] font-extrabold text-foreground"
           >
             <Phone className="size-4.5" />

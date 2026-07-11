@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const textVariants = {
   hidden: {},
@@ -52,12 +53,9 @@ export function GoalsSection() {
             variants={textItemVariants}
             transition={{ duration: 0.4, delay: 0.3 + 0.15 * 2, ease: "easeOut" }}
           >
-            <a
-              href="/contact"
-              className={buttonVariants({ className: "mt-6 rounded-full px-8" })}
-            >
+            <Button render={<Link href="/contact" />} nativeButton={false} className="mt-6">
               Get a quote
-            </a>
+            </Button>
           </motion.div>
         </motion.div>
         <motion.div

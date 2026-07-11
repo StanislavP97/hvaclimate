@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 export const HOME_STATS = [
   { value: "10+", label: "Year Experience" },
@@ -34,12 +34,9 @@ export function ExperienceBanner() {
             it right!
           </p>
 
-          <Link
-            href="/contact"
-            className={buttonVariants({ className: "mt-8 rounded-lg px-6" })}
-          >
+          <Button render={<Link href="/contact" />} nativeButton={false} className="mt-8">
             Get a quote
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

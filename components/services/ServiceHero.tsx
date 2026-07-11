@@ -1,4 +1,4 @@
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 interface ServiceHeroProps {
@@ -25,21 +25,17 @@ export function ServiceHero({
         </h1>
         <p className="mt-4 text-body">{description}</p>
         <div className="mt-8 flex flex-wrap gap-4">
-          <a
-            href="/contact"
-            className={buttonVariants({
-              variant: "outline",
-              className: "rounded-full px-6",
-            })}
+          <Button
+            render={<a href="/contact" />}
+            nativeButton={false}
+            variant="outline"
+            className="rounded-full px-6"
           >
             Learn More
-          </a>
-          <a
-            href="/contact"
-            className={buttonVariants({ className: "rounded-full px-6" })}
-          >
+          </Button>
+          <Button render={<a href="/contact" />} nativeButton={false} className="rounded-full px-6">
             {primaryCtaLabel}
-          </a>
+          </Button>
         </div>
       </div>
       <ImagePlaceholder
