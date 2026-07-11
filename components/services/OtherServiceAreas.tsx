@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { getServiceAreas } from "@/lib/service-areas";
 
@@ -21,27 +24,36 @@ export function OtherServiceAreas({ currentSlug }: { currentSlug: string }) {
 
       <div className="mx-auto mt-10 grid max-w-7xl grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3">
         {otherAreas.map((entry) => (
-          <Link
+          <motion.div
             key={entry.slug}
-            href={`/service-areas/${entry.slug}`}
-            className="flex flex-col overflow-hidden rounded-2xl bg-background"
+            whileHover={{
+              y: -4,
+              boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
+            }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="overflow-hidden rounded-2xl"
           >
-            <Image
-              src={entry.thumbnail}
-              alt={entry.altText}
-              width={640}
-              height={480}
-              className="h-40 w-full object-cover"
-            />
-            <div className="flex flex-1 flex-col p-6">
-              <h3 className="text-lg font-bold text-foreground">
-                {entry.name.replace(/^HVAC (Contractor )?/, "")}
-              </h3>
-              <p className="mt-2 flex-1 text-sm text-body">
-                {entry.metaDescription}
-              </p>
-            </div>
-          </Link>
+            <Link
+              href={`/service-areas/${entry.slug}`}
+              className="flex h-full flex-col bg-background"
+            >
+              <Image
+                src={entry.thumbnail}
+                alt={entry.altText}
+                width={640}
+                height={480}
+                className="h-40 w-full object-cover"
+              />
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-lg font-bold text-foreground">
+                  {entry.name.replace(/^HVAC (Contractor )?/, "")}
+                </h3>
+                <p className="mt-2 flex-1 text-sm text-body">
+                  {entry.metaDescription}
+                </p>
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </section>

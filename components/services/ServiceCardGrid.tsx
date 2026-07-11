@@ -48,32 +48,31 @@ export function ServiceCardGrid({ cards }: { cards: ServiceCardData[] }) {
               boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
             }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="flex cursor-pointer flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_2px_10px_rgba(13,27,42,0.04)]"
+            className="flex flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-[0_2px_10px_rgba(13,27,42,0.04)]"
           >
-            <div className="relative h-[190px] w-full">
-              <Image
-                src={card.thumbnail}
-                alt={card.imageLabel}
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              />
-            </div>
-            <div className="flex flex-1 flex-col p-5.5">
-              <h3 className="text-lg font-bold text-foreground">
-                {card.title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-body">
-                {card.description}
-              </p>
-              <Link
-                href={card.href}
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-accent"
-              >
-                View Services
-                <ArrowRight className="size-4" />
-              </Link>
-            </div>
+            <Link href={card.href} className="flex flex-1 flex-col">
+              <div className="relative h-[190px] w-full">
+                <Image
+                  src={card.thumbnail}
+                  alt={card.imageLabel}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
+              </div>
+              <div className="flex flex-1 flex-col p-5.5">
+                <h3 className="text-lg font-bold text-foreground">
+                  {card.title}
+                </h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-body">
+                  {card.description}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary-accent">
+                  View Services
+                  <ArrowRight className="size-4" />
+                </span>
+              </div>
+            </Link>
           </motion.div>
         ))}
       </motion.div>
