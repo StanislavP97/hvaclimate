@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export function ServiceEstimateSidebar() {
   return (
-    <aside className="overflow-hidden rounded-[20px] border border-border bg-background shadow-[0_18px_48px_rgba(13,27,42,.12)] lg:sticky lg:top-24">
+    <aside className="overflow-hidden rounded-[20px] border border-border bg-background shadow-[0_18px_48px_rgba(13,27,42,.12)] lg:sticky lg:top-[116px]">
       <div className="bg-navy px-6.5 py-6">
         <div className="font-sans text-[21px] font-extrabold text-white">
           Get a Free Estimate

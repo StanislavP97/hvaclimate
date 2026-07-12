@@ -51,7 +51,7 @@ export default async function RebateProgramSlugPage({ params }: PageProps) {
         .filter((item) => item.slug !== entry.slug)
         .slice(0, 3)
         .map((item) => ({
-          icon: "💲",
+          icon: "🏷",
           title: item.name,
           desc: item.metaDescription,
           href: `/rebate-programs/${item.slug}`,

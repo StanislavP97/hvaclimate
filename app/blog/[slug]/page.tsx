@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog-posts";
 import { getBlogCategoryBySlug } from "@/lib/blog-categories";
-import { ServiceContentSidebar } from "@/components/services/ServiceContentSidebar";
+import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           className="max-w-none space-y-4 text-body [&_a]:text-primary-accent [&_a]:underline [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-foreground [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-foreground [&_li]:ml-5 [&_ol]:list-decimal [&_ol]:space-y-2 [&_strong]:text-foreground [&_ul]:list-disc [&_ul]:space-y-2"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
-        <ServiceContentSidebar />
+        <ServiceEstimateSidebar />
       </section>
     </>
   );
