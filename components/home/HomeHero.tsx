@@ -126,22 +126,16 @@ export function HomeHero() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-        >
-          <div className="relative h-[480px] w-full overflow-hidden rounded-[18px]">
-            <Image
-              src="/images/hero/service-van.avif"
-              alt="HVA Climate Control technician at a job site in Vancouver, WA"
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
-          </div>
-        </motion.div>
+        <div className="relative h-[480px] w-full overflow-hidden rounded-[18px]">
+          <Image
+            src="/images/hero/service-van.avif"
+            alt="HVA Climate Control technician at a job site in Vancouver, WA"
+            fill
+            priority
+            className="object-cover"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+        </div>
       </div>
     </section>
   );

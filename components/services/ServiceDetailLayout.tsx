@@ -148,6 +148,7 @@ export function ServiceDetailLayout({
                 fill
                 sizes="(min-width: 1024px) 33vw, 90vw"
                 className="object-cover"
+                priority
               />
             </div>
             <div className="flex items-center gap-3 px-2 pt-4 pb-1.5">

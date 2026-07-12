@@ -62,6 +62,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           width={640}
           height={480}
           className="h-72 w-full rounded-2xl object-cover lg:h-96"
+          priority
         />
       </section>
 
