@@ -132,7 +132,7 @@ export function ServiceCategoryLayout({
       </div>
 
       {/* CTA BAND */}
-      <div className="bg-white px-12 pb-22">
+      <div className="bg-white px-12 pt-20 pb-22">
         <div className="relative flex flex-col items-center justify-between gap-10 overflow-hidden rounded-[22px] bg-[radial-gradient(130%_150%_at_12%_0%,#17304d_0%,#0D1B2A_65%)] p-13 sm:flex-row">
           <div className="pointer-events-none absolute -top-30 right-20 size-90 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.22),transparent_70%)]" />
           <div className="relative flex items-center gap-5.5">
