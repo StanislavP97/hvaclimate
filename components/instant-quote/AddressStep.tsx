@@ -1,93 +1,73 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ManualHomeDetailsForm } from "@/components/instant-quote/ManualHomeDetailsForm";
+import { isValidAddress } from "@/components/instant-quote/validation";
 
 interface AddressStepProps {
   onContinue: () => void;
-  manualEntry: boolean;
-  onManualEntryChange: (manualEntry: boolean) => void;
+  onSkip: () => void;
 }
 
-export function AddressStep({
-  onContinue,
-  manualEntry,
-  onManualEntryChange,
-}: AddressStepProps) {
+export function AddressStep({ onContinue, onSkip }: AddressStepProps) {
   const [address, setAddress] = useState("");
+  const [touched, setTouched] = useState(false);
 
-  if (manualEntry) {
-    return (
-      <div>
-        <p className="text-xs font-bold tracking-wide text-primary-accent uppercase">
-          Start with your address
-        </p>
-        <p className="mt-2 text-sm text-body">
-          Share your address and we&apos;ll pull your home&apos;s details from
-          public records — square footage, heating system, and more — so you
-          don&apos;t have to look it up yourself.
-        </p>
+  const valid = isValidAddress(address);
+  const showError = touched && !valid;
 
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <input
-            type="text"
-            value={address}
-            onChange={(event) => setAddress(event.target.value)}
-            placeholder="123 Main St, Vancouver, WA"
-            className="h-12 flex-1 rounded-lg border border-input bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
-          />
-          <Button
-            className="h-12 shrink-0 rounded-full px-6"
-            onClick={onContinue}
-          >
-            Look up my home
-          </Button>
-        </div>
-
-        <p className="mt-4 text-sm text-body underline underline-offset-2">
-          I&apos;ll enter my details manually ↓
-        </p>
-
-        <ManualHomeDetailsForm />
-
-        <Button className="mt-8 h-12 w-full rounded-full" onClick={onContinue}>
-          Continue →
-        </Button>
-      </div>
-    );
+  function handleContinue() {
+    setTouched(true);
+    if (isValidAddress(address)) onContinue();
   }
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-foreground">
-        What&apos;s your home address?
-      </h2>
-      <p className="mt-2 text-sm text-body">
-        We use public records to size your system and see what you have now —
-        no obligation.
+      <h1 className="text-2xl font-semibold text-[#172345] sm:text-3xl">
+        Let&apos;s find the right system for your home
+      </h1>
+      <p className="mt-2 text-[#374151]">
+        Start with your address — we&apos;ll pull your home&apos;s details
       </p>
 
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-8">
+        <label htmlFor="address" className="mb-2 block text-sm font-medium text-[#172345]">
+          Home address
+        </label>
+        {/* TODO: Add Google Places Autocomplete when API key is available */}
+        {/* Replace input with PlacesAutocomplete component */}
         <input
+          id="address"
           type="text"
           value={address}
-          onChange={(event) => setAddress(event.target.value)}
+          onChange={(e) => setAddress(e.target.value)}
+          onBlur={() => setTouched(true)}
           placeholder="123 Main St, Vancouver, WA 98682"
-          className="h-12 flex-1 rounded-lg border border-input bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+          className={`w-full rounded-xl border px-4 py-3 text-[#172345] placeholder:text-[#9ca3af] focus:outline-none focus:ring-2 ${
+            showError
+              ? "border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/20"
+              : "border-[#e6ebf1] focus:border-[#2563EB] focus:ring-[#2563EB]/20"
+          }`}
         />
-        <Button
-          className="h-12 shrink-0 rounded-full px-6"
-          onClick={onContinue}
-        >
-          Continue →
-        </Button>
+        {showError && (
+          <p className="mt-1.5 text-xs text-[#ef4444]">
+            Please enter a valid address (at least 5 characters).
+          </p>
+        )}
       </div>
 
       <button
         type="button"
-        onClick={() => onManualEntryChange(true)}
-        className="mt-4 block text-sm text-body underline underline-offset-2"
+        onClick={handleContinue}
+        disabled={!valid}
+        className="mt-6 w-full rounded-xl bg-[#2563EB] px-6 py-3 font-medium text-white transition-colors hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        Continue →
+      </button>
+
+      <button
+        type="button"
+        onClick={onSkip}
+        className="mt-4 w-full text-center text-sm text-[#374151] transition-colors duration-200 hover:text-[#2563EB] hover:underline"
       >
         Skip — I&apos;ll enter details myself
       </button>

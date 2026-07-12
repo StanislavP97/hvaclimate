@@ -1,41 +1,51 @@
-import { cn } from "@/lib/utils";
+import type { WizardStep } from "@/components/instant-quote/types";
 
-const STEPS = [
-  { number: 1, label: "Address" },
-  { number: 2, label: "Contact" },
-  { number: 3, label: "Your Price" },
-] as const;
+const STEPS: { key: WizardStep; label: string }[] = [
+  { key: "address", label: "Address" },
+  { key: "contact", label: "Contact" },
+  { key: "price", label: "Your Price" },
+];
 
-export function StepIndicator({ currentStep }: { currentStep: 1 | 2 | 3 }) {
+export function StepIndicator({ current }: { current: WizardStep }) {
+  const currentIndex = STEPS.findIndex((s) => s.key === current);
+
   return (
-    <div className="flex items-center justify-center gap-3">
-      {STEPS.map((step, index) => (
-        <div key={step.number} className="flex items-center gap-3">
-          <div className="flex flex-col items-center gap-1.5">
-            <span
-              className={cn(
-                "flex size-8 items-center justify-center rounded-full text-sm font-bold",
-                step.number < currentStep && "bg-green-600 text-white",
-                step.number === currentStep && "bg-primary text-primary-foreground",
-                step.number > currentStep && "bg-muted text-muted-foreground",
-              )}
-            >
-              {step.number}
-            </span>
-            <span
-              className={cn(
-                "text-xs font-semibold",
-                step.number <= currentStep ? "text-foreground" : "text-muted-foreground",
-              )}
-            >
-              {step.label}
-            </span>
+    <div className="flex items-center">
+      {STEPS.map((step, index) => {
+        const isComplete = index < currentIndex;
+        const isCurrent = index === currentIndex;
+        return (
+          <div key={step.key} className="flex flex-1 items-center last:flex-none">
+            <div className="flex flex-col items-center">
+              <div
+                className={`flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ${
+                  isCurrent
+                    ? "bg-[#2563EB] text-white"
+                    : isComplete
+                      ? "bg-[#2563EB]/20 text-[#2563EB]"
+                      : "bg-[#e6ebf1] text-[#9ca3af]"
+                }`}
+              >
+                {index + 1}
+              </div>
+              <span
+                className={`mt-1 text-xs ${
+                  isCurrent ? "font-medium text-[#172345]" : "text-[#9ca3af]"
+                }`}
+              >
+                {step.label}
+              </span>
+            </div>
+            {index < STEPS.length - 1 && (
+              <div
+                className={`mx-2 h-px flex-1 ${
+                  isComplete ? "bg-[#2563EB]/40" : "bg-[#e6ebf1]"
+                }`}
+              />
+            )}
           </div>
-          {index < STEPS.length - 1 && (
-            <span className="mb-5 h-px w-10 bg-border" aria-hidden />
-          )}
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

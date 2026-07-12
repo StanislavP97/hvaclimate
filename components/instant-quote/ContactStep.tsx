@@ -1,73 +1,220 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { AnimatePresence, motion } from "framer-motion";
+import { BackLink } from "@/components/instant-quote/BackLink";
+import {
+  formatPhoneInput,
+  isValidEmail,
+  isValidName,
+  isValidPhone,
+} from "@/components/instant-quote/validation";
 
-const INPUT_CLASS =
-  "h-12 w-full rounded-lg border border-input bg-background px-4 text-sm text-foreground placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none";
+type ContactPhase = "form" | "verify" | "email-fallback";
 
-export function ContactStep({ onVerified }: { onVerified: () => void }) {
+interface ContactStepProps {
+  onVerified: () => void;
+  onBack: () => void;
+}
+
+const slideVariants = {
+  initial: { x: 100, opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  exit: { x: -100, opacity: 0 },
+};
+
+export function ContactStep({ onVerified, onBack }: ContactStepProps) {
+  const [phase, setPhase] = useState<ContactPhase>("form");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [awaitingCode, setAwaitingCode] = useState(false);
+  const [email, setEmail] = useState("");
+  const [nameTouched, setNameTouched] = useState(false);
+  const [phoneTouched, setPhoneTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
 
-  if (awaitingCode) {
-    return (
-      <div>
-        <h2 className="text-xl font-bold text-foreground">
-          Did you receive your code?
-        </h2>
-        <p className="mt-2 text-sm text-body">
-          We just sent it to {phone || "your phone"}.
-        </p>
+  const nameValid = isValidName(name);
+  const phoneValid = isValidPhone(phone);
+  const emailValid = isValidEmail(email);
+  const formValid = nameValid && phoneValid;
 
-        <Button className="mt-6 h-12 w-full rounded-full" onClick={onVerified}>
-          Yes, I got it →
-        </Button>
-        <button
-          type="button"
-          onClick={() => setAwaitingCode(false)}
-          className="mt-4 block text-sm text-body underline underline-offset-2"
-        >
-          No — let&apos;s try a different way
-        </button>
-      </div>
-    );
+  const showNameError = nameTouched && !nameValid;
+  const showPhoneError = phoneTouched && !phoneValid;
+  const showEmailError = emailTouched && !emailValid;
+
+  function handleSend() {
+    setNameTouched(true);
+    setPhoneTouched(true);
+    if (isValidName(name) && isValidPhone(phone)) setPhase("verify");
+  }
+
+  function handleSeePricing() {
+    setEmailTouched(true);
+    if (isValidEmail(email)) onVerified();
   }
 
   return (
-    <div>
-      <h2 className="text-xl font-bold text-foreground">
-        Where would you like to receive your quote?
-      </h2>
-      <p className="mt-2 text-sm text-body">
-        Enter your name and phone number and we&apos;ll send your
-        personalized pricing.
-      </p>
+    <div className="overflow-hidden">
+      <BackLink onClick={phase === "form" ? onBack : () => setPhase("form")} />
 
-      <div className="mt-6 flex flex-col gap-4">
-        <input
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          placeholder="Full name"
-          className={INPUT_CLASS}
-        />
-        <input
-          type="tel"
-          value={phone}
-          onChange={(event) => setPhone(event.target.value)}
-          placeholder="Phone number"
-          className={INPUT_CLASS}
-        />
-      </div>
+      <AnimatePresence mode="wait" initial={false}>
+        {phase === "form" && (
+          <motion.div
+            key="form"
+            variants={slideVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.25 }}
+          >
+            <h1 className="text-2xl font-semibold text-[#172345] sm:text-3xl">
+              Where would you like to receive your quote?
+            </h1>
+            <p className="mt-2 text-[#374151]">
+              We&apos;ll text you a secure link — no spam, ever.
+            </p>
 
-      <Button
-        className="mt-6 h-12 w-full rounded-full"
-        onClick={() => setAwaitingCode(true)}
-      >
-        Send my quote →
-      </Button>
+            <div className="mt-8 space-y-4">
+              <div>
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-[#172345]">
+                  Name
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  onBlur={() => setNameTouched(true)}
+                  placeholder="Jane Smith"
+                  className={`w-full rounded-xl border px-4 py-3 text-[#172345] placeholder:text-[#9ca3af] focus:outline-none focus:ring-2 ${
+                    showNameError
+                      ? "border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/20"
+                      : "border-[#e6ebf1] focus:border-[#2563EB] focus:ring-[#2563EB]/20"
+                  }`}
+                />
+                {showNameError && (
+                  <p className="mt-1.5 text-xs text-[#ef4444]">
+                    Please enter your name (at least 2 characters).
+                  </p>
+                )}
+              </div>
+              <div>
+                <label htmlFor="phone" className="mb-2 block text-sm font-medium text-[#172345]">
+                  Phone number
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(formatPhoneInput(e.target.value))}
+                  onBlur={() => setPhoneTouched(true)}
+                  placeholder="(360) 555-0123"
+                  className={`w-full rounded-xl border px-4 py-3 text-[#172345] placeholder:text-[#9ca3af] focus:outline-none focus:ring-2 ${
+                    showPhoneError
+                      ? "border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/20"
+                      : "border-[#e6ebf1] focus:border-[#2563EB] focus:ring-[#2563EB]/20"
+                  }`}
+                />
+                {showPhoneError && (
+                  <p className="mt-1.5 text-xs text-[#ef4444]">
+                    Please enter a valid 10-digit phone number.
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleSend}
+              disabled={!formValid}
+              className="mt-6 w-full rounded-xl bg-[#2563EB] px-6 py-3 font-medium text-white transition-colors hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Send my quote →
+            </button>
+          </motion.div>
+        )}
+
+        {phase === "verify" && (
+          <motion.div
+            key="verify"
+            variants={slideVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.25 }}
+          >
+            <h1 className="text-2xl font-semibold text-[#172345] sm:text-3xl">
+              Did you receive your code?
+            </h1>
+            <p className="mt-2 text-[#374151]">
+              We just sent it to {phone || "your phone"}
+            </p>
+
+            <button
+              type="button"
+              onClick={onVerified}
+              className="mt-8 w-full rounded-xl bg-[#2563EB] px-6 py-3 font-medium text-white transition-colors hover:bg-[#1d4ed8]"
+            >
+              Yes, I got it →
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setPhase("email-fallback")}
+              className="mt-4 w-full text-center text-sm text-[#374151] transition-colors duration-200 hover:text-[#2563EB] hover:underline"
+            >
+              No — let&apos;s try a different way
+            </button>
+          </motion.div>
+        )}
+
+        {phase === "email-fallback" && (
+          <motion.div
+            key="email-fallback"
+            variants={slideVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.25 }}
+          >
+            <h1 className="text-2xl font-semibold text-[#172345] sm:text-3xl">
+              No problem — let&apos;s try your email instead
+            </h1>
+
+            <div className="mt-8">
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#172345]">
+                Email address
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={() => setEmailTouched(true)}
+                placeholder="jane@example.com"
+                className={`w-full rounded-xl border px-4 py-3 text-[#172345] placeholder:text-[#9ca3af] focus:outline-none focus:ring-2 ${
+                  showEmailError
+                    ? "border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/20"
+                    : "border-[#e6ebf1] focus:border-[#2563EB] focus:ring-[#2563EB]/20"
+                }`}
+              />
+              {showEmailError && (
+                <p className="mt-1.5 text-xs text-[#ef4444]">
+                  Please enter a valid email address.
+                </p>
+              )}
+            </div>
+
+            <button
+              type="button"
+              onClick={handleSeePricing}
+              disabled={!emailValid}
+              className="mt-6 w-full rounded-xl bg-[#2563EB] px-6 py-3 font-medium text-white transition-colors hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              See my pricing →
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
