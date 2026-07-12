@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
 import { ServiceDetailStats } from "@/components/services/ServiceDetailStats";
 import { BookOnlineButton } from "@/components/shared/BookOnlineButton";
+import { ServiceJsonLd } from "@/components/seo/ServiceJsonLd";
 import type { ServicePage } from "@/types/service-page";
 
 interface RelatedService {
@@ -42,8 +43,16 @@ export function ServiceDetailLayout({
   serviceAreas = DEFAULT_SERVICE_AREAS,
   extraSection,
 }: ServiceDetailLayoutProps) {
+  const canonicalUrl = breadcrumb[breadcrumb.length - 1]?.href ?? "/";
+
   return (
     <>
+      <ServiceJsonLd
+        name={entry.name}
+        description={entry.metaDescription}
+        url={canonicalUrl}
+      />
+
       {/* Hero */}
       <section
         className="relative overflow-hidden bg-navy"

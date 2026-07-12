@@ -41,7 +41,7 @@
 
 - [x] 14. **Contact form** — form at /contact with Resend email delivery; "Get Instant Quote" CTA linking to external booking tool
 
-- [ ] 15. **SEO layer** — generateMetadata() for every page/route pulling from CMS JSON; sitemap.xml; robots.txt; JSON-LD schema (LocalBusiness, Service)
+- [x] 15. **SEO layer** — generateMetadata() for every page/route pulling from CMS JSON; sitemap.xml; robots.txt; JSON-LD schema (LocalBusiness, Service)
 
 - [ ] 16. **Google Tag Manager + Reviews** — GTM Script component; Google Reviews widget or static testimonials section
 
