@@ -15,7 +15,12 @@ function Button({
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
   return (
     <motion.span
-      className="inline-flex w-fit items-stretch"
+      className={cn(
+        "inline-flex w-fit items-stretch",
+        typeof className === "string" &&
+          /(?:^|\s)(?:[\w-]+:)*w-full(?=\s|$)/.test(className) &&
+          "w-full"
+      )}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
