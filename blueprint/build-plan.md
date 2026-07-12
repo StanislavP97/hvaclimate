@@ -43,7 +43,7 @@
 
 - [x] 15. **SEO layer** — generateMetadata() for every page/route pulling from CMS JSON; sitemap.xml; robots.txt; JSON-LD schema (LocalBusiness, Service)
 
-- [ ] 16. **Google Tag Manager + Reviews** — GTM Script component; Google Reviews widget or static testimonials section
+- [x] 16. **Google Tag Manager + Reviews** — GTM Script component; Google Reviews widget or static testimonials section
 
 - [ ] 17. **Performance & QA** — next/image optimization; LCP < 2.5s; all URLs verified 1:1 with Webflow; 301 redirects for any changed slugs
 
