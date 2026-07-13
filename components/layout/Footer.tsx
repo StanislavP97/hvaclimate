@@ -22,15 +22,25 @@ function InstagramIcon({ className }: { className?: string }) {
 }
 
 const SOCIAL_LINKS = [
-  { label: "Facebook", href: "#", Icon: FacebookIcon, background: "#3B5998" },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/HVAClimateControlLLC/",
+    Icon: FacebookIcon,
+    background: "#3B5998",
+  },
   {
     label: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/climatecontrol_llc/",
     Icon: InstagramIcon,
     background:
       "linear-gradient(45deg, #F5CB57 0%, #E1306C 45%, #833AB4 100%)",
   },
-  { label: "TikTok", href: "#", Icon: Music2, background: "#000000" },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@hva.climate.control",
+    Icon: Music2,
+    background: "#000000",
+  },
 ] as const;
 
 const BADGES = ["Licensed", "Bonded", "Insured · WA & OR"];
@@ -161,6 +171,8 @@ export default function Footer() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="social-btn group relative flex size-9 items-center justify-center bg-white text-navy"
                   style={{

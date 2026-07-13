@@ -66,7 +66,7 @@ export default function MobileNav() {
       </button>
 
       {open && (
-        <nav className="absolute inset-x-0 top-full flex flex-col gap-1 border-b border-border bg-background px-6 py-4 text-sm font-medium text-foreground">
+        <nav className="absolute inset-x-0 top-full flex max-h-[85dvh] flex-col gap-1 overflow-y-auto overscroll-contain border-b border-border bg-background px-6 py-4 text-sm font-medium text-foreground">
           <Link href="/" className="py-2" onClick={closeMenu}>
             Home
           </Link>
