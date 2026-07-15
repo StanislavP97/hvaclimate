@@ -1,43 +1,44 @@
-export type WizardStep = "address" | "contact" | "price";
+export type ServiceType = "repair" | "replace";
+export type HomeSize = "small" | "medium" | "large";
+export type CurrentSystem = "gas" | "electric" | "unsure";
+export type SystemTier = "silver" | "gold" | "platinum";
+export type AddOnId = "thermostat" | "purifier" | "surge" | "warranty";
 
-export type CeilingHeight = "8-9" | "9-10" | "10-plus";
-export type InsulationLevel = "good" | "average" | "poor";
-export type SunExposure = "shaded" | "average" | "lots-of-glass";
-export type Ductwork = "yes" | "no" | "not-sure";
-export type ProjectGoal =
-  | "add-replace-ac"
-  | "replace-ac-furnace"
-  | "add-replace-heat-pump"
-  | "dual-fuel"
-  | "replace-furnace-only";
-
-export interface HomeDetails {
-  sqft: string;
-  ceilingHeight: CeilingHeight;
-  occupants: string;
-  insulation: InsulationLevel;
-  sunExposure: SunExposure;
-  openConcept: boolean;
+export interface ContactInfo {
+  formName: string;
+  formPhone: string;
+  formEmail: string;
+  smsOptIn: boolean;
 }
 
-export interface SystemDetails {
-  ductwork: Ductwork;
-  projectGoal: ProjectGoal;
-  preferredBrand: string;
+export type Addons = Record<AddOnId, boolean>;
+
+export interface QuizState {
+  step: number;
+  serviceType: ServiceType | null;
+  homeSize: HomeSize | null;
+  currentSystem: CurrentSystem | null;
+  contact: ContactInfo;
+  gateUnlocked: boolean;
+  selectedTier: SystemTier;
+  addons: Addons;
 }
 
-export interface SizingResult {
-  coolingTons: string;
-  heatingBtu: number;
+export interface PriceRange {
+  low: number;
+  high: number;
 }
 
-export type EquipmentTier = "good" | "better" | "best";
-
-export interface AddOns {
-  extendedWarranty: boolean;
-  emergencyHeatStrip: boolean;
-  lineSet: boolean;
-  aprilaire: boolean;
-  iwave: boolean;
-  condenserPad: boolean;
+export interface TierMeta {
+  tier: SystemTier;
+  label: string;
+  accent: string;
+  headerBg: string;
+  headerColor: string;
+  afue: string;
+  priceLow: number;
+  priceHigh: number;
+  monthly: number;
+  mostPopular?: boolean;
+  bullets: string[];
 }
