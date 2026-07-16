@@ -16,6 +16,7 @@ export type Addons = Record<AddOnId, boolean>;
 export interface QuizState {
   step: number;
   serviceType: ServiceType | null;
+  address: string;
   homeSize: HomeSize | null;
   currentSystem: CurrentSystem | null;
   contact: ContactInfo;

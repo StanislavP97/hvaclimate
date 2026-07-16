@@ -20,6 +20,7 @@ const slideVariants = {
 const DEFAULT_STATE: QuizState = {
   step: 0,
   serviceType: null,
+  address: "",
   homeSize: null,
   currentSystem: null,
   contact: { formName: "", formPhone: "", formEmail: "", smsOptIn: true },
@@ -42,6 +43,7 @@ export function InstantQuoteWizard() {
   if (quiz.gateUnlocked) {
     return (
       <LivingProposal
+        address={quiz.address}
         homeSize={quiz.homeSize}
         currentSystem={quiz.currentSystem}
         onSchedule={handleSchedule}
@@ -135,8 +137,11 @@ export function InstantQuoteWizard() {
                   transition={{ duration: 0.35 }}
                 >
                   <QuizStep2HomeSize
+                    address={quiz.address}
                     value={quiz.homeSize}
-                    onNext={(homeSize) => setQuiz((q) => ({ ...q, homeSize, step: 2 }))}
+                    onNext={(address, homeSize) =>
+                      setQuiz((q) => ({ ...q, address, homeSize, step: 2 }))
+                    }
                   />
                 </motion.div>
               )}
@@ -170,6 +175,9 @@ export function InstantQuoteWizard() {
                 >
                   <QuizStep4SoftGate
                     value={quiz.contact}
+                    address={quiz.address}
+                    homeSize={quiz.homeSize}
+                    currentSystem={quiz.currentSystem}
                     onUnlock={(contact) =>
                       setQuiz((q) => ({ ...q, contact, gateUnlocked: true }))
                     }

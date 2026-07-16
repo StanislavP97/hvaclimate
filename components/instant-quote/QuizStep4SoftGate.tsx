@@ -7,29 +7,66 @@ import {
   isValidName,
   isValidPhone,
 } from "@/components/instant-quote/validation";
-import type { ContactInfo } from "@/components/instant-quote/types";
+import { DEFAULT_ADDONS, TIER_META } from "@/components/instant-quote/quiz-data";
+import type { ContactInfo, CurrentSystem, HomeSize } from "@/components/instant-quote/types";
 
 interface QuizStep4SoftGateProps {
   value: ContactInfo;
+  address: string;
+  homeSize: HomeSize | null;
+  currentSystem: CurrentSystem | null;
   onUnlock: (value: ContactInfo) => void;
 }
 
-export function QuizStep4SoftGate({ value, onUnlock }: QuizStep4SoftGateProps) {
+export function QuizStep4SoftGate({
+  value,
+  address,
+  homeSize,
+  currentSystem,
+  onUnlock,
+}: QuizStep4SoftGateProps) {
   const [formName, setFormName] = useState(value.formName);
   const [formPhone, setFormPhone] = useState(value.formPhone);
   const [formEmail, setFormEmail] = useState(value.formEmail);
   const [smsOptIn, setSmsOptIn] = useState(value.smsOptIn);
   const [touched, setTouched] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const nameValid = isValidName(formName);
   const phoneValid = isValidPhone(formPhone);
   const emailValid = isValidEmail(formEmail);
   const gateReady = nameValid && phoneValid && emailValid;
 
-  function handleSubmit() {
+  async function handleSubmit() {
     setTouched(true);
-    if (gateReady) {
-      onUnlock({ formName, formPhone, formEmail, smsOptIn });
+    if (!gateReady || submitting) return;
+
+    const contact = { formName, formPhone, formEmail, smsOptIn };
+    setSubmitting(true);
+
+    try {
+      const tier = TIER_META.gold;
+      await fetch("/api/instant-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contact: { name: formName, phone: formPhone, email: formEmail },
+          address,
+          homeSize: homeSize ?? "medium",
+          currentSystem: currentSystem ?? "gas",
+          selectedTier: "gold",
+          selectedAddons: Object.entries(DEFAULT_ADDONS)
+            .filter(([, checked]) => checked)
+            .map(([id]) => id),
+          priceRange: { min: tier.priceLow, max: tier.priceHigh },
+          monthlyPayment: tier.monthly,
+        }),
+      });
+    } catch {
+      // Non-blocking: still show the Living Proposal even if the API call fails
+    } finally {
+      setSubmitting(false);
+      onUnlock(contact);
     }
   }
 
@@ -108,14 +145,14 @@ export function QuizStep4SoftGate({ value, onUnlock }: QuizStep4SoftGateProps) {
       <button
         type="button"
         onClick={handleSubmit}
-        disabled={!gateReady}
+        disabled={!gateReady || submitting}
         className={`w-full min-h-[60px] rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
-          gateReady
+          gateReady && !submitting
             ? "cursor-pointer bg-[#F97316] text-white shadow-[0_10px_24px_rgba(249,115,22,.32)] hover:bg-[#ea6a0c]"
             : "cursor-not-allowed bg-[#fbc99a] text-white"
         }`}
       >
-        Unlock My Free Estimate →
+        {submitting ? "Unlocking..." : "Unlock My Free Estimate →"}
       </button>
 
       <div className="mt-5 flex flex-col gap-2.5 border-t border-[#eef1f5] pt-5">

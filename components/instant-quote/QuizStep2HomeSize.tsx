@@ -2,19 +2,55 @@
 
 import { useState } from "react";
 import { STEP2_OPTIONS } from "@/components/instant-quote/quiz-data";
+import { isValidAddress } from "@/components/instant-quote/validation";
 import type { HomeSize } from "@/components/instant-quote/types";
 
 interface QuizStep2HomeSizeProps {
+  address: string;
   value: HomeSize | null;
-  onNext: (value: HomeSize) => void;
+  onNext: (address: string, value: HomeSize) => void;
 }
 
-export function QuizStep2HomeSize({ value, onNext }: QuizStep2HomeSizeProps) {
+export function QuizStep2HomeSize({ address, value, onNext }: QuizStep2HomeSizeProps) {
   const [selected, setSelected] = useState<HomeSize | null>(value);
-  const canProceed = !!selected;
+  const [addressValue, setAddressValue] = useState(address);
+  const [touched, setTouched] = useState(false);
+
+  const addressValid = isValidAddress(addressValue);
+  const canProceed = !!selected && addressValid;
+
+  function handleNext() {
+    setTouched(true);
+    if (selected && addressValid) {
+      onNext(addressValue, selected);
+    }
+  }
 
   return (
     <div>
+      <h2 className="mb-2 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[25px] font-extrabold text-[#0D1B2A] max-sm:text-[19px]">
+        First, what&apos;s your service address?
+      </h2>
+      <p className="mb-4 text-center text-[15px] text-[#64748b] max-sm:text-[13px]">
+        Helps us check local permits and utility rebates in your area
+      </p>
+
+      <div className="mb-7 max-sm:mb-5">
+        <input
+          value={addressValue}
+          onChange={(e) => setAddressValue(e.target.value)}
+          placeholder="123 Main St, Vancouver, WA 98682"
+          type="text"
+          // TODO: Replace with Google Places Autocomplete when API key is available
+          className={`h-12 w-full rounded-[10px] border-[1.5px] px-4 font-sans text-[15px] text-[#0D1B2A] outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 ${
+            touched && !addressValid ? "border-[#ef4444]" : "border-[#e2e7ee]"
+          }`}
+        />
+        {touched && !addressValid && (
+          <p className="mt-1 text-xs text-[#ef4444]">Please enter your service address.</p>
+        )}
+      </div>
+
       <h2 className="mb-2 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[25px] font-extrabold text-[#0D1B2A] max-sm:text-[19px]">
         What is the approximate size of your home?
       </h2>
@@ -62,7 +98,7 @@ export function QuizStep2HomeSize({ value, onNext }: QuizStep2HomeSizeProps) {
 
       <button
         type="button"
-        onClick={() => selected && onNext(selected)}
+        onClick={handleNext}
         disabled={!canProceed}
         className={`w-full min-h-[60px] rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
           canProceed

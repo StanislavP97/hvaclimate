@@ -29,6 +29,7 @@ import type {
 } from "@/components/instant-quote/types";
 
 interface LivingProposalProps {
+  address: string;
   homeSize: HomeSize | null;
   currentSystem: CurrentSystem | null;
   onSchedule: () => void;
@@ -68,6 +69,7 @@ function useCountUp(target: number, duration = 800) {
 }
 
 export function LivingProposal({
+  address,
   homeSize,
   currentSystem,
   onSchedule,
@@ -90,7 +92,7 @@ export function LivingProposal({
   const resolvedSystem = currentSystem ?? "gas";
   const SystemIcon = SYSTEM_ICON[resolvedSystem];
 
-  const resultSubtitle = `Based on your ${SIZE_LABEL[resolvedSize]} home with ${SYSTEM_LABEL[resolvedSystem]} · Vancouver, WA`;
+  const resultSubtitle = `Based on your ${SIZE_LABEL[resolvedSize]} home with ${SYSTEM_LABEL[resolvedSystem]} · ${address || "Vancouver, WA"}`;
 
   return (
     <div className="relative bg-white">
@@ -168,9 +170,9 @@ export function LivingProposal({
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-[1200px] grid-cols-3 gap-5 px-6 max-sm:flex max-sm:gap-3.5 max-sm:overflow-x-auto max-sm:px-0 max-sm:pb-1.5">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 gap-5 px-6 md:grid-cols-3 max-sm:px-0">
           {tiersList.map((t, index) => (
-            <div key={t.tier} className="max-sm:min-w-[220px] max-sm:flex-none">
+            <div key={t.tier} className={t.tier === "gold" ? "order-first md:order-none" : ""}>
               <SystemTierCard
                 tier={t}
                 isActive={selectedTier === t.tier}
