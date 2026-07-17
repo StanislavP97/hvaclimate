@@ -27,6 +27,7 @@ const DEFAULT_STATE: QuizState = {
   gateUnlocked: false,
   selectedTier: "gold",
   addons: DEFAULT_ADDONS,
+  propertyData: null,
 };
 
 function handleCall() {
@@ -46,6 +47,7 @@ export function InstantQuoteWizard() {
         address={quiz.address}
         homeSize={quiz.homeSize}
         currentSystem={quiz.currentSystem}
+        propertyData={quiz.propertyData}
         onSchedule={handleSchedule}
         onCall={handleCall}
       />
@@ -139,8 +141,15 @@ export function InstantQuoteWizard() {
                   <QuizStep2HomeSize
                     address={quiz.address}
                     value={quiz.homeSize}
-                    onNext={(address, homeSize) =>
-                      setQuiz((q) => ({ ...q, address, homeSize, step: 2 }))
+                    onNext={(address, homeSize, propertyData, currentSystem) =>
+                      setQuiz((q) => ({
+                        ...q,
+                        address,
+                        homeSize,
+                        propertyData: propertyData ?? q.propertyData,
+                        currentSystem: currentSystem ?? q.currentSystem,
+                        step: currentSystem ? 3 : 2,
+                      }))
                     }
                   />
                 </motion.div>
@@ -178,6 +187,7 @@ export function InstantQuoteWizard() {
                     address={quiz.address}
                     homeSize={quiz.homeSize}
                     currentSystem={quiz.currentSystem}
+                    propertyData={quiz.propertyData}
                     onUnlock={(contact) =>
                       setQuiz((q) => ({ ...q, contact, gateUnlocked: true }))
                     }

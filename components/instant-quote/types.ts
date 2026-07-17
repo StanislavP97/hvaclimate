@@ -13,6 +13,15 @@ export interface ContactInfo {
 
 export type Addons = Record<AddOnId, boolean>;
 
+export interface PropertyData {
+  squareFootage: number | null;
+  yearBuilt: number | null;
+  bedrooms: number | null;
+  bathrooms: number | null;
+  heatingType: string | null;
+  source: "rentcast" | "manual";
+}
+
 export interface QuizState {
   step: number;
   serviceType: ServiceType | null;
@@ -23,6 +32,7 @@ export interface QuizState {
   gateUnlocked: boolean;
   selectedTier: SystemTier;
   addons: Addons;
+  propertyData: PropertyData | null;
 }
 
 export interface PriceRange {

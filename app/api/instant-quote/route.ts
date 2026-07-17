@@ -22,6 +22,27 @@ const SYSTEM_LABEL: Record<string, string> = {
   unsure: "Unsure",
 };
 
+interface PropertyDataInput {
+  squareFootage: number | null;
+  yearBuilt: number | null;
+  bedrooms: number | null;
+  bathrooms: number | null;
+  heatingType: string | null;
+  source: "rentcast" | "manual";
+}
+
+function propertyDetailsHtml(propertyData: PropertyDataInput | null | undefined) {
+  if (!propertyData) return "";
+
+  const line =
+    propertyData.source === "rentcast"
+      ? `Property data auto-detected: ${propertyData.squareFootage ?? "?"} sqft, built ${propertyData.yearBuilt ?? "?"}, ${propertyData.heatingType ?? "unknown heating"}`
+      : "Property data entered manually by user";
+
+  return `
+    <p style="margin:16px 0 0;font-size:14px;color:#334155;">${line}</p>`;
+}
+
 function officeEmailHtml(data: {
   contact: { name: string; phone: string; email: string };
   address: string;
@@ -31,6 +52,7 @@ function officeEmailHtml(data: {
   selectedAddons: string[];
   priceRange: { min: number; max: number };
   submittedAt: string;
+  propertyData?: PropertyDataInput | null;
 }) {
   const addonsList =
     data.selectedAddons.length > 0
@@ -52,6 +74,7 @@ function officeEmailHtml(data: {
       <tr><td style="padding:6px 0;font-weight:bold;">Price Range</td><td style="padding:6px 0;">$${data.priceRange.min.toLocaleString()} – $${data.priceRange.max.toLocaleString()}</td></tr>
       <tr><td style="padding:6px 0;font-weight:bold;">Submitted</td><td style="padding:6px 0;">${data.submittedAt}</td></tr>
     </table>
+    ${propertyDetailsHtml(data.propertyData)}
   </div>`;
 }
 
@@ -105,7 +128,7 @@ export async function POST(request: Request) {
       to: OFFICE_EMAIL,
       replyTo: data.contact.email,
       subject: `🔔 New Instant Quote Lead — ${data.contact.name} · ${data.address}`,
-      html: officeEmailHtml({ ...data, submittedAt }),
+      html: officeEmailHtml({ ...data, submittedAt, propertyData: data.propertyData }),
     });
 
     await resend.emails.send({

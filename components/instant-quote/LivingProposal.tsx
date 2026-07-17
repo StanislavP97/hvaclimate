@@ -25,6 +25,7 @@ import type {
   Addons,
   CurrentSystem,
   HomeSize,
+  PropertyData,
   SystemTier,
 } from "@/components/instant-quote/types";
 
@@ -32,6 +33,7 @@ interface LivingProposalProps {
   address: string;
   homeSize: HomeSize | null;
   currentSystem: CurrentSystem | null;
+  propertyData: PropertyData | null;
   onSchedule: () => void;
   onCall: () => void;
 }
@@ -72,6 +74,7 @@ export function LivingProposal({
   address,
   homeSize,
   currentSystem,
+  propertyData,
   onSchedule,
   onCall,
 }: LivingProposalProps) {
@@ -142,10 +145,30 @@ export function LivingProposal({
                 <MapPin size={16} className="flex-none text-[#2563EB]" />
                 Vancouver, WA area
               </li>
+              {propertyData?.source === "rentcast" && (
+                <>
+                  {propertyData.yearBuilt != null && (
+                    <li className="text-[13px] text-[#64748b]">Built {propertyData.yearBuilt}</li>
+                  )}
+                  {propertyData.squareFootage != null && (
+                    <li className="text-[13px] text-[#64748b]">
+                      {propertyData.squareFootage.toLocaleString()} sq ft
+                    </li>
+                  )}
+                  {propertyData.heatingType && (
+                    <li className="text-[13px] text-[#64748b]">{propertyData.heatingType}</li>
+                  )}
+                </>
+              )}
             </ul>
             <span className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-[#dcfce7] px-3 py-1 font-[Plus_Jakarta_Sans,sans-serif] text-[11.5px] font-bold text-[#15803d]">
               ✓ Estimate ready · Valid 10 days
             </span>
+            {propertyData?.source === "rentcast" && (
+              <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-[#eaf1ff] px-3 py-1 font-[Plus_Jakarta_Sans,sans-serif] text-[11.5px] font-bold text-[#2563EB]">
+                📊 Data verified from public records
+              </span>
+            )}
           </div>
         </div>
       </div>

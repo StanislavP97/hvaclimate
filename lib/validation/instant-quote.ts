@@ -1,5 +1,17 @@
 import { z } from "zod";
 
+const propertyDataSchema = z
+  .object({
+    squareFootage: z.number().nullable(),
+    yearBuilt: z.number().nullable(),
+    bedrooms: z.number().nullable(),
+    bathrooms: z.number().nullable(),
+    heatingType: z.string().nullable(),
+    source: z.enum(["rentcast", "manual"]),
+  })
+  .nullable()
+  .optional();
+
 export const instantQuoteRequestSchema = z.object({
   contact: z.object({
     name: z.string().trim().min(2, "Name is required"),
@@ -16,6 +28,7 @@ export const instantQuoteRequestSchema = z.object({
     max: z.number(),
   }),
   monthlyPayment: z.number(),
+  propertyData: propertyDataSchema,
 });
 
 export type InstantQuoteRequest = z.infer<typeof instantQuoteRequestSchema>;

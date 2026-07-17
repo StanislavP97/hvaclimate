@@ -8,13 +8,19 @@ import {
   isValidPhone,
 } from "@/components/instant-quote/validation";
 import { DEFAULT_ADDONS, TIER_META } from "@/components/instant-quote/quiz-data";
-import type { ContactInfo, CurrentSystem, HomeSize } from "@/components/instant-quote/types";
+import type {
+  ContactInfo,
+  CurrentSystem,
+  HomeSize,
+  PropertyData,
+} from "@/components/instant-quote/types";
 
 interface QuizStep4SoftGateProps {
   value: ContactInfo;
   address: string;
   homeSize: HomeSize | null;
   currentSystem: CurrentSystem | null;
+  propertyData: PropertyData | null;
   onUnlock: (value: ContactInfo) => void;
 }
 
@@ -23,6 +29,7 @@ export function QuizStep4SoftGate({
   address,
   homeSize,
   currentSystem,
+  propertyData,
   onUnlock,
 }: QuizStep4SoftGateProps) {
   const [formName, setFormName] = useState(value.formName);
@@ -60,6 +67,7 @@ export function QuizStep4SoftGate({
             .map(([id]) => id),
           priceRange: { min: tier.priceLow, max: tier.priceHigh },
           monthlyPayment: tier.monthly,
+          propertyData,
         }),
       });
     } catch {
