@@ -135,7 +135,7 @@ export function ServiceCategoryLayout({
       <div className="bg-white px-12 pt-20 pb-22">
         <div className="relative flex flex-col items-center justify-between gap-10 overflow-hidden rounded-[22px] bg-[radial-gradient(130%_150%_at_12%_0%,#17304d_0%,#0D1B2A_65%)] p-13 sm:flex-row">
           <div className="pointer-events-none absolute -top-30 right-20 size-90 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.22),transparent_70%)]" />
-          <div className="relative flex items-center gap-5.5">
+          <div className="relative flex flex-col items-start gap-5.5 md:flex-row md:items-center">
             <div className="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-primary-accent text-white shadow-[0_12px_26px_rgba(37,99,235,0.4)]">
               <Phone className="size-7" />
             </div>
@@ -148,17 +148,17 @@ export function ServiceCategoryLayout({
               </div>
             </div>
           </div>
-          <div className="relative flex items-center gap-3.5">
+          <div className="relative flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row sm:items-center">
             <Button
               render={<a href="tel:+13608882217" />}
               nativeButton={false}
               variant="cta-phone"
-              className="gap-2"
+              className="flex-1 justify-center gap-2 sm:flex-none"
             >
               <Phone className="size-4" />
               (360) 888-2217
             </Button>
-            <BookOnlineButton variant="cta-orange">
+            <BookOnlineButton variant="cta-orange" className="flex-1 justify-center sm:flex-none">
               Book Online
             </BookOnlineButton>
           </div>

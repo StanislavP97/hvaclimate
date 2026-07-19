@@ -81,10 +81,10 @@ const FOOTER_COLUMNS = [
     {
       heading: "Commercial",
       links: [
-        { label: "HVAC Maintenance", href: "/commercial" },
-        { label: "Hood & Cooktop", href: "/commercial" },
-        { label: "Ovens Repair", href: "/commercial" },
-        { label: "Refrigeration", href: "/commercial" },
+        { label: "HVAC Maintenance", href: "/commercial/hvac-maintenance-services" },
+        { label: "Hood & Cooktop", href: "/commercial/hood-repair-and-maintenance-services" },
+        { label: "Ovens Repair", href: "/commercial/ovens-repair" },
+        { label: "Refrigeration", href: "/commercial/refrigeration-systems-maintenance" },
       ],
     },
   ],
