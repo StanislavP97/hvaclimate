@@ -2,6 +2,7 @@
 
 import { useActionState, useState } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { submitContactForm } from "@/actions/contact";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -193,9 +194,16 @@ export function ContactForm() {
             type="submit"
             disabled={isPending}
             variant="cta-orange"
-            className="px-7.5 py-3.75 text-[15px]"
+            className="group px-7.5 py-3.75 text-[15px]"
           >
-            {isPending ? "Sending..." : "Send request →"}
+            {isPending ? (
+              "Sending..."
+            ) : (
+              <span className="inline-flex items-center gap-2">
+                <span>Send request</span>
+                <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+              </span>
+            )}
           </Button>
           <p className="max-w-50 text-[13px] leading-[1.5] text-muted-foreground">
             No spam. We only use your info to get in touch.

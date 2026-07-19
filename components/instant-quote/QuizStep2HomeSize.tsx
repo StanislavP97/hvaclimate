@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { AddressAutocomplete } from "@/components/instant-quote/AddressAutocomplete";
 import { STEP2_OPTIONS } from "@/components/instant-quote/quiz-data";
 import { isValidAddress } from "@/components/instant-quote/validation";
@@ -25,6 +26,10 @@ interface PropertyLookupResponse {
   bathrooms: number | null;
   heatingType: string | null;
   propertyType: string | null;
+  propertyValue?: number;
+  propertyValueLow?: number;
+  propertyValueHigh?: number;
+  rentEstimate?: number;
 }
 
 function sizeFromSquareFootage(squareFootage: number | null): HomeSize {
@@ -91,6 +96,10 @@ export function QuizStep2HomeSize({ address, value, onNext }: QuizStep2HomeSizeP
       bathrooms: property.bathrooms,
       heatingType: property.heatingType,
       source: "rentcast",
+      ...(property.propertyValue != null && { propertyValue: property.propertyValue }),
+      ...(property.propertyValueLow != null && { propertyValueLow: property.propertyValueLow }),
+      ...(property.propertyValueHigh != null && { propertyValueHigh: property.propertyValueHigh }),
+      ...(property.rentEstimate != null && { rentEstimate: property.rentEstimate }),
     };
 
     const autoSize = sizeFromSquareFootage(property.squareFootage);
@@ -194,9 +203,10 @@ export function QuizStep2HomeSize({ address, value, onNext }: QuizStep2HomeSizeP
             <button
               type="button"
               onClick={handleConfirmProperty}
-              className="flex-1 rounded-[10px] bg-[#2563EB] py-3 text-center font-[Plus_Jakarta_Sans,sans-serif] text-sm font-bold text-white hover:bg-[#1d4ed8]"
+              className="group flex flex-1 items-center justify-center gap-2 rounded-[10px] bg-[#2563EB] py-3 text-center font-[Plus_Jakarta_Sans,sans-serif] text-sm font-bold text-white hover:bg-[#1d4ed8]"
             >
-              Looks right →
+              <span>Looks right</span>
+              <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </button>
             <button
               type="button"
@@ -262,13 +272,14 @@ export function QuizStep2HomeSize({ address, value, onNext }: QuizStep2HomeSizeP
             type="button"
             onClick={handleNext}
             disabled={!canProceed || isLookingUp}
-            className={`w-full min-h-[60px] rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
+            className={`group flex w-full min-h-[60px] items-center justify-center gap-2 rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
               canProceed && !isLookingUp
                 ? "cursor-pointer bg-[#2563EB] text-white shadow-[0_8px_20px_rgba(37,99,235,.3)] hover:bg-[#1d4ed8]"
                 : "cursor-not-allowed bg-[#e2e8f0] text-[#94a3b8]"
             }`}
           >
-            Next →
+            <span>Next</span>
+            <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </>
       )}

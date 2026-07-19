@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 export function BrowseArticlesLink() {
   return (
@@ -19,8 +20,9 @@ export function BrowseArticlesLink() {
         <motion.span
           variants={{ rest: { x: 0 }, hover: { x: 4 } }}
           transition={{ duration: 0.2, ease: "easeOut" }}
+          className="flex items-center"
         >
-          →
+          <ArrowRight size={14} />
         </motion.span>
       </Link>
     </motion.div>

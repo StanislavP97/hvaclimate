@@ -6,6 +6,10 @@ interface PropertyLookupResult {
   bathrooms: number | null;
   heatingType: string | null;
   propertyType: string | null;
+  propertyValue?: number;
+  propertyValueLow?: number;
+  propertyValueHigh?: number;
+  rentEstimate?: number;
 }
 
 const NOT_FOUND_RESULT: PropertyLookupResult = {
@@ -27,6 +31,29 @@ interface RentCastProperty {
   features?: {
     heatingType?: string;
   };
+  rentEstimate?: number;
+}
+
+interface RentCastAvmResponse {
+  price?: number;
+  priceRangeLow?: number;
+  priceRangeHigh?: number;
+}
+
+async function fetchAvm(address: string) {
+  const res = await fetch(
+    `https://api.rentcast.io/v1/avm/value?address=${encodeURIComponent(address)}`,
+    {
+      headers: {
+        "X-Api-Key": process.env.RENTCAST_API_KEY!,
+        Accept: "application/json",
+      },
+      signal: AbortSignal.timeout(3000),
+    },
+  );
+
+  if (!res.ok) return null;
+  return (await res.json()) as RentCastAvmResponse;
 }
 
 export async function GET(request: Request) {
@@ -36,23 +63,26 @@ export async function GET(request: Request) {
   if (!address) return Response.json({ found: false });
 
   try {
-    const res = await fetch(
-      `https://api.rentcast.io/v1/properties?address=${encodeURIComponent(address)}&limit=1`,
-      {
-        headers: {
-          "X-Api-Key": process.env.RENTCAST_API_KEY!,
-          Accept: "application/json",
+    const [propertyResult, avmResult] = await Promise.allSettled([
+      fetch(
+        `https://api.rentcast.io/v1/properties?address=${encodeURIComponent(address)}&limit=1`,
+        {
+          headers: {
+            "X-Api-Key": process.env.RENTCAST_API_KEY!,
+            Accept: "application/json",
+          },
+          signal: AbortSignal.timeout(3000),
         },
-        signal: AbortSignal.timeout(3000),
-      },
-    );
+      ).then((res) => (res.ok ? res.json() : null)),
+      fetchAvm(address),
+    ]);
 
-    if (!res.ok) return Response.json(NOT_FOUND_RESULT);
-
-    const data = await res.json();
+    const data = propertyResult.status === "fulfilled" ? propertyResult.value : null;
     const property: RentCastProperty | undefined = Array.isArray(data) ? data[0] : data;
 
     if (!property) return Response.json(NOT_FOUND_RESULT);
+
+    const avm = avmResult.status === "fulfilled" ? avmResult.value : null;
 
     return Response.json({
       found: true,
@@ -62,6 +92,10 @@ export async function GET(request: Request) {
       bathrooms: property.bathrooms || null,
       heatingType: property.features?.heatingType || null,
       propertyType: property.propertyType || null,
+      ...(avm?.price != null && { propertyValue: avm.price }),
+      ...(avm?.priceRangeLow != null && { propertyValueLow: avm.priceRangeLow }),
+      ...(avm?.priceRangeHigh != null && { propertyValueHigh: avm.priceRangeHigh }),
+      ...(property.rentEstimate != null && { rentEstimate: property.rentEstimate }),
     });
   } catch {
     return Response.json(NOT_FOUND_RESULT);

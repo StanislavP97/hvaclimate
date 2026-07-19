@@ -8,6 +8,10 @@ const propertyDataSchema = z
     bathrooms: z.number().nullable(),
     heatingType: z.string().nullable(),
     source: z.enum(["rentcast", "manual"]),
+    propertyValue: z.number().optional(),
+    propertyValueLow: z.number().optional(),
+    propertyValueHigh: z.number().optional(),
+    rentEstimate: z.number().optional(),
   })
   .nullable()
   .optional();
@@ -19,6 +23,7 @@ export const instantQuoteRequestSchema = z.object({
     email: z.string().trim().min(1, "Email is required").email("Enter a valid email"),
   }),
   address: z.string().trim().min(5, "Address is required"),
+  serviceType: z.enum(["repair", "replace", "maintenance", "unsure"]).nullable().optional(),
   homeSize: z.enum(["small", "medium", "large"]),
   currentSystem: z.enum(["gas", "electric", "unsure"]),
   selectedTier: z.enum(["silver", "gold", "platinum"]),

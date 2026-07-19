@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import type { ServiceCategoryCard } from "@/components/services/ServiceCategoryLayout";
 
 const gridVariants = {
@@ -62,7 +63,8 @@ export function ServiceCategoryRevealGrid({
               href={card.href}
               className="inline-flex items-center gap-1.5 font-sans text-sm font-semibold text-primary-accent"
             >
-              View Service →
+              <span>View Service</span>
+              <ArrowRight size={14} />
             </Link>
           </div>
         </motion.div>

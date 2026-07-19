@@ -20,6 +20,10 @@ export interface PropertyData {
   bathrooms: number | null;
   heatingType: string | null;
   source: "rentcast" | "manual";
+  propertyValue?: number;
+  propertyValueLow?: number;
+  propertyValueHigh?: number;
+  rentEstimate?: number;
 }
 
 export interface QuizState {

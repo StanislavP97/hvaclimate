@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Phone, Search } from "lucide-react";
+import { ArrowRight, Phone, Search } from "lucide-react";
 import type { BlogCategory, BlogPost } from "@/types/blog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -213,9 +213,16 @@ export function BlogExplorer({ posts, categories }: BlogExplorerProps) {
               <Button
                 render={<Link href={`/blog/${featuredPost.slug}`} />}
                 nativeButton={false}
-                className="mt-6.5 w-fit rounded-[11px] border-navy bg-navy px-6.5 py-3.5 text-[14.5px] hover:bg-[#1d4ed8]"
+                className="group mt-6.5 w-fit rounded-[11px] border-navy bg-navy px-6.5 py-3.5 text-[14.5px] hover:bg-[#1d4ed8]"
               >
-                Read Article <span aria-hidden>&rarr;</span>
+                <span className="inline-flex items-center gap-2">
+                  <span>Read Article</span>
+                  <ArrowRight
+                    size={18}
+                    aria-hidden
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  />
+                </span>
               </Button>
             </div>
           </motion.div>

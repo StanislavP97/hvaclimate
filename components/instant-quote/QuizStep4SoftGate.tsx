@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import {
   formatPhoneInput,
   isValidEmail,
@@ -13,11 +14,13 @@ import type {
   CurrentSystem,
   HomeSize,
   PropertyData,
+  ServiceType,
 } from "@/components/instant-quote/types";
 
 interface QuizStep4SoftGateProps {
   value: ContactInfo;
   address: string;
+  serviceType: ServiceType | null;
   homeSize: HomeSize | null;
   currentSystem: CurrentSystem | null;
   propertyData: PropertyData | null;
@@ -27,6 +30,7 @@ interface QuizStep4SoftGateProps {
 export function QuizStep4SoftGate({
   value,
   address,
+  serviceType,
   homeSize,
   currentSystem,
   propertyData,
@@ -53,22 +57,28 @@ export function QuizStep4SoftGate({
 
     try {
       const tier = TIER_META.gold;
+      const payload = {
+        contact: { name: formName, phone: formPhone, email: formEmail },
+        address,
+        serviceType,
+        homeSize: homeSize ?? "medium",
+        currentSystem: currentSystem ?? "gas",
+        selectedTier: "gold",
+        selectedAddons: Object.entries(DEFAULT_ADDONS)
+          .filter(([, checked]) => checked)
+          .map(([id]) => id),
+        priceRange: { min: tier.priceLow, max: tier.priceHigh },
+        monthlyPayment: tier.monthly,
+        propertyData,
+        submittedAt: new Date().toISOString(),
+      };
+
+      console.log("Submitting lead:", payload);
+
       await fetch("/api/instant-quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contact: { name: formName, phone: formPhone, email: formEmail },
-          address,
-          homeSize: homeSize ?? "medium",
-          currentSystem: currentSystem ?? "gas",
-          selectedTier: "gold",
-          selectedAddons: Object.entries(DEFAULT_ADDONS)
-            .filter(([, checked]) => checked)
-            .map(([id]) => id),
-          priceRange: { min: tier.priceLow, max: tier.priceHigh },
-          monthlyPayment: tier.monthly,
-          propertyData,
-        }),
+        body: JSON.stringify(payload),
       });
     } catch {
       // Non-blocking: still show the Living Proposal even if the API call fails
@@ -154,13 +164,20 @@ export function QuizStep4SoftGate({
         type="button"
         onClick={handleSubmit}
         disabled={!gateReady || submitting}
-        className={`w-full min-h-[60px] rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
+        className={`group flex w-full min-h-[60px] items-center justify-center gap-2 rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
           gateReady && !submitting
             ? "cursor-pointer bg-[#F97316] text-white shadow-[0_10px_24px_rgba(249,115,22,.32)] hover:bg-[#ea6a0c]"
             : "cursor-not-allowed bg-[#fbc99a] text-white"
         }`}
       >
-        {submitting ? "Unlocking..." : "Unlock My Free Estimate →"}
+        {submitting ? (
+          <span>Unlocking...</span>
+        ) : (
+          <>
+            <span>Unlock My Free Estimate</span>
+            <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
+          </>
+        )}
       </button>
 
       <div className="mt-5 flex flex-col gap-2.5 border-t border-[#eef1f5] pt-5">

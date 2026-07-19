@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft } from "lucide-react";
 import { ProgressBar, MobileProgressDots } from "@/components/instant-quote/ProgressBar";
 import { QuizStep1ServiceType } from "@/components/instant-quote/QuizStep1ServiceType";
 import { QuizStep2HomeSize } from "@/components/instant-quote/QuizStep2HomeSize";
@@ -103,9 +104,10 @@ export function InstantQuoteWizard() {
             <button
               type="button"
               onClick={() => setQuiz((q) => ({ ...q, step: Math.max(q.step - 1, 0) }))}
-              className="mb-2.5 flex items-center gap-1.5 font-[Plus_Jakarta_Sans,sans-serif] text-sm font-semibold text-[#64748b] max-sm:text-[13px]"
+              className="mb-2.5 inline-flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-500 transition-all duration-200 hover:border-[#2563EB] hover:bg-blue-50 hover:text-[#2563EB]"
             >
-              ← Back
+              <ChevronLeft size={16} />
+              <span>Back</span>
             </button>
           )}
 
@@ -185,6 +187,7 @@ export function InstantQuoteWizard() {
                   <QuizStep4SoftGate
                     value={quiz.contact}
                     address={quiz.address}
+                    serviceType={quiz.serviceType}
                     homeSize={quiz.homeSize}
                     currentSystem={quiz.currentSystem}
                     propertyData={quiz.propertyData}

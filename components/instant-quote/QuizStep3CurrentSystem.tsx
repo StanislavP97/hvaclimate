@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { STEP3_OPTIONS } from "@/components/instant-quote/quiz-data";
 import type { CurrentSystem } from "@/components/instant-quote/types";
 
@@ -59,13 +60,14 @@ export function QuizStep3CurrentSystem({ value, onNext }: QuizStep3CurrentSystem
         type="button"
         onClick={() => selected && onNext(selected)}
         disabled={!canProceed}
-        className={`w-full min-h-[60px] rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
+        className={`group flex w-full min-h-[60px] items-center justify-center gap-2 rounded-[11px] py-4 text-center font-[Plus_Jakarta_Sans,sans-serif] text-[15.5px] font-bold transition-colors ${
           canProceed
             ? "cursor-pointer bg-[#2563EB] text-white shadow-[0_8px_20px_rgba(37,99,235,.3)] hover:bg-[#1d4ed8]"
             : "cursor-not-allowed bg-[#e2e8f0] text-[#94a3b8]"
         }`}
       >
-        Next →
+        <span>Next</span>
+        <ArrowRight size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
       </button>
     </div>
   );
