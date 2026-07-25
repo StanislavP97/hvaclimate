@@ -83,10 +83,10 @@ function useScrollPosition() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 80);
-    handler();
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return scrolled;
@@ -263,7 +263,17 @@ export default function Header() {
   const scrolled = useScrollPosition();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-white">
+    <header
+      className="sticky top-0 z-40"
+      style={{
+        background: scrolled ? "rgba(255,255,255,0.92)" : "white",
+        backdropFilter: scrolled ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        boxShadow: scrolled ? "0 4px 24px rgba(0,0,0,0.06)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.06)" : "none",
+        transition: "background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease",
+      }}
+    >
       <div className="hidden border-b border-border bg-navy sm:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-6 py-2 text-[13px] text-footer-foreground">
           <a
@@ -287,17 +297,8 @@ export default function Header() {
         </div>
       </div>
 
-      <div
-        className={`mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 transition-all duration-300 ease-in-out ${
-          scrolled ? "h-16 shadow-[0_4px_20px_rgba(13,27,42,0.08)]" : "h-20"
-        }`}
-      >
-        <Link
-          href="/"
-          className={`flex items-center transition-transform duration-300 ease-in-out ${
-            scrolled ? "scale-90" : "scale-100"
-          }`}
-        >
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo.png"
             alt="Climate Control LLC"

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { InstantQuoteWizard } from "@/components/instant-quote/InstantQuoteWizard";
+import CalculatorWizard from "@/components/calculator/CalculatorWizard";
 
 export const metadata: Metadata = {
   title: "Instant Quote | HVA Climate Control",
@@ -8,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function InstantQuotePage() {
-  return <InstantQuoteWizard />;
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-[#0a0f2e] px-4 py-8">
+      <CalculatorWizard />
+    </main>
+  );
 }

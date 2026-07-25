@@ -15,6 +15,8 @@ SEO preservation is the #1 priority — all URLs must remain identical to Webflo
 - Build: `npm run build`
 - Production: `npm run start`
 - Lint: `npm run lint`
+- Test: `npm run test`
+- Test (watch): `npm run test:watch`
 
 ## Workflow
 Build one feature at a time using the Blueprint skill loop:
