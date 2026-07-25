@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
-import { ReviewsSection } from "@/components/home/ReviewsSection";
+import { GoogleReviews } from "@/components/GoogleReviews";
 import { ServiceCategorySections } from "@/components/home/ServiceCategorySections";
 import { BlogTeaser } from "@/components/home/BlogTeaser";
 import { TrustBar } from "@/components/home/TrustBar";
@@ -19,7 +19,7 @@ export default function Home() {
       <TrustBar />
       <ServiceCategorySections />
       <WhyChooseUs />
-      <ReviewsSection />
+      <GoogleReviews />
       <BlogTeaser />
     </>
   );
