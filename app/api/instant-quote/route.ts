@@ -269,13 +269,11 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
-    console.log("[instant-quote] RESEND_API_KEY not set, logging submission:", data);
+    console.log("[instant-quote] RESEND_API_KEY not set, skipping lead email");
     return NextResponse.json({ success: true });
   }
 
   const resend = new Resend(apiKey);
-
-  console.log("[InstantQuote] Sending emails to:", leadEmail, data.contact.email);
 
   const results = await Promise.allSettled([
     resend.emails.send({
@@ -292,8 +290,6 @@ export async function POST(request: Request) {
       html: customerEmailHtml(data),
     }),
   ]);
-
-  console.log("[InstantQuote] Email results:", JSON.stringify(results));
 
   const [officeResult, customerResult] = results;
 

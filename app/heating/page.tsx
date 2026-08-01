@@ -7,14 +7,16 @@ import {
   type ServiceCategoryCard,
 } from "@/components/services/ServiceCategoryLayout";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+import { pageMetadata } from "@/lib/metadata";
 
 type ServiceCardData = ServiceCategoryCard;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Heating Services | HVA Climate Control",
   description:
     "Expert gas and electric furnace repair, installation, tune-up, and maintenance in Vancouver WA and Portland OR. Licensed, bonded, and insured.",
-};
+  path: "/heating",
+});
 
 export const HEATING_SERVICE_CARDS: ServiceCardData[] = [
   {

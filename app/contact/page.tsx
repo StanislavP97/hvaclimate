@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactInfoPanel } from "@/components/contact/ContactInfoPanel";
 import { ContactMap } from "@/components/contact/ContactMap";
 import { FaqAccordion } from "@/components/contact/FaqAccordion";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact Us | HVA Climate Control",
   description:
     "Get in touch with HVA Climate Control for HVAC repair, installation, and maintenance in Vancouver WA and Portland OR.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

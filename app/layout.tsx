@@ -59,6 +59,12 @@ export default function RootLayout({
         </head>
       )}
       <body className="min-h-full flex flex-col">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#2563EB] focus:text-white focus:rounded-lg focus:font-medium"
+        >
+          Skip to main content
+        </a>
         {GTM_ID && (
           <noscript>
             <iframe
@@ -71,7 +77,7 @@ export default function RootLayout({
         )}
         <LocalBusinessJsonLd />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <Script
           src={`https://online-booking.housecallpro.com/script.js?token=${HOUSECALL_PRO_TOKEN}&orgName=${HOUSECALL_PRO_ORG_NAME}`}

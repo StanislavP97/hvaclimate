@@ -34,6 +34,7 @@ export interface QuizState {
   currentSystem: CurrentSystem | null;
   contact: ContactInfo;
   gateUnlocked: boolean;
+  emailFailed: boolean;
   selectedTier: SystemTier;
   addons: Addons;
   propertyData: PropertyData | null;

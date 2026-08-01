@@ -6,6 +6,7 @@ import {
 } from "@/lib/service-areas";
 import { ServiceDetailLayout } from "@/components/services/ServiceDetailLayout";
 import { OtherServiceAreas } from "@/components/services/OtherServiceAreas";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -25,10 +26,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: entry.titleTag,
     description: entry.metaDescription,
-  };
+    path: `/service-areas/${entry.slug}`,
+  });
 }
 
 export default async function ServiceAreaSlugPage({ params }: PageProps) {

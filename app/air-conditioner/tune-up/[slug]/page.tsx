@@ -5,6 +5,7 @@ import {
   getAcTuneups,
 } from "@/lib/ac-tuneups";
 import { ServiceDetailLayout } from "@/components/services/ServiceDetailLayout";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,10 +25,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: entry.titleTag,
     description: entry.metaDescription,
-  };
+    path: `/air-conditioner/tune-up/${entry.slug}`,
+  });
 }
 
 export default async function AcTuneupPage({ params }: PageProps) {

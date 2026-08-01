@@ -10,6 +10,7 @@ import {
   Star,
   ShieldCheck,
   CheckCircle2,
+  AlertTriangle,
   type LucideIcon,
 } from "lucide-react";
 import { SystemTierCard } from "@/components/instant-quote/SystemTierCard";
@@ -34,6 +35,7 @@ interface LivingProposalProps {
   homeSize: HomeSize | null;
   currentSystem: CurrentSystem | null;
   propertyData: PropertyData | null;
+  emailFailed: boolean;
   onSchedule: () => void;
   onCall: () => void;
 }
@@ -75,6 +77,7 @@ export function LivingProposal({
   homeSize,
   currentSystem,
   propertyData,
+  emailFailed,
   onSchedule,
   onCall,
 }: LivingProposalProps) {
@@ -99,6 +102,23 @@ export function LivingProposal({
 
   return (
     <div className="relative bg-white">
+      {emailFailed && (
+        <div
+          role="alert"
+          className="flex items-center justify-center gap-2.5 bg-[#fef9c3] px-6 py-3 text-center text-sm font-medium text-[#854d0e]"
+        >
+          <AlertTriangle size={18} className="flex-none" />
+          <span>
+            Your estimate is ready! Note: we couldn&apos;t send a confirmation email &mdash;
+            please call us at{" "}
+            <a href="tel:+13608882217" className="font-bold underline">
+              (360) 888-2217
+            </a>{" "}
+            to confirm your appointment.
+          </span>
+        </div>
+      )}
+
       {/* RESULT HEADER */}
       <div className="bg-[#f1f5f9] px-12 py-10 text-center max-sm:px-[18px] max-sm:py-6">
         <div className="mx-auto max-w-2xl">

@@ -5,6 +5,7 @@ import {
   getDuctworks,
 } from "@/lib/ductworks";
 import { ServiceDetailLayout } from "@/components/services/ServiceDetailLayout";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,10 +25,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: entry.titleTag,
     description: entry.metaDescription,
-  };
+    path: `/ventilation/ductwork/${entry.slug}`,
+  });
 }
 
 export default async function DuctworkPage({ params }: PageProps) {

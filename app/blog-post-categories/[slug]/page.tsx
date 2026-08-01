@@ -4,6 +4,7 @@ import { getBlogCategories, getBlogCategoryBySlug } from "@/lib/blog-categories"
 import { getBlogPostsByCategorySlug } from "@/lib/blog-posts";
 import { ServiceHero } from "@/components/services/ServiceHero";
 import { BlogCardGrid } from "@/components/blog/BlogCardGrid";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -23,10 +24,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: category.titleTag,
     description: category.metaDescription,
-  };
+    path: `/blog-post-categories/${category.slug}`,
+  });
 }
 
 export default async function BlogCategoryPage({ params }: PageProps) {

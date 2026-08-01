@@ -157,8 +157,9 @@ export function AddressAutocomplete({ onAddressSelect, value, onChange }: Addres
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder="123 Main St, Vancouver, WA 98682"
+      aria-label="Service address"
       type="text"
-      className="h-12 w-full rounded-[10px] border-[1.5px] border-[#e2e7ee] px-4 font-sans text-[15px] text-[#0D1B2A] outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
+      className="h-12 w-full rounded-[10px] border-[1.5px] border-[#e2e7ee] px-4 font-sans text-base text-[#0D1B2A] outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20"
     />
   );
 }

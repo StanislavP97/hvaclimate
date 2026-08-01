@@ -7,14 +7,16 @@ import {
   type ServiceCategoryCard,
 } from "@/components/services/ServiceCategoryLayout";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+import { pageMetadata } from "@/lib/metadata";
 
 type ServiceCardData = ServiceCategoryCard;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Ventilation Services | HVA Climate Control",
   description:
     "Ductwork, vent cleaning, and fresh air system installation in Vancouver WA and Portland OR. Licensed, bonded, and insured ventilation experts.",
-};
+  path: "/ventilation",
+});
 
 export const VENTILATION_SERVICE_CARDS: ServiceCardData[] = [
   {

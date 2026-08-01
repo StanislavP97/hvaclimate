@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getGasFurnaceBySlug, getGasFurnaces } from "@/lib/gas-furnaces";
 import { ServiceDetailLayout } from "@/components/services/ServiceDetailLayout";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -21,10 +22,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: entry.titleTag,
     description: entry.metaDescription,
-  };
+    path: `/heating/gas-furnace/${entry.slug}`,
+  });
 }
 
 export default async function GasFurnacePage({ params }: PageProps) {

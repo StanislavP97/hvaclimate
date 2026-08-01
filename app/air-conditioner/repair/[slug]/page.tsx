@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAcRepairBySlug, getAcRepairs } from "@/lib/ac-repairs";
 import { ServiceDetailLayout } from "@/components/services/ServiceDetailLayout";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -21,10 +22,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: entry.titleTag,
     description: entry.metaDescription,
-  };
+    path: `/air-conditioner/repair/${entry.slug}`,
+  });
 }
 
 export default async function AcRepairPage({ params }: PageProps) {

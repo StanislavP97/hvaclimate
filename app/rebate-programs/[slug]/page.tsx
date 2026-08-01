@@ -6,6 +6,7 @@ import {
 } from "@/lib/rebate-programs";
 import { ServiceDetailLayout } from "@/components/services/ServiceDetailLayout";
 import { RelatedRebatePrograms } from "@/components/services/RelatedRebatePrograms";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -25,10 +26,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: entry.titleTag,
     description: entry.metaDescription,
-  };
+    path: `/rebate-programs/${entry.slug}`,
+  });
 }
 
 export default async function RebateProgramSlugPage({ params }: PageProps) {

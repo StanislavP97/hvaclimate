@@ -7,14 +7,16 @@ import {
   type ServiceCategoryCard,
 } from "@/components/services/ServiceCategoryLayout";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+import { pageMetadata } from "@/lib/metadata";
 
 type ServiceCardData = ServiceCategoryCard;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Commercial HVAC Services | HVA Climate Control",
   description:
     "Commercial HVAC maintenance, hood, oven, and refrigeration repair for businesses in Vancouver WA and Portland OR. Licensed, bonded, and insured.",
-};
+  path: "/commercial",
+});
 
 export const COMMERCIAL_SERVICE_CARDS: ServiceCardData[] = [
   {

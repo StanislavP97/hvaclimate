@@ -50,21 +50,21 @@ const FOOTER_COLUMNS = [
     {
       heading: "Heating",
       links: [
-        { label: "Gas Furnace", href: "/heating" },
-        { label: "Electric Furnace", href: "/heating" },
-        { label: "Repair", href: "/heating" },
-        { label: "Installation", href: "/heating" },
-        { label: "Tune-up", href: "/heating" },
-        { label: "Maintenance", href: "/heating" },
+        { label: "Gas Furnace", href: "/heating/gas-furnace/installation" },
+        { label: "Electric Furnace", href: "/heating/electric-furnace/installation" },
+        { label: "Repair", href: "/heating/gas-furnace/repair" },
+        { label: "Installation", href: "/heating/gas-furnace/installation" },
+        { label: "Tune-up", href: "/heating/gas-furnace/tune-up" },
+        { label: "Maintenance", href: "/heating/gas-furnace/maintenance" },
       ],
     },
     {
       heading: "Cooling",
       links: [
-        { label: "AC Repair", href: "/air-conditioning" },
-        { label: "AC Installation", href: "/air-conditioning" },
-        { label: "Minisplit", href: "/air-conditioning" },
-        { label: "AC Tune-up", href: "/air-conditioning" },
+        { label: "AC Repair", href: "/air-conditioner/repair/residential" },
+        { label: "AC Installation", href: "/air-conditioner/installation/residential" },
+        { label: "Minisplit", href: "/air-conditioner/installation/minisplit-installation" },
+        { label: "AC Tune-up", href: "/air-conditioner/tune-up/residential" },
       ],
     },
   ],
@@ -72,10 +72,10 @@ const FOOTER_COLUMNS = [
     {
       heading: "Ventilation",
       links: [
-        { label: "Ductwork Repair", href: "/ventilation" },
-        { label: "Ductwork Installation", href: "/ventilation" },
-        { label: "Dryer Vent Cleaning", href: "/ventilation" },
-        { label: "Fresh Air Systems", href: "/ventilation" },
+        { label: "Ductwork Repair", href: "/ventilation/ductwork/repair" },
+        { label: "Ductwork Installation", href: "/ventilation/ductwork/installation" },
+        { label: "Dryer Vent Cleaning", href: "/ventilation/vent-cleaning/dryer" },
+        { label: "Fresh Air Systems", href: "/ventilation/ductwork/fresh-air-system-installation" },
       ],
     },
     {

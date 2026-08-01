@@ -310,9 +310,6 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7.5 text-[15px] font-medium text-[#0D1B2A] lg:flex">
-          <Link href="/" className="link-animated">
-            Home
-          </Link>
           <ServicesMegaMenu />
           <ServiceAreasDropdown />
           <RebatesDropdown />

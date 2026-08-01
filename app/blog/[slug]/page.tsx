@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getBlogPostBySlug, getBlogPosts } from "@/lib/blog-posts";
 import { getBlogCategoryBySlug } from "@/lib/blog-categories";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+import { pageMetadata } from "@/lib/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -24,10 +25,11 @@ export async function generateMetadata({
     return {};
   }
 
-  return {
+  return pageMetadata({
     title: post.titleTag,
     description: post.metaDescription,
-  };
+    path: `/blog/${post.slug}`,
+  });
 }
 
 export default async function BlogPostPage({ params }: PageProps) {

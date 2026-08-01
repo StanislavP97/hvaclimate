@@ -24,7 +24,7 @@ interface QuizStep4SoftGateProps {
   homeSize: HomeSize | null;
   currentSystem: CurrentSystem | null;
   propertyData: PropertyData | null;
-  onUnlock: (value: ContactInfo) => void;
+  onUnlock: (value: ContactInfo, emailFailed: boolean) => void;
 }
 
 export function QuizStep4SoftGate({
@@ -54,6 +54,7 @@ export function QuizStep4SoftGate({
 
     const contact = { formName, formPhone, formEmail, smsOptIn };
     setSubmitting(true);
+    let emailFailed = false;
 
     try {
       const tier = TIER_META.gold;
@@ -73,18 +74,20 @@ export function QuizStep4SoftGate({
         submittedAt: new Date().toISOString(),
       };
 
-      console.log("Submitting lead:", payload);
-
-      await fetch("/api/instant-quote", {
+      const response = await fetch("/api/instant-quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
+      if (!response.ok) {
+        emailFailed = true;
+      }
     } catch {
-      // Non-blocking: still show the Living Proposal even if the API call fails
+      emailFailed = true;
     } finally {
       setSubmitting(false);
-      onUnlock(contact);
+      onUnlock(contact, emailFailed);
     }
   }
 
@@ -105,7 +108,8 @@ export function QuizStep4SoftGate({
             value={formName}
             onChange={(e) => setFormName(e.target.value)}
             placeholder="Jane Smith"
-            className={`w-full rounded-[10px] border-[1.5px] px-4 py-3.5 font-sans text-[15px] text-[#0D1B2A] outline-none ${
+            aria-label="Full name"
+            className={`w-full rounded-[10px] border-[1.5px] px-4 py-3.5 font-sans text-base text-[#0D1B2A] outline-none ${
               touched && !nameValid ? errorClass : "border-[#e2e8f0]"
             }`}
           />
@@ -120,7 +124,8 @@ export function QuizStep4SoftGate({
             onChange={(e) => setFormPhone(formatPhoneInput(e.target.value))}
             placeholder="(360) 555-0123"
             type="tel"
-            className={`w-full rounded-[10px] border-[1.5px] px-4 py-3.5 font-sans text-[15px] text-[#0D1B2A] outline-none ${
+            aria-label="Phone number"
+            className={`w-full rounded-[10px] border-[1.5px] px-4 py-3.5 font-sans text-base text-[#0D1B2A] outline-none ${
               touched && !phoneValid ? errorClass : "border-[#e2e8f0]"
             }`}
           />
@@ -135,7 +140,8 @@ export function QuizStep4SoftGate({
             onChange={(e) => setFormEmail(e.target.value)}
             placeholder="you@example.com"
             type="email"
-            className={`w-full rounded-[10px] border-[1.5px] px-4 py-3.5 font-sans text-[15px] text-[#0D1B2A] outline-none ${
+            aria-label="Email address"
+            className={`w-full rounded-[10px] border-[1.5px] px-4 py-3.5 font-sans text-base text-[#0D1B2A] outline-none ${
               touched && !emailValid ? errorClass : "border-[#e2e8f0]"
             }`}
           />

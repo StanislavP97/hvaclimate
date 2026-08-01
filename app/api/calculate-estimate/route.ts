@@ -224,9 +224,7 @@ export async function POST(request: Request) {
     );
   }
 
-  console.log("[Calculator] Request received");
   const body = await request.json();
-  console.log("[Calculator] Body:", JSON.stringify(body));
 
   const parsed = calculatorRequestSchema.safeParse(body);
 

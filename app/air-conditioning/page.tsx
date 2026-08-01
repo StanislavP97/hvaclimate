@@ -7,14 +7,16 @@ import {
   type ServiceCategoryCard,
 } from "@/components/services/ServiceCategoryLayout";
 import { ServiceEstimateSidebar } from "@/components/services/ServiceEstimateSidebar";
+import { pageMetadata } from "@/lib/metadata";
 
 type ServiceCardData = ServiceCategoryCard;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Air Conditioning Services | HVA Climate Control",
   description:
     "AC repair, installation, and tune-up services in Vancouver WA and Portland OR. Fast, reliable air conditioning experts, licensed, bonded, and insured.",
-};
+  path: "/air-conditioning",
+});
 
 export const COOLING_SERVICE_CARDS: ServiceCardData[] = [
   {

@@ -26,6 +26,7 @@ const DEFAULT_STATE: QuizState = {
   currentSystem: null,
   contact: { formName: "", formPhone: "", formEmail: "", smsOptIn: true },
   gateUnlocked: false,
+  emailFailed: false,
   selectedTier: "gold",
   addons: DEFAULT_ADDONS,
   propertyData: null,
@@ -49,6 +50,7 @@ export function InstantQuoteWizard() {
         homeSize={quiz.homeSize}
         currentSystem={quiz.currentSystem}
         propertyData={quiz.propertyData}
+        emailFailed={quiz.emailFailed}
         onSchedule={handleSchedule}
         onCall={handleCall}
       />
@@ -191,8 +193,8 @@ export function InstantQuoteWizard() {
                     homeSize={quiz.homeSize}
                     currentSystem={quiz.currentSystem}
                     propertyData={quiz.propertyData}
-                    onUnlock={(contact) =>
-                      setQuiz((q) => ({ ...q, contact, gateUnlocked: true }))
+                    onUnlock={(contact, emailFailed) =>
+                      setQuiz((q) => ({ ...q, contact, gateUnlocked: true, emailFailed }))
                     }
                   />
                 </motion.div>
