@@ -1,3 +1,5 @@
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+
 interface PropertyLookupResult {
   found: boolean;
   squareFootage: number | null;
@@ -57,10 +59,15 @@ async function fetchAvm(address: string) {
 }
 
 export async function GET(request: Request) {
+  const ip = getClientIp(request);
+  if (!checkRateLimit(ip, 5)) {
+    return Response.json({ found: false, error: "Too many requests. Please try again later." }, { status: 429 });
+  }
+
   const { searchParams } = new URL(request.url);
   const address = searchParams.get("address");
 
-  if (!address) return Response.json({ found: false });
+  if (!address || address.length > 200) return Response.json({ found: false });
 
   try {
     const [propertyResult, avmResult] = await Promise.allSettled([

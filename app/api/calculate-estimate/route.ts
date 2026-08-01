@@ -4,6 +4,8 @@ import { Resend } from "resend";
 import { calculatorRequestSchema, estimateResultSchema } from "@/lib/validation/calculator";
 import type { CalculatorRequest } from "@/lib/validation/calculator";
 import type { EstimateResult } from "@/types/calculator";
+import { escapeHtml } from "@/lib/html-escape";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 const leadEmail = process.env.LEAD_EMAIL ?? "Office@HVAClimate.com";
 
@@ -124,7 +126,7 @@ function quizAnswersRowsHtml(state: CalculatorRequest) {
     .map(([field, label], index) => {
       const rawValue = state[field];
       const value = Array.isArray(rawValue) ? rawValue.join(", ") : String(rawValue);
-      const displayValue = value.trim() === "" ? "None" : value;
+      const displayValue = value.trim() === "" ? "None" : escapeHtml(value);
       const rowBg = index % 2 === 0 ? "#ffffff" : "#f8fafc";
       return `
         <tr style="background:${rowBg};">
@@ -136,6 +138,12 @@ function quizAnswersRowsHtml(state: CalculatorRequest) {
 }
 
 export function leadEmailHtml(state: CalculatorRequest, result: EstimateResult) {
+  const firstName = escapeHtml(state.firstName);
+  const lastName = escapeHtml(state.lastName);
+  const phone = escapeHtml(state.phone);
+  const email = escapeHtml(state.email);
+  const address = escapeHtml(state.address);
+
   const housecallUrl = `https://app.housecallpro.com/customers/new?name=${encodeURIComponent(
     `${state.firstName} ${state.lastName}`,
   )}&phone=${encodeURIComponent(state.phone)}&email=${encodeURIComponent(
@@ -147,13 +155,13 @@ export function leadEmailHtml(state: CalculatorRequest, result: EstimateResult) 
     <table style="width:100%;border-collapse:collapse;">
       <tr><td style="background:#0d1b2a;padding:24px;">
         <p style="margin:0 0 6px;font-size:13px;font-weight:bold;color:#94a3b8;text-transform:uppercase;letter-spacing:0.05em;">⚡ New Calculator Lead</p>
-        <h2 style="margin:0;font-size:22px;color:#ffffff;">${state.firstName} ${state.lastName}</h2>
+        <h2 style="margin:0;font-size:22px;color:#ffffff;">${firstName} ${lastName}</h2>
       </td></tr>
 
       <tr><td style="background:#f8fafc;padding:20px 24px;font-size:14px;color:#334155;">
-        📞 ${state.phone}<br/>
-        ✉️ ${state.email}<br/>
-        📍 ${state.address}
+        📞 ${phone}<br/>
+        ✉️ ${email}<br/>
+        📍 ${address}
       </td></tr>
 
       <tr><td style="padding:20px 24px 0;">
@@ -208,6 +216,14 @@ async function sendLeadEmail(state: CalculatorRequest, result: EstimateResult) {
 }
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request);
+  if (!checkRateLimit(ip, 10)) {
+    return NextResponse.json(
+      { success: false, error: "Too many requests. Please try again later." },
+      { status: 429 },
+    );
+  }
+
   console.log("[Calculator] Request received");
   const body = await request.json();
   console.log("[Calculator] Body:", JSON.stringify(body));

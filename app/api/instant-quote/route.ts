@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { instantQuoteRequestSchema } from "@/lib/validation/instant-quote";
+import { escapeHtml } from "@/lib/html-escape";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 const leadEmail = process.env.LEAD_EMAIL ?? "Office@HVAClimate.com";
 
@@ -91,7 +93,7 @@ function propertyDataSectionHtml(propertyData: PropertyDataInput | null | undefi
         ${propertyData.squareFootage != null ? `<tr><td style="padding:3px 0;">🏠 Square footage</td><td style="padding:3px 0;text-align:right;">${propertyData.squareFootage.toLocaleString()} sq ft</td></tr>` : ""}
         ${propertyData.yearBuilt != null ? `<tr><td style="padding:3px 0;">📅 Year built</td><td style="padding:3px 0;text-align:right;">${propertyData.yearBuilt}</td></tr>` : ""}
         ${propertyData.bedrooms != null || propertyData.bathrooms != null ? `<tr><td style="padding:3px 0;">🛏 Bedrooms / Bathrooms</td><td style="padding:3px 0;text-align:right;">${propertyData.bedrooms ?? "?"} / ${propertyData.bathrooms ?? "?"}</td></tr>` : ""}
-        ${propertyData.heatingType ? `<tr><td style="padding:3px 0;">🔥 Heating system</td><td style="padding:3px 0;text-align:right;">${propertyData.heatingType}</td></tr>` : ""}
+        ${propertyData.heatingType ? `<tr><td style="padding:3px 0;">🔥 Heating system</td><td style="padding:3px 0;text-align:right;">${escapeHtml(propertyData.heatingType)}</td></tr>` : ""}
       </table>
       ${propertyValueHtml(propertyData)}
     </td></tr>`;
@@ -119,9 +121,14 @@ function officeEmailHtml(data: {
   submittedAt: string;
   propertyData?: PropertyDataInput | null;
 }) {
+  const name = escapeHtml(data.contact.name);
+  const phone = escapeHtml(data.contact.phone);
+  const email = escapeHtml(data.contact.email);
+  const address = escapeHtml(data.address);
+
   const addonsList =
     data.selectedAddons.length > 0
-      ? data.selectedAddons.join(" • ")
+      ? data.selectedAddons.map(escapeHtml).join(" • ")
       : "None";
 
   const housecallUrl = `https://app.housecallpro.com/customers/new?name=${encodeURIComponent(
@@ -141,15 +148,15 @@ function officeEmailHtml(data: {
       <tr><td style="padding:0 24px;">
         <table style="width:100%;border-collapse:collapse;background:#f8fafc;border-left:4px solid #2563EB;font-size:14px;">
           <tr><td style="padding:12px 16px;">
-            👤 ${data.contact.name}<br/>
-            📞 ${data.contact.phone}<br/>
-            ✉️ ${data.contact.email}
+            👤 ${name}<br/>
+            📞 ${phone}<br/>
+            ✉️ ${email}
           </td></tr>
         </table>
       </td></tr>
 
       <tr><td style="padding:16px 24px 0;font-size:14px;">
-        📍 ${data.address}
+        📍 ${address}
       </td></tr>
 
       ${propertyDataSectionHtml(data.propertyData, data.homeSize)}
@@ -189,12 +196,15 @@ function customerEmailHtml(data: {
   priceRange: { min: number; max: number };
   monthlyPayment: number;
 }) {
+  const name = escapeHtml(data.contact.name);
+  const address = escapeHtml(data.address);
+
   return `
   <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#0D1B2A;">
     <table style="width:100%;border-collapse:collapse;">
       <tr><td style="padding:20px 24px 0;">
-        <h2 style="margin:0 0 12px;font-size:20px;">Hi ${data.contact.name},</h2>
-        <p style="margin:0 0 16px;font-size:14px;color:#334155;">Your estimate for ${data.address} is ready.</p>
+        <h2 style="margin:0 0 12px;font-size:20px;">Hi ${name},</h2>
+        <p style="margin:0 0 16px;font-size:14px;color:#334155;">Your estimate for ${address} is ready.</p>
       </td></tr>
 
       <tr><td style="padding:0 24px;">
@@ -232,6 +242,14 @@ function customerEmailHtml(data: {
 }
 
 export async function POST(request: Request) {
+  const ip = getClientIp(request);
+  if (!checkRateLimit(ip, 10)) {
+    return NextResponse.json(
+      { success: false, error: "Too many requests. Please try again later." },
+      { status: 429 },
+    );
+  }
+
   const body = await request.json();
   const parsed = instantQuoteRequestSchema.safeParse(body);
 
