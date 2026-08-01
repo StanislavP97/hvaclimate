@@ -52,7 +52,7 @@ export default function MobileNav() {
           />
           <span
             className={cn(
-              "h-0.5 w-full rounded-full bg-current transition-all duration-300 ease-in-out",
+              "h-0.5 w-full rounded-full bg-current transition-opacity duration-100 ease-in-out",
               open && "opacity-0",
             )}
           />
