@@ -2,12 +2,12 @@ import type { NextConfig } from "next";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://maps.googleapis.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://maps.googleapis.com https://online-booking.housecallpro.com https://googleads.g.doubleclick.net",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self'",
   "img-src 'self' data: https:",
-  "connect-src 'self' https://www.googletagmanager.com https://maps.googleapis.com",
-  "frame-src 'self' https://www.googletagmanager.com",
+  "connect-src 'self' https://www.googletagmanager.com https://maps.googleapis.com https://online-booking.housecallpro.com https://api.housecallpro.com https://analytics.google.com https://www.google.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net",
+  "frame-src 'self' https://www.googletagmanager.com https://online-booking.housecallpro.com https://book.housecallpro.com",
   "frame-ancestors 'self'",
 ].join("; ");
 
