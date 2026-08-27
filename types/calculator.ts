@@ -1,5 +1,14 @@
 export type SystemPath = "central" | "minisplit";
 
+export interface PropertyData {
+  squareFootage?: number;
+  yearBuilt?: number;
+  bedrooms?: number;
+  bathrooms?: number;
+  heatingType?: string;
+  source?: string;
+}
+
 export interface CalculatorState {
   systemPath: SystemPath | "";
   // Central Air
@@ -30,6 +39,7 @@ export interface CalculatorState {
   phone: string;
   email: string;
   address: string;
+  propertyData?: PropertyData | null;
 }
 
 export const initialCalculatorState: CalculatorState = {
@@ -59,6 +69,7 @@ export const initialCalculatorState: CalculatorState = {
   phone: "",
   email: "",
   address: "",
+  propertyData: null,
 };
 
 export interface EstimateResult {
@@ -69,6 +80,11 @@ export interface EstimateResult {
   system_name: string;
   factors: string[];
   recommendation: string;
+}
+
+export function hasVerifiedPropertyData(data: PropertyData | null | undefined): boolean {
+  if (!data) return false;
+  return Boolean(data.squareFootage || data.yearBuilt || data.heatingType);
 }
 
 export function toggleMultiSelectValue(current: string[], value: string): string[] {

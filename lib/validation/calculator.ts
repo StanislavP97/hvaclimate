@@ -1,5 +1,14 @@
 import { z } from "zod";
 
+export const propertyDataSchema = z.object({
+  squareFootage: z.number().optional(),
+  yearBuilt: z.number().optional(),
+  bedrooms: z.number().optional(),
+  bathrooms: z.number().optional(),
+  heatingType: z.string().optional(),
+  source: z.string().optional(),
+});
+
 export const calculatorRequestSchema = z.object({
   systemPath: z.enum(["central", "minisplit", ""]),
   c_systemType: z.string(),
@@ -27,6 +36,7 @@ export const calculatorRequestSchema = z.object({
   phone: z.string().trim().min(10, "Phone is required"),
   email: z.string().trim().min(1, "Email is required").email("Enter a valid email"),
   address: z.string().trim().min(3, "Address is required"),
+  propertyData: propertyDataSchema.nullish(),
 });
 
 export type CalculatorRequest = z.infer<typeof calculatorRequestSchema>;

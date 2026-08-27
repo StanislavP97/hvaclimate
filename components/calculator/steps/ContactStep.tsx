@@ -1,14 +1,62 @@
-import { Loader2 } from "lucide-react";
-import type { CalculatorState } from "@/types/calculator";
+"use client";
+
+import { useCallback } from "react";
+import { CheckCircle2, Loader2 } from "lucide-react";
+import { AddressAutocomplete } from "@/components/instant-quote/AddressAutocomplete";
+import { hasVerifiedPropertyData, type CalculatorState, type PropertyData } from "@/types/calculator";
 
 interface ContactStepProps {
   state: CalculatorState;
   onChange: (field: keyof CalculatorState, value: string) => void;
+  onPropertyData: (data: PropertyData | null) => void;
   onSubmit: () => void;
   isSubmitting: boolean;
 }
 
-export function ContactStep({ state, onChange, onSubmit, isSubmitting }: ContactStepProps) {
+interface PropertyLookupResponse {
+  found?: boolean;
+  squareFootage?: number | null;
+  yearBuilt?: number | null;
+  bedrooms?: number | null;
+  bathrooms?: number | null;
+  heatingType?: string | null;
+}
+
+export function toPropertyData(response: PropertyLookupResponse): PropertyData | null {
+  if (!response.found) return null;
+
+  const data: PropertyData = { source: "rentcast" };
+  if (response.squareFootage != null) data.squareFootage = response.squareFootage;
+  if (response.yearBuilt != null) data.yearBuilt = response.yearBuilt;
+  if (response.bedrooms != null) data.bedrooms = response.bedrooms;
+  if (response.bathrooms != null) data.bathrooms = response.bathrooms;
+  if (response.heatingType != null) data.heatingType = response.heatingType;
+
+  return hasVerifiedPropertyData(data) ? data : null;
+}
+
+export function ContactStep({
+  state,
+  onChange,
+  onPropertyData,
+  onSubmit,
+  isSubmitting,
+}: ContactStepProps) {
+  const handleAddressSelect = useCallback(
+    (address: string) => {
+      onChange("address", address);
+      onPropertyData(null);
+
+      fetch(`/api/property-lookup?address=${encodeURIComponent(address)}`)
+        .then((response) => (response.ok ? response.json() : null))
+        .then((data: PropertyLookupResponse | null) => {
+          onPropertyData(data ? toPropertyData(data) : null);
+        })
+        .catch(() => onPropertyData(null));
+    },
+    [onChange, onPropertyData],
+  );
+
   return (
     <div className="flex flex-col gap-8">
       <div className="text-center">
@@ -59,14 +107,22 @@ export function ContactStep({ state, onChange, onSubmit, isSubmitting }: Contact
           onChange={(event) => onChange("email", event.target.value)}
           className="rounded-xl border border-[#e2e8f0] px-4 py-3 text-base text-[#0d1b2a] outline-none focus:border-[#2563EB]"
         />
-        <input
-          required
-          placeholder="Service Address or Zip Code"
-          aria-label="Service address or zip code"
-          value={state.address}
-          onChange={(event) => onChange("address", event.target.value)}
-          className="rounded-xl border border-[#e2e8f0] px-4 py-3 text-base text-[#0d1b2a] outline-none focus:border-[#2563EB]"
-        />
+        <div className="flex flex-col gap-2">
+          <AddressAutocomplete
+            value={state.address}
+            onChange={(value) => {
+              onChange("address", value);
+              onPropertyData(null);
+            }}
+            onAddressSelect={handleAddressSelect}
+          />
+          {hasVerifiedPropertyData(state.propertyData) && (
+            <p className="flex items-center gap-1.5 text-xs font-medium text-emerald-600">
+              <CheckCircle2 size={14} />
+              Home data auto-verified from public records
+            </p>
+          )}
+        </div>
         <textarea
           placeholder="Anything else we should know? (e.g. system not working, upstairs always hot…)"
           aria-label="Additional notes"

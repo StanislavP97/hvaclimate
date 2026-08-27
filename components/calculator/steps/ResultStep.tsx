@@ -1,12 +1,13 @@
 import { CheckCircle2 } from "lucide-react";
-import type { EstimateResult } from "@/types/calculator";
+import { hasVerifiedPropertyData, type EstimateResult, type PropertyData } from "@/types/calculator";
 
 interface ResultStepProps {
   firstName: string;
   result: EstimateResult;
+  propertyData?: PropertyData | null;
 }
 
-export function ResultStep({ firstName, result }: ResultStepProps) {
+export function ResultStep({ firstName, result, propertyData }: ResultStepProps) {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col items-center gap-3 text-center">
@@ -23,6 +24,12 @@ export function ResultStep({ firstName, result }: ResultStepProps) {
         </p>
         <p className="mt-1 text-sm text-gray-500">± 10% · Final price confirmed at free in-home visit</p>
         <p className="mt-3 text-sm text-[#94a3b8]">{result.system_name}</p>
+        {hasVerifiedPropertyData(propertyData) && (
+          <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-medium text-emerald-400">
+            <CheckCircle2 size={13} />
+            Home data auto-verified from public records
+          </p>
+        )}
         <p className="mt-1 text-xs text-[#94a3b8]">
           or from ${result.monthly_payment.toLocaleString("en-US")}/mo · 0% for 18 months
         </p>

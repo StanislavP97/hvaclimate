@@ -61,7 +61,10 @@ Rules:
 - Decrease estimate if:
     small home (under 1,200 sq ft): -10%
     standard efficiency selected: base price
-    simple closet/basement location: no adjustment`;
+    simple closet/basement location: no adjustment
+- If propertyData is provided with real home details (squareFootage, yearBuilt, heatingType),
+  use these for a more accurate estimate instead of the customer's own home-size guess, and note
+  in the factors array that the home data was auto-verified from public records.`;
 
 async function getEstimate(state: CalculatorRequest): Promise<EstimateResult> {
   if (!process.env.ANTHROPIC_API_KEY) {

@@ -14,6 +14,7 @@ import {
   toggleMultiSelectValue,
   type CalculatorState,
   type EstimateResult,
+  type PropertyData,
   type SystemPath,
 } from "@/types/calculator";
 
@@ -37,6 +38,10 @@ export default function CalculatorWizard() {
 
   function updateField(field: keyof CalculatorState, value: string) {
     setState((prev) => ({ ...prev, [field]: value }));
+  }
+
+  function setPropertyData(data: PropertyData | null) {
+    setState((prev) => ({ ...prev, propertyData: data }));
   }
 
   function toggleMulti(field: keyof CalculatorState, value: string) {
@@ -129,12 +134,20 @@ export default function CalculatorWizard() {
 
         {phase === "question" && currentStep && currentStep.kind === "contact" && (
           <>
-            <ContactStep state={state} onChange={updateField} onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+            <ContactStep
+              state={state}
+              onChange={updateField}
+              onPropertyData={setPropertyData}
+              onSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
+            />
             {error && <p className="mt-4 text-center text-sm text-red-600">{error}</p>}
           </>
         )}
 
-        {phase === "result" && result && <ResultStep firstName={state.firstName} result={result} />}
+        {phase === "result" && result && (
+          <ResultStep firstName={state.firstName} result={result} propertyData={state.propertyData} />
+        )}
       </div>
 
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0d1b2a] py-3 sm:hidden">
